@@ -42,6 +42,29 @@ html,body{height:100%;overflow-x:hidden;font-family:'Outfit',sans-serif;backgrou
 /* HERO */
 .beat-hero{text-align:center;padding:4px 0 10px}
 .beat-hero-ball{display:flex;justify-content:center;gap:8px;margin:0 auto 10px;width:max-content}
+.beat-hero-hex-row{display:flex;justify-content:center;gap:10px;margin:0 auto 14px}
+.hero-hex{
+  display:inline-block;
+  width:34px;height:34px;
+  clip-path:polygon(20% 0%,80% 0%,100% 30%,100% 70%,80% 100%,20% 100%,0% 70%,0% 30%);
+  background:var(--hc);
+  box-shadow:0 0 14px var(--hg),0 0 28px var(--hg);
+  animation:hexPulse 2.2s ease-in-out infinite;
+  position:relative;
+}
+.hero-hex::after{
+  content:'';
+  position:absolute;
+  width:9px;height:11px;
+  border-radius:50%;
+  background:rgba(0,0,0,0.55);
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+}
+@keyframes hexPulse{
+  0%,100%{transform:translateY(0) scale(1);opacity:0.85;filter:brightness(0.9)}
+  50%{transform:translateY(-7px) scale(1.12);opacity:1;filter:brightness(1.2)}
+}
 .beat-hero-ball .mini-dot{width:18px;height:18px;border-radius:50%;animation:heroPulse 2s ease-in-out infinite}
 .beat-hero-ball .mini-dot:nth-child(1){background:var(--gc0);box-shadow:0 0 10px var(--gc0);animation-delay:0s}
 .beat-hero-ball .mini-dot:nth-child(2){background:var(--gc1);box-shadow:0 0 10px var(--gc1);animation-delay:.15s}
@@ -65,73 +88,119 @@ html,body{height:100%;overflow-x:hidden;font-family:'Outfit',sans-serif;backgrou
 }
 
 /* LIGHT BUTTONS */
+/* ── HEXAGONAL WHEELER LIGHT SHAPE ── */
 .tap-ball{
   position:relative;width:100%;height:100%;
-  border-radius:20px;border:2.5px solid rgba(255,255,255,0.08);
-  background:rgba(255,255,255,0.04);
+  /* Hexagonal shield shape matching the real Wheeler light */
+  clip-path:polygon(20% 0%,80% 0%,100% 30%,100% 70%,80% 100%,20% 100%,0% 70%,0% 30%);
+  background:rgba(28,28,40,0.92);
+  border:none;
   cursor:pointer;outline:none;
   -webkit-tap-highlight-color:transparent;
-  transition:transform .12s ease,box-shadow .12s ease,border-color .12s ease;
+  transition:transform .14s ease,filter .14s ease;
   display:flex;align-items:center;justify-content:center;
-  overflow:hidden;
+  overflow:visible;
+  flex-shrink:0;
+}
+/* outer glow ring — separate element behind clip-path */
+.tap-ball::before{
+  content:'';
+  position:absolute;
+  inset:-4px;
+  clip-path:polygon(20% 0%,80% 0%,100% 30%,100% 70%,80% 100%,20% 100%,0% 70%,0% 30%);
+  background:transparent;
+  transition:background .14s;
+  z-index:0;
+  pointer-events:none;
 }
 .tap-ball .ball-label{
-  font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:2px;
-  color:rgba(255,255,255,0.15);transition:color .12s;
-  position:relative;z-index:2;user-select:none;
+  display:none; /* not needed with new design */
 }
 .tap-ball .ball-glow{
-  position:absolute;inset:0;border-radius:inherit;
+  position:absolute;inset:0;
+  clip-path:inherit;
   opacity:0;transition:opacity .12s;
   pointer-events:none;
+  z-index:1;
+}
+/* Inner body — frosted plastic look */
+.tap-ball .light-body{
+  position:absolute;inset:3px;
+  clip-path:polygon(20% 0%,80% 0%,100% 30%,100% 70%,80% 100%,20% 100%,0% 70%,0% 30%);
+  background:rgba(255,255,255,0.06);
+  z-index:1;
+  pointer-events:none;
+  transition:background .14s;
+}
+/* Center sensor button */
+.tap-ball .light-sensor{
+  position:absolute;
+  width:22%;height:28%;
+  border-radius:50%;
+  background:radial-gradient(circle at 40% 35%,rgba(50,50,70,1),rgba(10,10,20,1));
+  border:2px solid rgba(255,255,255,0.08);
+  z-index:3;
+  pointer-events:none;
+  box-shadow:inset 0 2px 6px rgba(0,0,0,0.8);
+}
+/* LED dots — 8 dots around perimeter */
+.tap-ball .led-ring{
+  position:absolute;inset:0;z-index:2;pointer-events:none;
+}
+.tap-ball .led-dot{
+  position:absolute;
+  width:9px;height:9px;border-radius:50%;
+  background:rgba(255,255,255,0.08);
+  transition:background .12s, box-shadow .12s;
 }
 
 /* Per-color states - applied via JS data-color attribute */
-.tap-ball[data-color="0"]{ border-color:rgba(255,45,85,0.15) }
-.tap-ball[data-color="1"]{ border-color:rgba(0,122,255,0.15) }
-.tap-ball[data-color="2"]{ border-color:rgba(48,209,88,0.15) }
-.tap-ball[data-color="3"]{ border-color:rgba(255,214,10,0.15) }
-.tap-ball[data-color="4"]{ border-color:rgba(191,90,242,0.15) }
-.tap-ball[data-color="5"]{ border-color:rgba(255,149,0,0.15) }
+/* color hint on idle LED dots */
+.tap-ball[data-color="0"] .led-dot{background:rgba(255,45,85,0.18)}
+.tap-ball[data-color="1"] .led-dot{background:rgba(0,122,255,0.18)}
+.tap-ball[data-color="2"] .led-dot{background:rgba(48,209,88,0.18)}
+.tap-ball[data-color="3"] .led-dot{background:rgba(255,214,10,0.18)}
+.tap-ball[data-color="4"] .led-dot{background:rgba(191,90,242,0.18)}
+.tap-ball[data-color="5"] .led-dot{background:rgba(255,149,0,0.18)}
 
-/* LIT state */
 .tap-ball.lit{
-  transform:translateY(-4px) scale(1.04);
-  border-width:2.5px;
+  transform:translateY(-5px) scale(1.06);
 }
-.tap-ball[data-color="0"].lit{border-color:var(--gc0);box-shadow:0 0 24px var(--gc0g),0 0 48px var(--gc0g),inset 0 0 20px rgba(255,45,85,0.25)}
-.tap-ball[data-color="1"].lit{border-color:var(--gc1);box-shadow:0 0 24px var(--gc1g),0 0 48px var(--gc1g),inset 0 0 20px rgba(0,122,255,0.25)}
-.tap-ball[data-color="2"].lit{border-color:var(--gc2);box-shadow:0 0 24px var(--gc2g),0 0 48px var(--gc2g),inset 0 0 20px rgba(48,209,88,0.25)}
-.tap-ball[data-color="3"].lit{border-color:var(--gc3);box-shadow:0 0 24px var(--gc3g),0 0 48px var(--gc3g),inset 0 0 20px rgba(255,214,10,0.25)}
-.tap-ball[data-color="4"].lit{border-color:var(--gc4);box-shadow:0 0 24px var(--gc4g),0 0 48px var(--gc4g),inset 0 0 20px rgba(191,90,242,0.25)}
-.tap-ball[data-color="5"].lit{border-color:var(--gc5);box-shadow:0 0 24px var(--gc5g),0 0 48px var(--gc5g),inset 0 0 20px rgba(255,149,0,0.25)}
 
-/* Color fill for lit balls */
-.tap-ball[data-color="0"].lit .ball-glow{opacity:1;background:radial-gradient(circle at 40% 35%,rgba(255,100,130,0.5),rgba(255,45,85,0.2) 60%,transparent 80%)}
-.tap-ball[data-color="1"].lit .ball-glow{opacity:1;background:radial-gradient(circle at 40% 35%,rgba(80,160,255,0.5),rgba(0,122,255,0.2) 60%,transparent 80%)}
-.tap-ball[data-color="2"].lit .ball-glow{opacity:1;background:radial-gradient(circle at 40% 35%,rgba(100,230,130,0.5),rgba(48,209,88,0.2) 60%,transparent 80%)}
-.tap-ball[data-color="3"].lit .ball-glow{opacity:1;background:radial-gradient(circle at 40% 35%,rgba(255,230,80,0.5),rgba(255,214,10,0.2) 60%,transparent 80%)}
-.tap-ball[data-color="4"].lit .ball-glow{opacity:1;background:radial-gradient(circle at 40% 35%,rgba(210,130,255,0.5),rgba(191,90,242,0.2) 60%,transparent 80%)}
-.tap-ball[data-color="5"].lit .ball-glow{opacity:1;background:radial-gradient(circle at 40% 35%,rgba(255,180,80,0.5),rgba(255,149,0,0.2) 60%,transparent 80%)}
+/* LED dots lit state per color */
+.tap-ball[data-color="0"].lit .led-dot{background:var(--gc0);box-shadow:0 0 8px var(--gc0),0 0 16px var(--gc0)}
+.tap-ball[data-color="1"].lit .led-dot{background:var(--gc1);box-shadow:0 0 8px var(--gc1),0 0 16px var(--gc1)}
+.tap-ball[data-color="2"].lit .led-dot{background:var(--gc2);box-shadow:0 0 8px var(--gc2),0 0 16px var(--gc2)}
+.tap-ball[data-color="3"].lit .led-dot{background:var(--gc3);box-shadow:0 0 8px var(--gc3),0 0 16px var(--gc3)}
+.tap-ball[data-color="4"].lit .led-dot{background:var(--gc4);box-shadow:0 0 8px var(--gc4),0 0 16px var(--gc4)}
+.tap-ball[data-color="5"].lit .led-dot{background:var(--gc5);box-shadow:0 0 8px var(--gc5),0 0 16px var(--gc5)}
 
-/* Lit label color */
-.tap-ball[data-color="0"].lit .ball-label{color:var(--gc0)}
-.tap-ball[data-color="1"].lit .ball-label{color:var(--gc1)}
-.tap-ball[data-color="2"].lit .ball-label{color:var(--gc2)}
-.tap-ball[data-color="3"].lit .ball-label{color:var(--gc3)}
-.tap-ball[data-color="4"].lit .ball-label{color:var(--gc4)}
-.tap-ball[data-color="5"].lit .ball-label{color:var(--gc5)}
+/* Light body glow when lit */
+.tap-ball[data-color="0"].lit .light-body{background:rgba(255,45,85,0.22)}
+.tap-ball[data-color="1"].lit .light-body{background:rgba(0,122,255,0.22)}
+.tap-ball[data-color="2"].lit .light-body{background:rgba(48,209,88,0.22)}
+.tap-ball[data-color="3"].lit .light-body{background:rgba(255,214,10,0.22)}
+.tap-ball[data-color="4"].lit .light-body{background:rgba(191,90,242,0.22)}
+.tap-ball[data-color="5"].lit .light-body{background:rgba(255,149,0,0.22)}
 
-/* Dim unlit during game */
-.court.playing .tap-ball:not(.lit){opacity:0.35}
+/* Filter glow on lit (works across clip-path boundary) */
+.tap-ball[data-color="0"].lit{filter:drop-shadow(0 0 10px var(--gc0)) drop-shadow(0 0 24px var(--gc0g)) brightness(1.15)}
+.tap-ball[data-color="1"].lit{filter:drop-shadow(0 0 10px var(--gc1)) drop-shadow(0 0 24px var(--gc1g)) brightness(1.15)}
+.tap-ball[data-color="2"].lit{filter:drop-shadow(0 0 10px var(--gc2)) drop-shadow(0 0 24px var(--gc2g)) brightness(1.15)}
+.tap-ball[data-color="3"].lit{filter:drop-shadow(0 0 10px var(--gc3)) drop-shadow(0 0 24px var(--gc3g)) brightness(1.15)}
+.tap-ball[data-color="4"].lit{filter:drop-shadow(0 0 10px var(--gc4)) drop-shadow(0 0 24px var(--gc4g)) brightness(1.15)}
+.tap-ball[data-color="5"].lit{filter:drop-shadow(0 0 10px var(--gc5)) drop-shadow(0 0 24px var(--gc5g)) brightness(1.15)}
+
+/* Unlit dims during play */
+.court.playing .tap-ball:not(.lit){opacity:0.30;filter:brightness(0.5)}
 
 .tap-ball.hit-correct{animation:lightBounce .2s ease-out}
 .tap-ball.hit-wrong{animation:lightShake .28s ease-out}
-@keyframes lightBounce{0%{transform:translateY(-4px) scale(1.04)}50%{transform:translateY(-10px) scale(1.1)}100%{transform:translateY(-4px) scale(1.04)}}
-@keyframes lightShake{0%,100%{transform:translateX(0) scale(1)}25%{transform:translateX(-6px) scale(0.97)}75%{transform:translateX(6px) scale(0.97)}}
-.tap-ball:active{transform:scale(0.93)}
+@keyframes lightBounce{0%{transform:translateY(-5px) scale(1.06)}50%{transform:translateY(-12px) scale(1.12)}100%{transform:translateY(-5px) scale(1.06)}}
+@keyframes lightShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
+.tap-ball:active{transform:scale(0.90)!important}
 .court.fuego-mode .tap-ball.lit{animation:fuegoBurst .18s ease-out}
-@keyframes fuegoBurst{0%{transform:translateY(-4px) scale(1.04)}50%{transform:translateY(-12px) scale(1.14)}100%{transform:translateY(-4px) scale(1.04)}}
+@keyframes fuegoBurst{0%{transform:translateY(-5px) scale(1.06)}50%{transform:translateY(-14px) scale(1.16)}100%{transform:translateY(-5px) scale(1.06)}}
 
 /* ── GO COLOR HUD ── */
 .go-hud{
@@ -420,9 +489,13 @@ html,body{height:100%;overflow-x:hidden;font-family:'Outfit',sans-serif;backgrou
 <!-- SETUP SCREEN -->
 <div class="setup-screen" id="setupScreen">
 <div class="beat-hero">
-<div class="beat-hero-ball" aria-hidden="true">
-<span class="mini-dot"></span><span class="mini-dot"></span><span class="mini-dot"></span>
-<span class="mini-dot"></span><span class="mini-dot"></span><span class="mini-dot"></span>
+<div class="beat-hero-hex-row" aria-hidden="true">
+<span class="hero-hex" style="--hc:#FF2D55;--hg:rgba(255,45,85,0.8);animation-delay:0s"></span>
+<span class="hero-hex" style="--hc:#007AFF;--hg:rgba(0,122,255,0.8);animation-delay:.18s"></span>
+<span class="hero-hex" style="--hc:#30D158;--hg:rgba(48,209,88,0.8);animation-delay:.36s"></span>
+<span class="hero-hex" style="--hc:#FFD60A;--hg:rgba(255,214,10,0.8);animation-delay:.54s"></span>
+<span class="hero-hex" style="--hc:#BF5AF2;--hg:rgba(191,90,242,0.8);animation-delay:.72s"></span>
+<span class="hero-hex" style="--hc:#FF9500;--hg:rgba(255,149,0,0.8);animation-delay:.90s"></span>
 </div>
 <div class="beat-hero-title">REACTION LIGHTS TRAINING</div>
 <div class="beat-hero-sub" data-en="See It · Decide · Act Faster" data-es="Míralo · Decide · Reacciona Más Rápido">See It · Decide · Act Faster</div>
@@ -487,12 +560,42 @@ html,body{height:100%;overflow-x:hidden;font-family:'Outfit',sans-serif;backgrou
 
 <div class="game-area">
   <div class="court" id="court">
-    <button class="tap-ball" id="ball0" data-index="0"><div class="ball-glow"></div><span class="ball-label">1</span></button>
-    <button class="tap-ball" id="ball1" data-index="1"><div class="ball-glow"></div><span class="ball-label">2</span></button>
-    <button class="tap-ball" id="ball2" data-index="2"><div class="ball-glow"></div><span class="ball-label">3</span></button>
-    <button class="tap-ball" id="ball3" data-index="3"><div class="ball-glow"></div><span class="ball-label">4</span></button>
-    <button class="tap-ball" id="ball4" data-index="4"><div class="ball-glow"></div><span class="ball-label">5</span></button>
-    <button class="tap-ball" id="ball5" data-index="5"><div class="ball-glow"></div><span class="ball-label">6</span></button>
+    <button class="tap-ball" id="ball0" data-index="0">
+      <div class="light-body"></div>
+      <div class="led-ring"><span class="led-dot" style="top:12%;left:28%"></span><span class="led-dot" style="top:12%;right:28%"></span><span class="led-dot" style="top:32%;left:6%"></span><span class="led-dot" style="top:32%;right:6%"></span><span class="led-dot" style="bottom:32%;left:6%"></span><span class="led-dot" style="bottom:32%;right:6%"></span><span class="led-dot" style="bottom:12%;left:28%"></span><span class="led-dot" style="bottom:12%;right:28%"></span></div>
+      <div class="light-sensor"></div>
+      <span class="ball-label">1</span>
+    </button>
+    <button class="tap-ball" id="ball1" data-index="1">
+      <div class="light-body"></div>
+      <div class="led-ring"><span class="led-dot" style="top:12%;left:28%"></span><span class="led-dot" style="top:12%;right:28%"></span><span class="led-dot" style="top:32%;left:6%"></span><span class="led-dot" style="top:32%;right:6%"></span><span class="led-dot" style="bottom:32%;left:6%"></span><span class="led-dot" style="bottom:32%;right:6%"></span><span class="led-dot" style="bottom:12%;left:28%"></span><span class="led-dot" style="bottom:12%;right:28%"></span></div>
+      <div class="light-sensor"></div>
+      <span class="ball-label">2</span>
+    </button>
+    <button class="tap-ball" id="ball2" data-index="2">
+      <div class="light-body"></div>
+      <div class="led-ring"><span class="led-dot" style="top:12%;left:28%"></span><span class="led-dot" style="top:12%;right:28%"></span><span class="led-dot" style="top:32%;left:6%"></span><span class="led-dot" style="top:32%;right:6%"></span><span class="led-dot" style="bottom:32%;left:6%"></span><span class="led-dot" style="bottom:32%;right:6%"></span><span class="led-dot" style="bottom:12%;left:28%"></span><span class="led-dot" style="bottom:12%;right:28%"></span></div>
+      <div class="light-sensor"></div>
+      <span class="ball-label">3</span>
+    </button>
+    <button class="tap-ball" id="ball3" data-index="3">
+      <div class="light-body"></div>
+      <div class="led-ring"><span class="led-dot" style="top:12%;left:28%"></span><span class="led-dot" style="top:12%;right:28%"></span><span class="led-dot" style="top:32%;left:6%"></span><span class="led-dot" style="top:32%;right:6%"></span><span class="led-dot" style="bottom:32%;left:6%"></span><span class="led-dot" style="bottom:32%;right:6%"></span><span class="led-dot" style="bottom:12%;left:28%"></span><span class="led-dot" style="bottom:12%;right:28%"></span></div>
+      <div class="light-sensor"></div>
+      <span class="ball-label">4</span>
+    </button>
+    <button class="tap-ball" id="ball4" data-index="4">
+      <div class="light-body"></div>
+      <div class="led-ring"><span class="led-dot" style="top:12%;left:28%"></span><span class="led-dot" style="top:12%;right:28%"></span><span class="led-dot" style="top:32%;left:6%"></span><span class="led-dot" style="top:32%;right:6%"></span><span class="led-dot" style="bottom:32%;left:6%"></span><span class="led-dot" style="bottom:32%;right:6%"></span><span class="led-dot" style="bottom:12%;left:28%"></span><span class="led-dot" style="bottom:12%;right:28%"></span></div>
+      <div class="light-sensor"></div>
+      <span class="ball-label">5</span>
+    </button>
+    <button class="tap-ball" id="ball5" data-index="5">
+      <div class="light-body"></div>
+      <div class="led-ring"><span class="led-dot" style="top:12%;left:28%"></span><span class="led-dot" style="top:12%;right:28%"></span><span class="led-dot" style="top:32%;left:6%"></span><span class="led-dot" style="top:32%;right:6%"></span><span class="led-dot" style="bottom:32%;left:6%"></span><span class="led-dot" style="bottom:32%;right:6%"></span><span class="led-dot" style="bottom:12%;left:28%"></span><span class="led-dot" style="bottom:12%;right:28%"></span></div>
+      <div class="light-sensor"></div>
+      <span class="ball-label">6</span>
+    </button>
   </div>
 
   <!-- GO COLOR HUD — shown only in shootaround mode -->
@@ -589,7 +692,10 @@ var goHudInstr  = document.getElementById('goHudInstruction');
 var goRoundEl   = document.getElementById('goRound');
 
 var tapBalls = [];
-for(var i=0;i<6;i++) tapBalls.push(document.getElementById('ball'+i));
+for(var i=0;i<6;i++){var _b=document.getElementById('ball'+i);if(_b)tapBalls.push(_b);}
+// Safe helpers — never crash on bad index
+function ballAt(idx){return (idx>=0&&idx<tapBalls.length)?tapBalls[idx]:null;}
+function allBalls(fn){tapBalls.forEach(function(b){if(b)fn(b)});}
 
 // ── BPM ───────────────────────────────────────────────────────────────────
 var bpm = 90, beatInterval = null, isPlaying = false;
@@ -772,7 +878,7 @@ function startChallenge(){switch(currentMode){case'crunchtime':challengeTimeLeft
 function endChallenge(survived){clearInterval(challengeTimerInterval);challengeTimerInterval=null;isPlaying=false;clearInterval(beatInterval);beatInterval=null;
 if(currentMode==='crunchtime'){if(survived&&challengeTimeLeft<=0){challengeResult.textContent=currentLang==='es'?'¡SOBREVIVISTE! 🏆':'SURVIVED! 🏆';challengeResult.className='challenge-result win';playBuzzerBeater();launchConfetti();trackSurvivalWin()}else{challengeResult.textContent=currentLang==='es'?'¡CASI! 💪':'ALMOST! 💪';challengeResult.className='challenge-result lose'}challengeStats.textContent='Streak: '+streak+' | Best: '+best}
 else if(currentMode==='nothingbutnet'){if(perfectCount>=10){challengeResult.textContent='NOTHING BUT NET! 🎯';challengeResult.className='challenge-result win';playBuzzerBeater();launchConfetti()}else{challengeResult.textContent=currentLang==='es'?'¡SIGUE!':'KEEP GOING!';challengeResult.className='challenge-result lose'}challengeStats.textContent='Swish: '+perfectCount+'/10'}
-challengeComplete.classList.add('show');tapBalls.forEach(function(c){c.classList.remove('lit')});court.classList.remove('playing');challengeTimer.classList.remove('show');challengeGoal.classList.remove('show');setOnFire(false)}
+challengeComplete.classList.add('show');allBalls(function(c){c.classList.remove('lit')});court.classList.remove('playing');challengeTimer.classList.remove('show');challengeGoal.classList.remove('show');setOnFire(false)}
 
 function trackPerfect(){if(currentMode==='nothingbutnet'){perfectCount++;goalProgress.textContent=perfectCount+'/10';if(perfectCount>=10)endChallenge(true)}}
 
@@ -819,7 +925,7 @@ function actuallyStart(){
     }
 
     lastBeatTime=Date.now(); tappedThisBeat=false; tappedThisGoRound=false;
-    tapBalls.forEach(function(b){b.classList.remove('lit')});
+    allBalls(function(b){b.classList.remove('lit')});
 
     if(currentMode==='shootaround'){
       // Pick new GO position, shuffle all other colors
@@ -831,22 +937,22 @@ function actuallyStart(){
       var showGoThisRound = Math.random() < 0.55;
       if(showGoThisRound){
         // Light up the GO position
-        tapBalls[goPosition].classList.add('lit');
+        var _gp=ballAt(goPosition);if(_gp)_gp.classList.add('lit');
         currentlyLit = goPosition;
         gnRoundGoLit = true;
       } else {
         // Light up a random non-GO position (NO-GO stimulus)
         var noGoPositions = [0,1,2,3,4,5].filter(function(p){return p!==goPosition});
         currentlyLit = noGoPositions[Math.floor(Math.random()*noGoPositions.length)];
-        tapBalls[currentlyLit].classList.add('lit');
+        var _cl=ballAt(currentlyLit);if(_cl)_cl.classList.add('lit');
         gnRoundGoLit = false;
       }
       goRoundEl.textContent = (currentLang==='es'?'RONDA ':'ROUND ')+goRound;
     } else {
       var pat = rhythmPatterns[currentPattern];
       currentlyLit = pat[patternIndex % pat.length];
-      tapBalls[currentlyLit].setAttribute('data-color', currentlyLit);
-      tapBalls[currentlyLit].classList.add('lit');
+      var _cl2=ballAt(currentlyLit);if(_cl2)_cl2.setAttribute('data-color',currentlyLit);
+      var _cl=ballAt(currentlyLit);if(_cl)_cl.classList.add('lit');
     }
 
     playBeatTick(); beatPulse(); patternIndex++;
@@ -860,7 +966,7 @@ function stopGame(){
   isPlaying=false;clearInterval(beatInterval);beatInterval=null;
   if(challengeTimerInterval){clearInterval(challengeTimerInterval);challengeTimerInterval=null}
   repCleanup();
-  tapBalls.forEach(function(c){c.classList.remove('lit')});
+  allBalls(function(c){c.classList.remove('lit')});
   court.classList.remove('playing');
   setOnFire(false);lastMilestone=0;isPracticeMode=false;
   challengeTimer.classList.remove('show','warning','critical');
@@ -869,7 +975,7 @@ function stopGame(){
   goColorIndex=-1;goPosition=-1;goRound=0;
   patternIndex=0;currentlyLit=-1;
   // Reset all ball colors
-  tapBalls.forEach(function(b,i){b.setAttribute('data-color',i)});
+  tapBalls.forEach(function(b,i){if(b)b.setAttribute('data-color',i)});
 }
 
 // ── PLAYBOOK (REPITELO) ────────────────────────────────────────────────────
@@ -879,9 +985,9 @@ var repiteloIndicator=document.getElementById('repiteloIndicator'),repiteloProgr
 function repStart(){repSequence=[];repRound=0;repPlayerIndex=0;repIsPlaying=false;repIsListening=false;isPlaying=true;repNextRound()}
 function repNextRound(){repRound++;repPlayerIndex=0;repIsListening=false;repIsPlaying=true;var maxB=6;repSequence.push(Math.floor(Math.random()*maxB));repRenderDots();repiteloIndicator.textContent='🧠 '+(currentLang==='es'?'RONDA '+repRound+' · ESCUCHA...':'ROUND '+repRound+' · LISTEN...');repiteloIndicator.className='repitelo-indicator watching';setTimeout(function(){repPlaySequence(0)},repRound===1?600:900)}
 function repRenderDots(){repiteloProgress.innerHTML='';for(var i=0;i<repSequence.length;i++){var dot=document.createElement('div');dot.className='rep-dot';dot.id='repDot'+i;repiteloProgress.appendChild(dot)}repiteloProgress.classList.add('show')}
-function repPlaySequence(idx){if(!isPlaying||currentMode!=='playbook')return;if(idx>=repSequence.length){repIsPlaying=false;repIsListening=true;repPlayerIndex=0;repiteloIndicator.textContent='⚡ '+(currentLang==='es'?'¡AHORA TÚ! ('+repSequence.length+' luces)':'YOUR TURN! ('+repSequence.length+' lights)');repiteloIndicator.className='repitelo-indicator listening';var fd=document.getElementById('repDot0');if(fd)fd.classList.add('current');return}var ci=repSequence[idx],el=tapBalls[ci];tapBalls.forEach(function(c){c.classList.remove('lit')});el.setAttribute('data-color',ci);el.classList.add('lit');playBounce(ci,'good');createTapParticles(el);vibrate(15);var dot=document.getElementById('repDot'+idx);if(dot)dot.classList.add('played');var speed=60000/bpm;setTimeout(function(){el.classList.remove('lit');setTimeout(function(){repPlaySequence(idx+1)},speed*0.2)},speed*0.6)}
-function repHandleTap(ci){if(!repIsListening||repIsPlaying)return false;if(currentMode!=='playbook')return false;var expected=repSequence[repPlayerIndex];var dot=document.getElementById('repDot'+repPlayerIndex);if(ci===expected){if(dot){dot.classList.remove('current');dot.classList.add('correct')}repPlayerIndex++;if(repPlayerIndex<repSequence.length){var nd=document.getElementById('repDot'+repPlayerIndex);if(nd)nd.classList.add('current')}if(repPlayerIndex>=repSequence.length){repIsListening=false;repiteloIndicator.textContent=currentLang==='es'?'¡WEPA! 🔥 Ronda '+repRound:'BUCKET! 🔥 Round '+repRound;repiteloIndicator.className='repitelo-indicator listening';playBuzzerBeater();if(repRound>=3)launchConfetti();if(repRound>repBestRound){repBestRound=repRound;localStorage.setItem('beat-rep-best',String(repBestRound))}setTimeout(function(){repNextRound()},1400)}return true}else{if(dot){dot.classList.remove('current');dot.classList.add('wrong')}repIsListening=false;playWrongSound();vibrate(80);repiteloIndicator.textContent=(currentLang==='es'?'¡CASI! Era la luz ':'CLOSE! It was light ')+(expected+1);repiteloIndicator.className='repitelo-indicator watching';tapBalls.forEach(function(c){c.classList.remove('lit')});tapBalls[expected].setAttribute('data-color',expected);tapBalls[expected].classList.add('lit');setTimeout(function(){tapBalls[expected].classList.remove('lit');repEndGame()},1200);return true}}
-function repEndGame(){repIsPlaying=false;repIsListening=false;var completed=repRound-1;challengeResult.textContent=completed>=5?(currentLang==='es'?'¡FLOOR GENERAL! 🧠':'FLOOR GENERAL! 🧠'):completed>=3?(currentLang==='es'?'¡MUY BIEN! 🔥':'NICE! 🔥'):(currentLang==='es'?'¡BUEN INTENTO! 💪':'GOOD TRY! 💪');challengeResult.className='challenge-result '+(completed>=3?'win':'lose');challengeStats.textContent=(currentLang==='es'?'Rondas: ':'Rounds: ')+completed+' | '+(currentLang==='es'?'Récord: ':'Record: ')+repBestRound;if(completed>=3){playBuzzerBeater();launchConfetti()}challengeComplete.classList.add('show');isPlaying=false;repiteloIndicator.className='repitelo-indicator';repiteloProgress.classList.remove('show');tapBalls.forEach(function(c){c.classList.remove('lit')});court.classList.remove('playing');if(completed>0){ps.gamesPlayed++;addXP(completed*5);checkAchievements();saveStats()}}
+function repPlaySequence(idx){if(!isPlaying||currentMode!=='playbook')return;if(idx>=repSequence.length){repIsPlaying=false;repIsListening=true;repPlayerIndex=0;repiteloIndicator.textContent='⚡ '+(currentLang==='es'?'¡AHORA TÚ! ('+repSequence.length+' luces)':'YOUR TURN! ('+repSequence.length+' lights)');repiteloIndicator.className='repitelo-indicator listening';var fd=document.getElementById('repDot0');if(fd)fd.classList.add('current');return}var ci=repSequence[idx],el=ballAt(ci);allBalls(function(c){c.classList.remove('lit')});if(el){el.setAttribute('data-color',ci);el.classList.add('lit');};playBounce(ci,'good');createTapParticles(el);vibrate(15);var dot=document.getElementById('repDot'+idx);if(dot)dot.classList.add('played');var speed=60000/bpm;setTimeout(function(){el.classList.remove('lit');setTimeout(function(){repPlaySequence(idx+1)},speed*0.2)},speed*0.6)}
+function repHandleTap(ci){if(!repIsListening||repIsPlaying)return false;if(currentMode!=='playbook')return false;var expected=repSequence[repPlayerIndex];var dot=document.getElementById('repDot'+repPlayerIndex);if(ci===expected){if(dot){dot.classList.remove('current');dot.classList.add('correct')}repPlayerIndex++;if(repPlayerIndex<repSequence.length){var nd=document.getElementById('repDot'+repPlayerIndex);if(nd)nd.classList.add('current')}if(repPlayerIndex>=repSequence.length){repIsListening=false;repiteloIndicator.textContent=currentLang==='es'?'¡WEPA! 🔥 Ronda '+repRound:'BUCKET! 🔥 Round '+repRound;repiteloIndicator.className='repitelo-indicator listening';playBuzzerBeater();if(repRound>=3)launchConfetti();if(repRound>repBestRound){repBestRound=repRound;localStorage.setItem('beat-rep-best',String(repBestRound))}setTimeout(function(){repNextRound()},1400)}return true}else{if(dot){dot.classList.remove('current');dot.classList.add('wrong')}repIsListening=false;playWrongSound();vibrate(80);repiteloIndicator.textContent=(currentLang==='es'?'¡CASI! Era la luz ':'CLOSE! It was light ')+(expected+1);repiteloIndicator.className='repitelo-indicator watching';allBalls(function(c){c.classList.remove('lit')});var _ex=ballAt(expected);if(_ex){_ex.setAttribute('data-color',expected);_ex.classList.add('lit');}setTimeout(function(){var _ex2=ballAt(expected);if(_ex2)_ex2.classList.remove('lit');repEndGame()},1200);return true}}
+function repEndGame(){repIsPlaying=false;repIsListening=false;var completed=repRound-1;challengeResult.textContent=completed>=5?(currentLang==='es'?'¡FLOOR GENERAL! 🧠':'FLOOR GENERAL! 🧠'):completed>=3?(currentLang==='es'?'¡MUY BIEN! 🔥':'NICE! 🔥'):(currentLang==='es'?'¡BUEN INTENTO! 💪':'GOOD TRY! 💪');challengeResult.className='challenge-result '+(completed>=3?'win':'lose');challengeStats.textContent=(currentLang==='es'?'Rondas: ':'Rounds: ')+completed+' | '+(currentLang==='es'?'Récord: ':'Record: ')+repBestRound;if(completed>=3){playBuzzerBeater();launchConfetti()}challengeComplete.classList.add('show');isPlaying=false;repiteloIndicator.className='repitelo-indicator';repiteloProgress.classList.remove('show');allBalls(function(c){c.classList.remove('lit')});court.classList.remove('playing');if(completed>0){ps.gamesPlayed++;addXP(completed*5);checkAchievements();saveStats()}}
 function repCleanup(){repIsPlaying=false;repIsListening=false;repSequence=[];repRound=0;repPlayerIndex=0;repiteloIndicator.className='repitelo-indicator';repiteloProgress.classList.remove('show')}
 
 // ── HELP ───────────────────────────────────────────────────────────────────
@@ -943,7 +1049,9 @@ function handleTap(tapPos, el){
     if(tappedThisGoRound) return; // only one tap per beat
     tappedThisGoRound = true;
 
-    var litColorIdx = parseInt(tapBalls[currentlyLit].getAttribute('data-color')||currentlyLit);
+    if(currentlyLit < 0) return;
+    var _litEl=ballAt(currentlyLit);if(!_litEl)return;
+    var litColorIdx = parseInt(_litEl.getAttribute('data-color')||currentlyLit);
     var tappedColorIdx = parseInt(el.getAttribute('data-color')||tapPos);
 
     if(!gnRoundGoLit){
@@ -1008,7 +1116,7 @@ function showFeedback(q){
 }
 
 // Set initial colors on all balls
-tapBalls.forEach(function(b,i){b.setAttribute('data-color',i)});
+tapBalls.forEach(function(b,i){if(b)b.setAttribute('data-color',i)});
 
 tapBalls.forEach(function(c,i){
   c.addEventListener('touchstart',function(e){e.preventDefault();handleTap(i,c)},{passive:false});
