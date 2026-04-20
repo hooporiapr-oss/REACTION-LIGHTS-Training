@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>BPM Basketball x Wheeler Lights | Reaction Lights Training</title>
+  <meta name="description" content="A premium basketball reaction lights landing page featuring the final three signature games: GO=NO-GO, PLAYBOOK, and CRUNCH TIME.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#06070b;
+      --bg-2:#0d1018;
+      --panel:rgba(17,20,31,.78);
+      --panel-strong:#10131d;
+      --text:#f8f6ee;
+      --muted:#9aa3b5;
+      --line:rgba(255,255,255,.1);
+      --gold:#ffd54a;
+      --orange:#ff8a3d;
+      --teal:#24d6e0;
+      --pink:#ff4d7e;
+      --blue:#4e95ff;
+      --green:#44df7f;
+      --purple:#b772ff;
+      --shadow:0 20px 70px rgba(0,0,0,.38);
+      --max:1280px;
+      --r-xl:28px;
+      --r-lg:22px;
+      --r-md:16px;
+      --nav-h:74px;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:'Outfit',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(78,149,255,.16), transparent 30%),
+        radial-gradient(circle at top right, rgba(255,77,126,.12), transparent 26%),
+        radial-gradient(circle at bottom center, rgba(36,214,224,.12), transparent 24%),
+        linear-gradient(180deg,#06070b 0%,#0a0d14 45%,#090b10 100%);
+      min-height:100vh;
+      overflow-x:hidden;
+    }
+
+    img{max-width:100%;display:block}
+    a{text-decoration:none;color:inherit}
+
+    .shell{width:min(100% - 32px, var(--max));margin-inline:auto}
+
+    .nav{
+      position:sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter:blur(14px);
+      background:rgba(6,7,11,.72);
+      border-bottom:1px solid var(--line);
+    }
+
+    .nav-inner{
+      height:var(--nav-h);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:0;
+    }
+
+    .brand-mark{
+      display:grid;
+      grid-template-columns:repeat(3,14px);
+      gap:6px;
+      align-items:center;
+    }
+
+    .brand-mark span{
+      width:14px;height:14px;border-radius:999px;
+      box-shadow:0 0 14px currentColor;
+    }
+    .brand-mark span:nth-child(1){color:var(--pink);background:var(--pink)}
+    .brand-mark span:nth-child(2){color:var(--blue);background:var(--blue)}
+    .brand-mark span:nth-child(3){color:var(--green);background:var(--green)}
+
+    .brand-copy{min-width:0}
+    .brand-kicker{
+      font-size:.72rem;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:var(--gold);
+      font-weight:800;
+      white-space:nowrap;
+    }
+    .brand-title{
+      font-family:'Bebas Neue',sans-serif;
+      letter-spacing:.12em;
+      font-size:1.12rem;
+      white-space:nowrap;
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    .nav-link,
+    .btn{
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:.88rem 1.15rem;
+      font-weight:700;
+      font-size:.95rem;
+      transition:transform .18s ease, border-color .18s ease, background .18s ease, color .18s ease;
+    }
+
+    .nav-link{color:var(--muted);background:rgba(255,255,255,.02)}
+    .nav-link:hover,.btn:hover{transform:translateY(-2px);border-color:rgba(255,213,74,.45)}
+
+    .btn-primary{
+      background:linear-gradient(135deg,var(--gold),var(--orange));
+      color:#121212;
+      border-color:transparent;
+      box-shadow:0 12px 30px rgba(255,138,61,.22);
+    }
+
+    .btn-secondary{
+      background:rgba(255,255,255,.03);
+      color:var(--text);
+    }
+
+    .hero{
+      padding:clamp(32px,5vw,68px) 0 22px;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.02fr .98fr;
+      gap:clamp(24px,4vw,56px);
+      align-items:center;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.03);
+      padding:.55rem .9rem;
+      border-radius:999px;
+      font-size:.82rem;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:var(--gold);
+      font-weight:800;
+      margin-bottom:18px;
+    }
+
+    .eyebrow i{
+      width:10px;height:10px;border-radius:999px;background:var(--teal);box-shadow:0 0 14px var(--teal);
+      display:inline-block;
+    }
+
+    h1{
+      font-family:'Bebas Neue',sans-serif;
+      font-size:clamp(3.2rem,8vw,6.6rem);
+      line-height:.9;
+      letter-spacing:.03em;
+      margin-bottom:18px;
+    }
+
+    .headline-accent{
+      background:linear-gradient(135deg,var(--gold),#fff1bf 42%,var(--teal) 74%,var(--blue));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+
+    .hero p{
+      color:#d6dceb;
+      font-size:clamp(1rem,1.4vw,1.16rem);
+      line-height:1.72;
+      max-width:62ch;
+    }
+
+    .hero-actions{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-top:28px;
+    }
+
+    .signal-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:28px;
+    }
+
+    .signal-chip{
+      padding:.8rem 1rem;
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:16px;
+      background:rgba(255,255,255,.03);
+      min-width:144px;
+      box-shadow:var(--shadow);
+    }
+
+    .signal-chip strong{
+      display:block;
+      font-family:'Bebas Neue',sans-serif;
+      font-size:1.45rem;
+      letter-spacing:.08em;
+      color:var(--gold);
+      margin-bottom:2px;
+    }
+
+    .signal-chip span{
+      color:var(--muted);
+      font-size:.9rem;
+      line-height:1.35;
+    }
+
+    .hero-media{
+      position:relative;
+    }
+
+    .image-frame{
+      position:relative;
+      border-radius:var(--r-xl);
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.09);
+      background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.015));
+      box-shadow:var(--shadow);
+      isolation:isolate;
+    }
+
+    .image-frame::before{
+      content:'';
+      position:absolute;
+      inset:auto 0 0 0;
+      height:42%;
+      background:linear-gradient(180deg,transparent 0%, rgba(6,7,11,.16) 30%, rgba(6,7,11,.86) 100%);
+      z-index:1;
+      pointer-events:none;
+    }
+
+    .image-frame img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      aspect-ratio:1.08 / 1;
+    }
+
+    .image-badge{
+      position:absolute;
+      left:18px;
+      bottom:18px;
+      z-index:2;
+      max-width:min(82%, 360px);
+      padding:14px 16px;
+      border-radius:18px;
+      background:rgba(8,10,18,.72);
+      border:1px solid rgba(255,255,255,.09);
+      backdrop-filter:blur(10px);
+      box-shadow:0 12px 28px rgba(0,0,0,.34);
+    }
+
+    .image-badge strong{
+      display:block;
+      font-family:'Bebas Neue',sans-serif;
+      letter-spacing:.12em;
+      font-size:1.2rem;
+      color:var(--gold);
+      margin-bottom:6px;
+    }
+
+    .image-badge span{
+      display:block;
+      color:#d6dceb;
+      font-size:.94rem;
+      line-height:1.45;
+    }
+
+    .section{
+      padding:clamp(22px,4vw,48px) 0;
+    }
+
+    .section-head{
+      max-width:760px;
+      margin:0 auto 26px;
+      text-align:center;
+    }
+
+    .section-kicker{
+      font-size:.8rem;
+      text-transform:uppercase;
+      letter-spacing:.2em;
+      color:var(--gold);
+      font-weight:800;
+      margin-bottom:10px;
+    }
+
+    h2{
+      font-family:'Bebas Neue',sans-serif;
+      font-size:clamp(2.2rem,5vw,4rem);
+      letter-spacing:.05em;
+      line-height:.95;
+      margin-bottom:12px;
+    }
+
+    .section-head p{
+      color:var(--muted);
+      line-height:1.7;
+      font-size:1rem;
+    }
+
+    .modes-grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:18px;
+    }
+
+    .mode-card{
+      position:relative;
+      overflow:hidden;
+      padding:22px;
+      border-radius:var(--r-lg);
+      background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:var(--shadow);
+      min-height:100%;
+    }
+
+    .mode-card::after{
+      content:'';
+      position:absolute;
+      inset:0 auto auto 0;
+      width:100%;
+      height:4px;
+      background:linear-gradient(90deg,var(--mode-a),var(--mode-b));
+    }
+
+    .mode-top{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:14px;
+      margin-bottom:18px;
+    }
+
+    .mode-icon{
+      width:54px;height:54px;border-radius:16px;
+      display:grid;place-items:center;
+      font-size:1.5rem;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);
+    }
+
+    .mode-tag{
+      padding:.44rem .72rem;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.08);
+      color:var(--muted);
+      font-size:.75rem;
+      font-weight:800;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      white-space:nowrap;
+    }
+
+    .mode-card h3{
+      font-family:'Bebas Neue',sans-serif;
+      font-size:2rem;
+      letter-spacing:.06em;
+      line-height:.95;
+      margin-bottom:10px;
+    }
+
+    .mode-card p{
+      color:#d3d8e5;
+      line-height:1.7;
+      font-size:.98rem;
+      margin-bottom:16px;
+    }
+
+    .mode-points{
+      display:grid;
+      gap:10px;
+    }
+
+    .mode-points span{
+      color:var(--muted);
+      font-size:.92rem;
+      line-height:1.45;
+      padding-left:16px;
+      position:relative;
+    }
+
+    .mode-points span::before{
+      content:'';
+      position:absolute;
+      top:.52rem;
+      left:0;
+      width:8px;height:8px;border-radius:999px;
+      background:var(--mode-a);
+      box-shadow:0 0 12px var(--mode-a);
+    }
+
+    .impact-grid{
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:22px;
+      align-items:stretch;
+    }
+
+    .panel{
+      border-radius:var(--r-xl);
+      background:var(--panel);
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:var(--shadow);
+      padding:24px;
+      backdrop-filter:blur(10px);
+    }
+
+    .why-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:14px;
+      margin-top:18px;
+    }
+
+    .why-card{
+      border-radius:18px;
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.08);
+      padding:18px;
+    }
+
+    .why-card strong{
+      display:block;
+      font-family:'Bebas Neue',sans-serif;
+      font-size:1.4rem;
+      letter-spacing:.08em;
+      margin-bottom:6px;
+      color:var(--gold);
+    }
+
+    .why-card p{color:var(--muted);line-height:1.55;font-size:.95rem}
+
+    .hardware-stack{
+      display:grid;
+      gap:12px;
+      margin-top:18px;
+    }
+
+    .hardware-item{
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+      padding:15px 16px;
+      border-radius:18px;
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .hardware-dot{
+      width:14px;height:14px;border-radius:999px;margin-top:5px;flex:0 0 auto;
+      background:linear-gradient(135deg,var(--gold),var(--orange));
+      box-shadow:0 0 16px rgba(255,138,61,.45);
+    }
+
+    .hardware-item strong{
+      display:block;
+      font-size:1rem;
+      margin-bottom:4px;
+    }
+
+    .hardware-item span{
+      color:var(--muted);
+      font-size:.94rem;
+      line-height:1.5;
+    }
+
+    .cta{
+      padding:clamp(28px,5vw,56px) 0 60px;
+    }
+
+    .cta-box{
+      border-radius:32px;
+      padding:clamp(24px,5vw,42px);
+      border:1px solid rgba(255,255,255,.1);
+      background:
+        radial-gradient(circle at top left, rgba(255,213,74,.12), transparent 28%),
+        radial-gradient(circle at top right, rgba(36,214,224,.12), transparent 26%),
+        linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));
+      box-shadow:var(--shadow);
+      text-align:center;
+    }
+
+    .cta-box h2{margin-bottom:10px}
+    .cta-box p{
+      color:#d8deeb;
+      max-width:760px;
+      margin:0 auto;
+      line-height:1.75;
+      font-size:1.02rem;
+    }
+
+    .cta-actions{
+      display:flex;
+      gap:14px;
+      justify-content:center;
+      flex-wrap:wrap;
+      margin-top:24px;
+    }
+
+    footer{
+      border-top:1px solid rgba(255,255,255,.07);
+      padding:18px 0 28px;
+      color:var(--muted);
+      font-size:.9rem;
+    }
+
+    .footer-inner{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+
+    .footer-mark{
+      color:var(--gold);
+      font-weight:800;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      font-size:.78rem;
+    }
+
+    @media (max-width: 1080px){
+      .hero-grid,
+      .impact-grid{grid-template-columns:1fr}
+      .hero-media{order:-1}
+      .shell{width:min(100% - 24px,var(--max))}
+    }
+
+    @media (max-width: 840px){
+      .modes-grid{grid-template-columns:1fr}
+      .why-grid{grid-template-columns:1fr}
+      .nav-inner{height:auto;padding:14px 0}
+      .nav-links{justify-content:flex-start}
+      .nav{position:sticky}
+      .brand-title{white-space:normal;line-height:1}
+    }
+
+    @media (max-width: 560px){
+      :root{--nav-h:96px}
+      .shell{width:min(100% - 18px,var(--max))}
+      .hero{padding-top:20px}
+      .hero-actions,.cta-actions{flex-direction:column}
+      .btn,.nav-link{width:100%;text-align:center}
+      .signal-chip{min-width:unset;flex:1 1 100%}
+      .image-badge{left:12px;right:12px;max-width:none;bottom:12px}
+      .panel,.mode-card,.cta-box{padding:18px}
+      footer{padding-bottom:22px}
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="shell nav-inner">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </div>
+        <div class="brand-copy">
+          <div class="brand-kicker">BPM Basketball x Wheeler Lights</div>
+          <div class="brand-title">Reaction Lights Training</div>
+        </div>
+      </div>
+      <nav class="nav-links" aria-label="Primary">
+        <a class="nav-link" href="#games">Games</a>
+        <a class="nav-link" href="#why">Why It Works</a>
+        <a class="btn btn-primary" href="winning-team.html">Enter the Winning Team</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="shell hero-grid">
+        <div>
+          <div class="eyebrow"><i></i> Public Launch Landing Page</div>
+          <h1>
+            SEE IT.<br>
+            DECIDE.<br>
+            <span class="headline-accent">ACT FASTER.</span>
+          </h1>
+          <p>
+            This is basketball reaction training built around a winning three: <strong>GO = NO-GO</strong>, <strong>PLAYBOOK</strong>, and <strong>CRUNCH TIME</strong>. Powered by Wheeler Lights and shaped for basketball decision speed, this system trains recognition, restraint, memory, and pressure performance in one clean public-facing experience.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="winning-team.html">Enter the Winning Team</a>
+            <a class="btn btn-secondary" href="#why">Why It Works</a>
+          </div>
+          <div class="signal-row" aria-label="Highlights">
+            <div class="signal-chip">
+              <strong>6</strong>
+              <span>Wheeler Lights in one portable reaction setup.</span>
+            </div>
+            <div class="signal-chip">
+              <strong>3</strong>
+              <span>Signature games kept on the floor.</span>
+            </div>
+            <div class="signal-chip">
+              <strong>1</strong>
+              <span>Sharper basketball decision system.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-media">
+          <div class="image-frame">
+            <img src="reaction-lights.png" alt="Six Wheeler reaction lights on a basketball court with colorful lighting">
+            <div class="image-badge">
+              <strong>The Moment That Matters</strong>
+              <span>Train the exact instant where recognition, decision, and action separate average reps from game-speed execution.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="games">
+      <div class="shell">
+        <div class="section-head">
+          <div class="section-kicker">The Winning Team</div>
+          <h2>The Final Three</h2>
+          <p>
+            We benched the fillers and kept the modes that best represent basketball cognition, reaction discipline, and competitive pressure. These are the games that deserve public-facing spotlight.
+          </p>
+        </div>
+
+        <div class="modes-grid">
+          <article class="mode-card" style="--mode-a: var(--pink); --mode-b: var(--orange);">
+            <div class="mode-top">
+              <div class="mode-icon">🚦</div>
+              <div class="mode-tag">Signature Mode</div>
+            </div>
+            <h3>GO = NO-GO</h3>
+            <p>
+              One color is your green light. Every rep forces the player to ignore location, read the color, and decide in real time whether to act or hold.
+            </p>
+            <div class="mode-points">
+              <span>Selective attention under speed.</span>
+              <span>Inhibitory control instead of mindless tapping.</span>
+              <span>The clearest basketball-cognitive identity on the page.</span>
+            </div>
+          </article>
+
+          <article class="mode-card" style="--mode-a: var(--blue); --mode-b: var(--purple);">
+            <div class="mode-top">
+              <div class="mode-icon">🧠</div>
+              <div class="mode-tag">Memory + Processing</div>
+            </div>
+            <h3>PLAYBOOK</h3>
+            <p>
+              Watch the sequence, remember the sequence, and execute the sequence. This mode trains recall, focus, and clean execution as the load builds.
+            </p>
+            <div class="mode-points">
+              <span>Working memory and pattern retention.</span>
+              <span>Sequencing under growing cognitive demand.</span>
+              <span>A premium fit for the basketball mind narrative.</span>
+            </div>
+          </article>
+
+          <article class="mode-card" style="--mode-a: var(--gold); --mode-b: var(--teal);">
+            <div class="mode-top">
+              <div class="mode-icon">⏱️</div>
+              <div class="mode-tag">Pressure Mode</div>
+            </div>
+            <h3>CRUNCH TIME</h3>
+            <p>
+              The clock forces urgency. The pace forces mistakes. The player has to keep producing clean decisions when fatigue and pressure start squeezing the rep.
+            </p>
+            <div class="mode-points">
+              <span>Late-clock focus and competitive urgency.</span>
+              <span>Fast visual processing under pressure.</span>
+              <span>The mode that gives the system game-feel.</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="why">
+      <div class="shell impact-grid">
+        <div class="panel">
+          <div class="section-kicker">Why It Works</div>
+          <h2>Built for Basketball Decisions</h2>
+          <p style="color:#d9dfeb; line-height:1.75; font-size:1rem;">
+            Publicly, this should not read like generic reaction training. It should read like a basketball decision system. The value is in what the player must process before acting: color, timing, sequence, restraint, urgency, and execution.
+          </p>
+          <div class="why-grid">
+            <div class="why-card">
+              <strong>Decision Speed</strong>
+              <p>Players train the instant between what they see and what they do.</p>
+            </div>
+            <div class="why-card">
+              <strong>Impulse Control</strong>
+              <p>Not every signal should be attacked. Holding is part of winning.</p>
+            </div>
+            <div class="why-card">
+              <strong>Working Memory</strong>
+              <p>PLAYBOOK pushes retention, focus, and clean recall under load.</p>
+            </div>
+            <div class="why-card">
+              <strong>Pressure Performance</strong>
+              <p>CRUNCH TIME gives the system a competitive edge instead of a lab feel.</p>
+            </div>
+          </div>
+        </div>
+
+        <aside class="panel">
+          <div class="section-kicker">Hardware Layer</div>
+          <h2>Powered by Wheeler Lights</h2>
+          <p style="color:#d9dfeb; line-height:1.75; font-size:1rem;">
+            Wheeler brings the physical light system. BPM Basketball brings the basketball logic, the public story, and the signature game design.
+          </p>
+          <div class="hardware-stack">
+            <div class="hardware-item">
+              <div class="hardware-dot"></div>
+              <div>
+                <strong>Portable 6-light setup</strong>
+                <span>A clean visual system that looks premium on court and reads instantly in content, demos, and public viewing.</span>
+              </div>
+            </div>
+            <div class="hardware-item">
+              <div class="hardware-dot"></div>
+              <div>
+                <strong>Built for visible engagement</strong>
+                <span>The lights create a strong visual hook for athletes, coaches, families, and partners the moment they see the page.</span>
+              </div>
+            </div>
+            <div class="hardware-item">
+              <div class="hardware-dot"></div>
+              <div>
+                <strong>Perfect fit for the final three</strong>
+                <span>GO = NO-GO, PLAYBOOK, and CRUNCH TIME each feel sharper when the hardware looks and behaves like a true on-court training system.</span>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="cta" id="final-cta">
+      <div class="shell">
+        <div class="cta-box">
+          <div class="section-kicker">Final Positioning</div>
+          <h2>BPM Basketball Powered by Wheeler Lights</h2>
+          <p>
+            Lead with the basketball system. Let the hardware elevate it. Publicly, this page should feel less like a product listing and more like a modern basketball performance experience built around reaction, recognition, discipline, and pressure.
+          </p>
+          <div class="cta-actions">
+            <a class="btn btn-primary" href="winning-team.html">Launch the Winning Team</a>
+            <a class="btn btn-secondary" href="#why">See the System</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell footer-inner">
+      <div class="footer-mark">BPM Basketball™</div>
+      <div>Reaction Lights Training Landing Page</div>
+    </div>
+  </footer>
+</body>
+</html>
