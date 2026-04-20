@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>REACTION LIGHTS TRAINING PROGRAM | BPM Basketball</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -37,7 +37,9 @@ html,body{height:100%;overflow-x:hidden;font-family:'Outfit',sans-serif;backgrou
 .nav-lang-btn{padding:5px 8px;border:1px solid var(--border);background:0;color:var(--muted);border-radius:4px;font-size:0.6rem;font-weight:600;cursor:pointer;min-width:28px;min-height:28px}
 .nav-lang-btn.active{border-color:var(--gold);color:var(--gold)}
 
-.container{width:min(100%,500px);max-width:500px;margin:0 auto;padding:calc(var(--nav-height) + env(safe-area-inset-top) + 10px) clamp(12px,4vw,16px) 20px;min-height:100dvh;display:flex;flex-direction:column}
+.container{width:100%;max-width:min(100%,1100px);margin:0 auto;padding:calc(var(--nav-height) + env(safe-area-inset-top) + 10px) clamp(12px,4vw,20px) 20px;min-height:100dvh;display:flex;flex-direction:column;--board-size:clamp(280px,86vw,420px);--content-max:min(100%,760px)}
+.setup-screen,.play-screen{width:100%;max-width:var(--content-max);margin:0 auto}
+.setup-section,.play-header,.game-area,.powered-strip{width:100%}
 
 /* HERO */
 .beat-hero{text-align:center;padding:4px 0 10px}
@@ -79,9 +81,9 @@ html,body{height:100%;overflow-x:hidden;font-family:'Outfit',sans-serif;backgrou
 
 /* ── 6-LIGHT BOARD ── */
 .court{
-  display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,1fr);
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));
   gap:clamp(8px,3vw,14px);padding:clamp(12px,4vw,22px) clamp(10px,4vw,18px);
-  width:min(100%,356px);aspect-ratio:356/280;height:auto;margin:0 auto;position:relative;
+  width:min(100%,var(--board-size));max-width:100%;aspect-ratio:356/280;height:auto;margin:0 auto;position:relative;
   background:linear-gradient(180deg,rgba(20,20,30,0.9) 0%,rgba(10,10,20,0.98) 100%);
   border-radius:clamp(18px,5vw,24px);border:1.5px solid rgba(255,255,255,0.07);
   box-shadow:inset 0 0 40px rgba(0,0,0,0.5)
@@ -205,7 +207,7 @@ html,body{height:100%;overflow-x:hidden;font-family:'Outfit',sans-serif;backgrou
 /* ── GO COLOR HUD ── */
 .go-hud{
   display:none;
-  width:min(100%,356px);max-width:356px;margin:12px auto 0;
+  width:min(100%,var(--board-size));max-width:100%;margin:12px auto 0;
   background:rgba(0,0,0,0.6);border:1.5px solid rgba(255,255,255,0.1);
   border-radius:16px;padding:12px 18px;
   flex-direction:column;align-items:center;gap:6px;
@@ -240,7 +242,7 @@ html,body{height:100%;overflow-x:hidden;font-family:'Outfit',sans-serif;backgrou
 }
 
 /* INFO STRIP */
-.info-strip{display:flex;justify-content:center;gap:clamp(8px,3vw,16px);margin:12px 0 0;flex-wrap:wrap;width:100%}
+.info-strip{display:flex;justify-content:center;gap:clamp(8px,3vw,16px);margin:12px auto 0;flex-wrap:wrap;width:min(100%,var(--board-size))}
 .info-box{text-align:center;padding:8px 16px;background:rgba(255,255,255,0.05);border-radius:12px;border:1px solid rgba(255,215,0,0.12);min-width:72px;flex:1 1 90px;max-width:120px}
 .info-label{font-size:0.5rem;letter-spacing:2px;color:var(--cream);opacity:0.4;text-transform:uppercase;margin-bottom:2px}
 .info-value{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;color:var(--gold)}
@@ -263,6 +265,9 @@ html,body{height:100%;overflow-x:hidden;font-family:'Outfit',sans-serif;backgrou
 
 /* MODE CARDS */
 .mode-cards{display:flex;flex-direction:column;gap:8px;width:100%}
+
+.mode-cards,.setup-section{width:100%}
+.beat-hero,.powered-strip{width:100%}
 .mode-card{display:flex;align-items:center;gap:14px;padding:14px 48px 14px 16px;border-radius:16px;border:2px solid transparent;cursor:pointer;transition:all .25s;position:relative;overflow:hidden}
 .mode-card:active{transform:scale(.97)}
 .mode-card-icon{font-size:28px;flex-shrink:0;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:12px}
@@ -307,13 +312,13 @@ html,body{height:100%;overflow-x:hidden;font-family:'Outfit',sans-serif;backgrou
 /* PLAY SCREEN */
 .play-screen{display:flex;flex-direction:column;align-items:center;min-height:calc(100dvh - 20px)}
 .play-screen.hidden{display:none}
-.play-header{display:flex;align-items:center;justify-content:space-between;width:100%;padding:8px 0 10px}
+.play-header{display:flex;align-items:center;justify-content:space-between;width:min(100%,var(--board-size));margin:0 auto;padding:8px 0 10px;gap:12px}
 .play-back-btn{background:none;border:2px solid rgba(255,255,255,.15);border-radius:50%;width:36px;height:36px;color:var(--cream);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center}
 .play-back-btn:active{background:rgba(255,255,255,.1)}
 .play-mode-name{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:3px;color:var(--teal)}
 .play-bpm{font-family:'Bebas Neue',sans-serif;font-size:0.9rem;letter-spacing:2px;color:rgba(255,255,255,.4)}
 .game-area{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px 0}
-.stop-btn{width:100%;padding:16px;border:none;border-radius:12px;background:rgba(239,68,68,.15);border:2px solid rgba(239,68,68,.3);color:#EF4444;font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:3px;cursor:pointer;margin-top:auto}
+.stop-btn{width:min(100%,var(--board-size));align-self:center;padding:16px;border:none;border-radius:12px;background:rgba(239,68,68,.15);border:2px solid rgba(239,68,68,.3);color:#EF4444;font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:3px;cursor:pointer;margin-top:auto}
 .stop-btn:active{background:rgba(239,68,68,.25);transform:scale(.98)}
 
 /* OVERLAYS */
@@ -406,11 +411,11 @@ html,body{height:100%;overflow-x:hidden;font-family:'Outfit',sans-serif;backgrou
 .rank-xp{font-size:0.8rem;color:var(--cream);opacity:0.7}
 .rank-progress-bar{height:6px;background:rgba(255,255,255,0.1);border-radius:3px;overflow:hidden;margin-top:8px}
 .rank-progress-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--orange));border-radius:3px;transition:width 0.5s}
-.stats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:16px}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:16px}
 .stat-card{background:rgba(255,255,255,0.05);border-radius:10px;padding:12px;text-align:center}
 .stat-value{font-family:'Bebas Neue',sans-serif;font-size:1.7rem;color:var(--gold)}
 .stat-label{font-size:0.65rem;color:var(--cream);opacity:0.6;letter-spacing:1px;margin-top:3px}
-.achievements-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.achievements-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(70px,1fr));gap:8px}
 .achievement{display:flex;flex-direction:column;align-items:center;padding:10px 6px;background:rgba(0,0,0,0.3);border-radius:8px;border:1px solid rgba(255,255,255,0.1)}
 .achievement.unlocked{border-color:var(--gold);background:rgba(255,215,0,0.08)}
 .achievement.locked{opacity:0.35;filter:grayscale(1)}
@@ -427,8 +432,9 @@ html,body{height:100%;overflow-x:hidden;font-family:'Outfit',sans-serif;backgrou
 .powered-strip{text-align:center;padding:12px 0;margin-top:10px;opacity:0.4}
 .powered-strip span{font-family:'Bebas Neue',sans-serif;font-size:0.7rem;color:var(--gold);letter-spacing:2px}
 
-@media(min-width:400px){.court{max-width:372px;aspect-ratio:372/292}}
-@media(max-width:360px){.mode-card{padding:12px 42px 12px 12px}.mode-card-name{font-size:1rem}.mode-card-desc{font-size:10px}.bpm-option{padding:9px 14px}.go-hud-name{font-size:1.3rem}.info-value{font-size:1.25rem}.challenge-result{font-size:2rem}.challenge-stats{font-size:1rem}}
+@media(min-width:768px){.container{--board-size:500px;--content-max:min(100%,860px)}.setup-screen,.play-screen{max-width:860px}.mode-cards,.setup-section{max-width:760px;margin-inline:auto}.beat-hero{padding-top:14px}.beat-hero-sub{font-size:12px}.go-hud-name{font-size:1.9rem}}
+@media(min-width:1024px){.container{--board-size:560px;--content-max:min(100%,980px)}}
+@media(max-width:360px){.mode-card{padding:12px 42px 12px 12px}.mode-card-name{font-size:1rem}.mode-card-desc{font-size:10px}.bpm-option{padding:9px 14px}.go-hud-name{font-size:1.3rem}.info-value{font-size:1.25rem}.challenge-result{font-size:2rem}.challenge-stats{font-size:1rem}.nav-title{font-size:.9rem;letter-spacing:1px}}
 </style>
 </head>
 <body>
