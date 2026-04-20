@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>BPM Basketball | Wheeler Lights Reaction Training</title>
-  <meta name="description" content="BPM Basketball presents a premium Wheeler Lights reaction training landing page featuring GO=NO-GO, PLAYBOOK, and CRUNCH TIME.">
+  <title>BPM Basketball | Reaction Light Training</title>
+  <meta name="description" content="BPM Basketball presents the value of reaction light training through GO=NO-GO, PLAYBOOK, and CRUNCH TIME.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -61,11 +61,12 @@
     }
 
     .nav-inner{
-      height:var(--nav-h);
+      min-height:var(--nav-h);
       display:flex;
       align-items:center;
       justify-content:space-between;
       gap:16px;
+      padding:10px 0;
     }
 
     .brand{
@@ -88,27 +89,10 @@
       box-shadow:0 10px 26px rgba(0,0,0,.28);
     }
 
-    .brand-logo img{
-      width:100%;
-      height:100%;
-      object-fit:contain;
-    }
-
+    .brand-logo img{width:100%;height:100%;object-fit:contain}
     .brand-copy{min-width:0}
-    .brand-kicker{
-      font-size:.72rem;
-      letter-spacing:.18em;
-      text-transform:uppercase;
-      color:var(--gold);
-      font-weight:800;
-      white-space:nowrap;
-    }
-    .brand-title{
-      font-family:'Bebas Neue',sans-serif;
-      letter-spacing:.12em;
-      font-size:1.12rem;
-      white-space:nowrap;
-    }
+    .brand-kicker{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:800;white-space:nowrap}
+    .brand-title{font-family:'Bebas Neue',sans-serif;letter-spacing:.12em;font-size:1.12rem;white-space:nowrap}
 
     .nav-links{
       display:flex;
@@ -116,6 +100,33 @@
       gap:10px;
       flex-wrap:wrap;
       justify-content:flex-end;
+    }
+
+    .lang-toggle{
+      display:inline-flex;
+      align-items:center;
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:4px;
+      background:rgba(255,255,255,.03);
+    }
+
+    .lang-btn{
+      border:none;
+      background:transparent;
+      color:var(--muted);
+      font-weight:800;
+      font-size:.82rem;
+      letter-spacing:.08em;
+      padding:.58rem .78rem;
+      border-radius:999px;
+      cursor:pointer;
+      transition:background .18s ease,color .18s ease,transform .18s ease;
+    }
+
+    .lang-btn.active{
+      background:linear-gradient(135deg,var(--gold),var(--orange));
+      color:#121212;
     }
 
     .nav-link,
@@ -129,527 +140,85 @@
     }
 
     .nav-link{color:var(--muted);background:rgba(255,255,255,.02)}
-    .nav-link:hover,.btn:hover{transform:translateY(-2px);border-color:rgba(255,213,74,.45)}
+    .nav-link:hover,.btn:hover,.lang-btn:hover{transform:translateY(-2px);border-color:rgba(255,213,74,.45)}
 
-    .btn-primary{
-      background:linear-gradient(135deg,var(--gold),var(--orange));
-      color:#121212;
-      border-color:transparent;
-      box-shadow:0 12px 30px rgba(255,138,61,.22);
-    }
+    .btn-primary{background:linear-gradient(135deg,var(--gold),var(--orange));color:#121212;border-color:transparent;box-shadow:0 12px 30px rgba(255,138,61,.22)}
+    .btn-secondary{background:rgba(255,255,255,.03);color:var(--text)}
 
-    .btn-secondary{
-      background:rgba(255,255,255,.03);
-      color:var(--text);
-    }
+    .hero{padding:clamp(32px,5vw,68px) 0 22px}
+    .hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(24px,4vw,56px);align-items:center}
 
-    .hero{
-      padding:clamp(32px,5vw,68px) 0 22px;
-    }
+    .eyebrow{display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);padding:.55rem .9rem;border-radius:999px;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:800;margin-bottom:18px}
+    .eyebrow i{width:10px;height:10px;border-radius:999px;background:var(--teal);box-shadow:0 0 14px var(--teal);display:inline-block}
 
-    .hero-grid{
-      display:grid;
-      grid-template-columns:1.02fr .98fr;
-      gap:clamp(24px,4vw,56px);
-      align-items:center;
-    }
+    h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.2rem,8vw,6.6rem);line-height:.9;letter-spacing:.03em;margin-bottom:18px}
+    .headline-accent{background:linear-gradient(135deg,var(--gold),#fff1bf 42%,var(--teal) 74%,var(--blue));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .hero p{color:#d6dceb;font-size:clamp(1rem,1.4vw,1.16rem);line-height:1.72;max-width:62ch}
+    .hero-copy{display:flex;flex-direction:column;align-items:flex-start}
 
-    .eyebrow{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      border:1px solid rgba(255,255,255,.08);
-      background:rgba(255,255,255,.03);
-      padding:.55rem .9rem;
-      border-radius:999px;
-      font-size:.82rem;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      color:var(--gold);
-      font-weight:800;
-      margin-bottom:18px;
-    }
+    .hero-logo-stage{width:min(100%, 520px);margin:0 0 20px;padding:18px 18px 14px;border-radius:32px;border:1px solid rgba(255,255,255,.10);background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.02));box-shadow:0 20px 60px rgba(0,0,0,.34);text-align:center;position:relative;overflow:hidden}
+    .hero-logo-stage::before{content:'';position:absolute;inset:auto 15% -28% 15%;height:56%;background:radial-gradient(circle, rgba(255,138,61,.22) 0%, rgba(255,213,74,.18) 26%, rgba(36,214,224,.08) 55%, transparent 76%);filter:blur(20px);pointer-events:none}
+    .hero-logo-stage img{width:min(100%, 340px);margin:0 auto;object-fit:contain;filter:drop-shadow(0 18px 30px rgba(0,0,0,.42));position:relative;z-index:1}
+    .hero-logo-stage strong{display:block;margin-top:8px;font-family:'Bebas Neue',sans-serif;font-size:clamp(1.6rem,2.8vw,2.2rem);letter-spacing:.12em;color:var(--gold);position:relative;z-index:1}
+    .hero-logo-stage span{display:block;margin-top:2px;color:var(--muted);font-size:.96rem;line-height:1.45;position:relative;z-index:1}
 
-    .eyebrow i{
-      width:10px;height:10px;border-radius:999px;background:var(--teal);box-shadow:0 0 14px var(--teal);
-      display:inline-block;
-    }
+    .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}
+    .signal-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+    .signal-chip{padding:.8rem 1rem;border:1px solid rgba(255,255,255,.08);border-radius:16px;background:rgba(255,255,255,.03);min-width:144px;box-shadow:var(--shadow)}
+    .signal-chip strong{display:block;font-family:'Bebas Neue',sans-serif;font-size:1.45rem;letter-spacing:.08em;color:var(--gold);margin-bottom:2px}
+    .signal-chip span{color:var(--muted);font-size:.9rem;line-height:1.35}
 
-    h1{
-      font-family:'Bebas Neue',sans-serif;
-      font-size:clamp(3.2rem,8vw,6.6rem);
-      line-height:.9;
-      letter-spacing:.03em;
-      margin-bottom:18px;
-    }
+    .hero-media{position:relative}
+    .image-frame{position:relative;border-radius:var(--r-xl);overflow:hidden;border:1px solid rgba(255,255,255,.09);background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.015));box-shadow:var(--shadow);isolation:isolate}
+    .image-frame::before{content:'';position:absolute;inset:auto 0 0 0;height:42%;background:linear-gradient(180deg,transparent 0%, rgba(6,7,11,.16) 30%, rgba(6,7,11,.86) 100%);z-index:1;pointer-events:none}
+    .image-frame img{width:100%;height:100%;object-fit:cover;aspect-ratio:1.08 / 1}
+    .image-badge{position:absolute;left:18px;bottom:18px;z-index:2;max-width:min(82%, 360px);padding:14px 16px;border-radius:18px;background:rgba(8,10,18,.72);border:1px solid rgba(255,255,255,.09);backdrop-filter:blur(10px);box-shadow:0 12px 28px rgba(0,0,0,.34)}
+    .image-badge strong{display:block;font-family:'Bebas Neue',sans-serif;letter-spacing:.12em;font-size:1.2rem;color:var(--gold);margin-bottom:6px}
+    .image-badge span{display:block;color:#d6dceb;font-size:.94rem;line-height:1.45}
 
-    .headline-accent{
-      background:linear-gradient(135deg,var(--gold),#fff1bf 42%,var(--teal) 74%,var(--blue));
-      -webkit-background-clip:text;
-      background-clip:text;
-      color:transparent;
-    }
+    .section{padding:clamp(22px,4vw,48px) 0}
+    .section-head{max-width:760px;margin:0 auto 26px;text-align:center}
+    .section-kicker{font-size:.8rem;text-transform:uppercase;letter-spacing:.2em;color:var(--gold);font-weight:800;margin-bottom:10px}
+    h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,5vw,4rem);letter-spacing:.05em;line-height:.95;margin-bottom:12px}
+    .section-head p{color:var(--muted);line-height:1.7;font-size:1rem}
 
-    .hero p{
-      color:#d6dceb;
-      font-size:clamp(1rem,1.4vw,1.16rem);
-      line-height:1.72;
-      max-width:62ch;
-    }
+    .modes-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+    .mode-card{position:relative;overflow:hidden;padding:22px;border-radius:var(--r-lg);background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);box-shadow:var(--shadow);min-height:100%}
+    .mode-card::after{content:'';position:absolute;inset:0 auto auto 0;width:100%;height:4px;background:linear-gradient(90deg,var(--mode-a),var(--mode-b))}
+    .mode-top{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:18px}
+    .mode-icon{width:54px;height:54px;border-radius:16px;display:grid;place-items:center;font-size:1.5rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);box-shadow:inset 0 0 0 1px rgba(255,255,255,.02)}
+    .mode-tag{padding:.44rem .72rem;border-radius:999px;border:1px solid rgba(255,255,255,.08);color:var(--muted);font-size:.75rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap}
+    .mode-card h3{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:.06em;line-height:.95;margin-bottom:10px}
+    .mode-card p{color:#d3d8e5;line-height:1.7;font-size:.98rem;margin-bottom:16px}
+    .mode-points{display:grid;gap:10px}
+    .mode-points span{color:var(--muted);font-size:.92rem;line-height:1.45;padding-left:16px;position:relative}
+    .mode-points span::before{content:'';position:absolute;top:.52rem;left:0;width:8px;height:8px;border-radius:999px;background:var(--mode-a);box-shadow:0 0 12px var(--mode-a)}
 
-    .hero-copy{
-      display:flex;
-      flex-direction:column;
-      align-items:flex-start;
-    }
-
-    .hero-logo-stage{
-      width:min(100%, 520px);
-      margin:0 0 20px;
-      padding:18px 18px 14px;
-      border-radius:32px;
-      border:1px solid rgba(255,255,255,.10);
-      background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.02));
-      box-shadow:0 20px 60px rgba(0,0,0,.34);
-      text-align:center;
-      position:relative;
-      overflow:hidden;
-    }
-
-    .hero-logo-stage::before{
-      content:'';
-      position:absolute;
-      inset:auto 15% -28% 15%;
-      height:56%;
-      background:radial-gradient(circle, rgba(255,138,61,.22) 0%, rgba(255,213,74,.18) 26%, rgba(36,214,224,.08) 55%, transparent 76%);
-      filter:blur(20px);
-      pointer-events:none;
-    }
-
-    .hero-logo-stage img{
-      width:min(100%, 340px);
-      margin:0 auto;
-      object-fit:contain;
-      filter:drop-shadow(0 18px 30px rgba(0,0,0,.42));
-      position:relative;
-      z-index:1;
-    }
-
-    .hero-logo-stage strong{
-      display:block;
-      margin-top:8px;
-      font-family:'Bebas Neue',sans-serif;
-      font-size:clamp(1.6rem,2.8vw,2.2rem);
-      letter-spacing:.12em;
-      color:var(--gold);
-      position:relative;
-      z-index:1;
-    }
-
-    .hero-logo-stage span{
-      display:block;
-      margin-top:2px;
-      color:var(--muted);
-      font-size:.96rem;
-      line-height:1.45;
-      position:relative;
-      z-index:1;
-    }
-
-    .hero-actions{
-      display:flex;
-      gap:14px;
-      flex-wrap:wrap;
-      margin-top:28px;
-    }
-
-    .signal-row{
-      display:flex;
-      flex-wrap:wrap;
-      gap:12px;
-      margin-top:28px;
-    }
-
-    .signal-chip{
-      padding:.8rem 1rem;
-      border:1px solid rgba(255,255,255,.08);
-      border-radius:16px;
-      background:rgba(255,255,255,.03);
-      min-width:144px;
-      box-shadow:var(--shadow);
-    }
-
-    .signal-chip strong{
-      display:block;
-      font-family:'Bebas Neue',sans-serif;
-      font-size:1.45rem;
-      letter-spacing:.08em;
-      color:var(--gold);
-      margin-bottom:2px;
-    }
-
-    .signal-chip span{
-      color:var(--muted);
-      font-size:.9rem;
-      line-height:1.35;
-    }
-
-    .hero-media{
-      position:relative;
-    }
-
-    .hero-brand-plaque{
-      display:inline-flex;
-      align-items:center;
-      gap:14px;
-      margin-bottom:18px;
-      padding:12px 14px;
-      border-radius:20px;
-      border:1px solid rgba(255,255,255,.09);
-      background:rgba(255,255,255,.03);
-      box-shadow:var(--shadow);
-    }
-
-    .hero-brand-plaque img{
-      width:72px;
-      height:72px;
-      object-fit:contain;
-      flex:0 0 auto;
-    }
-
-    .hero-brand-copy strong{
-      display:block;
-      font-family:'Bebas Neue',sans-serif;
-      font-size:1.4rem;
-      letter-spacing:.08em;
-      color:var(--gold);
-    }
-
-    .hero-brand-copy span{
-      display:block;
-      color:var(--muted);
-      font-size:.92rem;
-      line-height:1.45;
-      max-width:24ch;
-    }
-
-    .image-frame{
-      position:relative;
-      border-radius:var(--r-xl);
-      overflow:hidden;
-      border:1px solid rgba(255,255,255,.09);
-      background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.015));
-      box-shadow:var(--shadow);
-      isolation:isolate;
-    }
-
-    .image-frame::before{
-      content:'';
-      position:absolute;
-      inset:auto 0 0 0;
-      height:42%;
-      background:linear-gradient(180deg,transparent 0%, rgba(6,7,11,.16) 30%, rgba(6,7,11,.86) 100%);
-      z-index:1;
-      pointer-events:none;
-    }
-
-    .image-frame img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      aspect-ratio:1.08 / 1;
-    }
-
-    .image-badge{
-      position:absolute;
-      left:18px;
-      bottom:18px;
-      z-index:2;
-      max-width:min(82%, 360px);
-      padding:14px 16px;
-      border-radius:18px;
-      background:rgba(8,10,18,.72);
-      border:1px solid rgba(255,255,255,.09);
-      backdrop-filter:blur(10px);
-      box-shadow:0 12px 28px rgba(0,0,0,.34);
-    }
-
-    .image-badge strong{
-      display:block;
-      font-family:'Bebas Neue',sans-serif;
-      letter-spacing:.12em;
-      font-size:1.2rem;
-      color:var(--gold);
-      margin-bottom:6px;
-    }
-
-    .image-badge span{
-      display:block;
-      color:#d6dceb;
-      font-size:.94rem;
-      line-height:1.45;
-    }
-
-    .section{
-      padding:clamp(22px,4vw,48px) 0;
-    }
-
-    .section-head{
-      max-width:760px;
-      margin:0 auto 26px;
-      text-align:center;
-    }
-
-    .section-kicker{
-      font-size:.8rem;
-      text-transform:uppercase;
-      letter-spacing:.2em;
-      color:var(--gold);
-      font-weight:800;
-      margin-bottom:10px;
-    }
-
-    h2{
-      font-family:'Bebas Neue',sans-serif;
-      font-size:clamp(2.2rem,5vw,4rem);
-      letter-spacing:.05em;
-      line-height:.95;
-      margin-bottom:12px;
-    }
-
-    .section-head p{
-      color:var(--muted);
-      line-height:1.7;
-      font-size:1rem;
-    }
-
-    .modes-grid{
-      display:grid;
-      grid-template-columns:repeat(3,minmax(0,1fr));
-      gap:18px;
-    }
-
-    .mode-card{
-      position:relative;
-      overflow:hidden;
-      padding:22px;
-      border-radius:var(--r-lg);
-      background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));
-      border:1px solid rgba(255,255,255,.08);
-      box-shadow:var(--shadow);
-      min-height:100%;
-    }
-
-    .mode-card::after{
-      content:'';
-      position:absolute;
-      inset:0 auto auto 0;
-      width:100%;
-      height:4px;
-      background:linear-gradient(90deg,var(--mode-a),var(--mode-b));
-    }
-
-    .mode-top{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:14px;
-      margin-bottom:18px;
-    }
-
-    .mode-icon{
-      width:54px;height:54px;border-radius:16px;
-      display:grid;place-items:center;
-      font-size:1.5rem;
-      background:rgba(255,255,255,.05);
-      border:1px solid rgba(255,255,255,.08);
-      box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);
-    }
-
-    .mode-tag{
-      padding:.44rem .72rem;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.08);
-      color:var(--muted);
-      font-size:.75rem;
-      font-weight:800;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      white-space:nowrap;
-    }
-
-    .mode-card h3{
-      font-family:'Bebas Neue',sans-serif;
-      font-size:2rem;
-      letter-spacing:.06em;
-      line-height:.95;
-      margin-bottom:10px;
-    }
-
-    .mode-card p{
-      color:#d3d8e5;
-      line-height:1.7;
-      font-size:.98rem;
-      margin-bottom:16px;
-    }
-
-    .mode-points{
-      display:grid;
-      gap:10px;
-    }
-
-    .mode-points span{
-      color:var(--muted);
-      font-size:.92rem;
-      line-height:1.45;
-      padding-left:16px;
-      position:relative;
-    }
-
-    .mode-points span::before{
-      content:'';
-      position:absolute;
-      top:.52rem;
-      left:0;
-      width:8px;height:8px;border-radius:999px;
-      background:var(--mode-a);
-      box-shadow:0 0 12px var(--mode-a);
-    }
-
-    .impact-grid{
-      display:grid;
-      grid-template-columns:1.15fr .85fr;
-      gap:22px;
-      align-items:stretch;
-    }
-
-    .panel{
-      border-radius:var(--r-xl);
-      background:var(--panel);
-      border:1px solid rgba(255,255,255,.08);
-      box-shadow:var(--shadow);
-      padding:24px;
-      backdrop-filter:blur(10px);
-    }
-
-    .why-grid{
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:14px;
-      margin-top:18px;
-    }
-
-    .why-card{
-      border-radius:18px;
-      background:rgba(255,255,255,.03);
-      border:1px solid rgba(255,255,255,.08);
-      padding:18px;
-    }
-
-    .why-card strong{
-      display:block;
-      font-family:'Bebas Neue',sans-serif;
-      font-size:1.4rem;
-      letter-spacing:.08em;
-      margin-bottom:6px;
-      color:var(--gold);
-    }
-
+    .impact-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:22px;align-items:stretch}
+    .panel{border-radius:var(--r-xl);background:var(--panel);border:1px solid rgba(255,255,255,.08);box-shadow:var(--shadow);padding:24px;backdrop-filter:blur(10px)}
+    .why-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:18px}
+    .why-card{border-radius:18px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);padding:18px}
+    .why-card strong{display:block;font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:.08em;margin-bottom:6px;color:var(--gold)}
     .why-card p{color:var(--muted);line-height:1.55;font-size:.95rem}
 
-    .hardware-stack{
-      display:grid;
-      gap:12px;
-      margin-top:18px;
-    }
+    .hardware-stack{display:grid;gap:12px;margin-top:18px}
+    .hardware-item{display:flex;gap:14px;align-items:flex-start;padding:15px 16px;border-radius:18px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08)}
+    .hardware-dot{width:14px;height:14px;border-radius:999px;margin-top:5px;flex:0 0 auto;background:linear-gradient(135deg,var(--gold),var(--orange));box-shadow:0 0 16px rgba(255,138,61,.45)}
+    .hardware-item strong{display:block;font-size:1rem;margin-bottom:4px}
+    .hardware-item span{color:var(--muted);font-size:.94rem;line-height:1.5}
 
-    .hardware-item{
-      display:flex;
-      gap:14px;
-      align-items:flex-start;
-      padding:15px 16px;
-      border-radius:18px;
-      background:rgba(255,255,255,.03);
-      border:1px solid rgba(255,255,255,.08);
-    }
-
-    .hardware-dot{
-      width:14px;height:14px;border-radius:999px;margin-top:5px;flex:0 0 auto;
-      background:linear-gradient(135deg,var(--gold),var(--orange));
-      box-shadow:0 0 16px rgba(255,138,61,.45);
-    }
-
-    .hardware-item strong{
-      display:block;
-      font-size:1rem;
-      margin-bottom:4px;
-    }
-
-    .hardware-item span{
-      color:var(--muted);
-      font-size:.94rem;
-      line-height:1.5;
-    }
-
-    .cta{
-      padding:clamp(28px,5vw,56px) 0 60px;
-    }
-
-    .cta-box{
-      border-radius:32px;
-      padding:clamp(24px,5vw,42px);
-      border:1px solid rgba(255,255,255,.1);
-      background:
-        radial-gradient(circle at top left, rgba(255,213,74,.12), transparent 28%),
-        radial-gradient(circle at top right, rgba(36,214,224,.12), transparent 26%),
-        linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));
-      box-shadow:var(--shadow);
-      text-align:center;
-    }
-
+    .cta{padding:clamp(28px,5vw,56px) 0 60px}
+    .cta-box{border-radius:32px;padding:clamp(24px,5vw,42px);border:1px solid rgba(255,255,255,.1);background:radial-gradient(circle at top left, rgba(255,213,74,.12), transparent 28%), radial-gradient(circle at top right, rgba(36,214,224,.12), transparent 26%), linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));box-shadow:var(--shadow);text-align:center}
     .cta-box h2{margin-bottom:10px}
-    .cta-box p{
-      color:#d8deeb;
-      max-width:760px;
-      margin:0 auto;
-      line-height:1.75;
-      font-size:1.02rem;
-    }
+    .cta-box p{color:#d8deeb;max-width:760px;margin:0 auto;line-height:1.75;font-size:1.02rem}
+    .cta-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:24px}
 
-    .cta-actions{
-      display:flex;
-      gap:14px;
-      justify-content:center;
-      flex-wrap:wrap;
-      margin-top:24px;
-    }
-
-    footer{
-      border-top:1px solid rgba(255,255,255,.07);
-      padding:18px 0 28px;
-      color:var(--muted);
-      font-size:.9rem;
-    }
-
-    .footer-inner{
-      display:flex;
-      justify-content:space-between;
-      gap:12px;
-      align-items:center;
-      flex-wrap:wrap;
-    }
-
-    .footer-mark{
-      color:var(--gold);
-      font-weight:800;
-      letter-spacing:.14em;
-      text-transform:uppercase;
-      font-size:.78rem;
-    }
+    footer{border-top:1px solid rgba(255,255,255,.07);padding:18px 0 28px;color:var(--muted);font-size:.9rem}
+    .footer-inner{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}
+    .footer-mark{color:var(--gold);font-weight:800;letter-spacing:.14em;text-transform:uppercase;font-size:.78rem}
 
     @media (max-width: 1080px){
-      .hero-grid,
-      .impact-grid{grid-template-columns:1fr}
+      .hero-grid,.impact-grid{grid-template-columns:1fr}
       .hero-media{order:2}
       .hero-copy{align-items:center;text-align:center}
       .hero p{max-width:68ch}
@@ -657,11 +226,8 @@
     }
 
     @media (max-width: 840px){
-      .modes-grid{grid-template-columns:1fr}
-      .why-grid{grid-template-columns:1fr}
-      .nav-inner{height:auto;padding:14px 0}
+      .modes-grid,.why-grid{grid-template-columns:1fr}
       .nav-links{justify-content:flex-start}
-      .nav{position:sticky}
       .brand-title{white-space:normal;line-height:1}
     }
 
@@ -678,6 +244,8 @@
       .hero-logo-stage{padding:14px 14px 12px;border-radius:24px}
       .hero-logo-stage img{width:min(100%,260px)}
       footer{padding-bottom:22px}
+      .lang-toggle{width:100%;justify-content:center}
+      .lang-btn{flex:1}
     }
   </style>
 </head>
@@ -690,13 +258,17 @@
         </div>
         <div class="brand-copy">
           <div class="brand-kicker">BPM Basketball</div>
-          <div class="brand-title">Reaction Lights Training</div>
+          <div class="brand-title" data-en="The Value of Reaction Light Training" data-es="El Valor del Entrenamiento con Luces de Reacción">The Value of Reaction Light Training</div>
         </div>
       </div>
       <nav class="nav-links" aria-label="Primary">
-        <a class="nav-link" href="#games">Games</a>
-        <a class="nav-link" href="#why">Why It Works</a>
-        <a class="btn btn-primary" href="winning-team.html">Meet the Winning Team</a>
+        <div class="lang-toggle" aria-label="Language toggle">
+          <button class="lang-btn active" type="button" data-lang-btn="en">EN</button>
+          <button class="lang-btn" type="button" data-lang-btn="es">ES</button>
+        </div>
+        <a class="nav-link" href="#games" data-en="Games" data-es="Juegos">Games</a>
+        <a class="nav-link" href="#why" data-en="Why It Works" data-es="Por Qué Funciona">Why It Works</a>
+        <a class="btn btn-primary" href="winning-team.html" data-en="Practice Your Reaction Online" data-es="Practica Tu Reacción Online">Practice Your Reaction Online</a>
       </nav>
     </div>
   </header>
@@ -708,33 +280,31 @@
           <div class="hero-logo-stage">
             <img src="bpm-basketball.png" alt="BPM Basketball crest">
             <strong>BPM Basketball</strong>
-            <span>Creating the public-facing reaction lights story around a winning basketball identity.</span>
+            <span data-en="Reaction light training built to sharpen recognition, decision speed, and game-speed execution." data-es="Entrenamiento con luces de reacción diseñado para afinar el reconocimiento, la velocidad de decisión y la ejecución a ritmo de juego.">Reaction light training built to sharpen recognition, decision speed, and game-speed execution.</span>
           </div>
-          <div class="eyebrow"><i></i> Created by BPM Basketball</div>
+          <div class="eyebrow"><i></i><span data-en="BPM Basketball Presents" data-es="BPM Basketball Presenta">BPM Basketball Presents</span></div>
           <h1>
-            SEE IT.<br>
-            DECIDE.<br>
-            <span class="headline-accent">ACT FASTER.</span>
+            <span data-en="THE VALUE OF" data-es="EL VALOR DEL">THE VALUE OF</span><br>
+            <span class="headline-accent" data-en="REACTION LIGHT" data-es="ENTRENAMIENTO CON LUCES">REACTION LIGHT</span><br>
+            <span data-en="TRAINING" data-es="DE REACCIÓN">TRAINING</span>
           </h1>
-          <p>
-            This is basketball reaction training built around a winning three: <strong>GO = NO-GO</strong>, <strong>PLAYBOOK</strong>, and <strong>CRUNCH TIME</strong>. Curiosity pulls players in. The Wheeler Lights system gives the work real on-court presence.
-          </p>
+          <p data-en="Reaction light training matters because the game rewards players who recognize faster, decide cleaner, and act under pressure. BPM Basketball builds that value around a winning three: <strong>GO = NO-GO</strong>, <strong>PLAYBOOK</strong>, and <strong>CRUNCH TIME</strong>." data-es="El entrenamiento con luces de reacción importa porque el juego premia a los jugadores que reconocen más rápido, deciden mejor y actúan bajo presión. BPM Basketball construye ese valor alrededor de un trío ganador: <strong>GO = NO-GO</strong>, <strong>PLAYBOOK</strong> y <strong>CRUNCH TIME</strong>.">Reaction light training matters because the game rewards players who recognize faster, decide cleaner, and act under pressure. BPM Basketball builds that value around a winning three: <strong>GO = NO-GO</strong>, <strong>PLAYBOOK</strong>, and <strong>CRUNCH TIME</strong>.</p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="winning-team.html">Meet the Winning Team</a>
-            <a class="btn btn-secondary" href="#why">Why It Works</a>
+            <a class="btn btn-primary" href="winning-team.html" data-en="Practice Your Reaction Online" data-es="Practica Tu Reacción Online">Practice Your Reaction Online</a>
+            <a class="btn btn-secondary" href="#why" data-en="Why It Works" data-es="Por Qué Funciona">Why It Works</a>
           </div>
           <div class="signal-row" aria-label="Highlights">
             <div class="signal-chip">
-              <strong>6</strong>
-              <span>Wheeler Lights in one portable reaction setup.</span>
+              <strong data-en="Recognition" data-es="Reconocimiento">Recognition</strong>
+              <span data-en="Train faster visual pickup and cleaner first-read reactions." data-es="Entrena una lectura visual más rápida y reacciones más limpias desde la primera lectura.">Train faster visual pickup and cleaner first-read reactions.</span>
             </div>
             <div class="signal-chip">
-              <strong>3</strong>
-              <span>Three signature games built for public demos and player buy-in.</span>
+              <strong data-en="Decision Speed" data-es="Velocidad de Decisión">Decision Speed</strong>
+              <span data-en="Turn seeing into action with less hesitation and better timing." data-es="Convierte lo que ves en acción con menos duda y mejor timing.">Turn seeing into action with less hesitation and better timing.</span>
             </div>
             <div class="signal-chip">
-              <strong>1</strong>
-              <span>One on-court and off-court reaction lights story.</span>
+              <strong data-en="Pressure Response" data-es="Respuesta Bajo Presión">Pressure Response</strong>
+              <span data-en="Keep processing and executing when the rep starts to feel real." data-es="Sigue procesando y ejecutando cuando la repetición empieza a sentirse real.">Keep processing and executing when the rep starts to feel real.</span>
             </div>
           </div>
         </div>
@@ -743,8 +313,8 @@
           <div class="image-frame">
             <img src="reaction-lights.png" alt="Six Wheeler reaction lights on a basketball court with colorful lighting">
             <div class="image-badge">
-              <strong>The Moment That Matters</strong>
-              <span>Train the exact instant where recognition, decision, and action separate average reps from game-speed execution.</span>
+              <strong data-en="Why Reaction Light Training Matters" data-es="Por Qué Importa Este Entrenamiento">Why Reaction Light Training Matters</strong>
+              <span data-en="It trains the split second where recognition, restraint, timing, and action decide whether a player reacts late or wins the moment." data-es="Entrena ese segundo dividido donde el reconocimiento, el control, el timing y la acción deciden si un jugador reacciona tarde o gana el momento.">It trains the split second where recognition, restraint, timing, and action decide whether a player reacts late or wins the moment.</span>
             </div>
           </div>
         </div>
@@ -754,59 +324,51 @@
     <section class="section" id="games">
       <div class="shell">
         <div class="section-head">
-          <div class="section-kicker">BPM Basketball Final Three</div>
-          <h2>The Final Three</h2>
-          <p>
-            We benched the fillers and kept the modes that best represent basketball cognition, reaction discipline, and competitive pressure. These are the three games that give the Wheeler Lights system a stronger public-facing identity.
-          </p>
+          <div class="section-kicker" data-en="BPM Basketball Final Three" data-es="Los Tres Finales de BPM Basketball">BPM Basketball Final Three</div>
+          <h2 data-en="Three Ways to Train Better Reaction" data-es="Tres Formas de Entrenar Mejor Reacción">Three Ways to Train Better Reaction</h2>
+          <p data-en="These three modes show the real value of reaction light training: better inhibition, stronger memory and recall, and sharper performance under pressure." data-es="Estos tres modos muestran el verdadero valor del entrenamiento con luces de reacción: mejor control inhibitorio, memoria y recuerdo más fuertes, y rendimiento más agudo bajo presión.">These three modes show the real value of reaction light training: better inhibition, stronger memory and recall, and sharper performance under pressure.</p>
         </div>
 
         <div class="modes-grid">
           <article class="mode-card" style="--mode-a: var(--pink); --mode-b: var(--orange);">
             <div class="mode-top">
               <div class="mode-icon">🚦</div>
-              <div class="mode-tag">Signature Mode</div>
+              <div class="mode-tag" data-en="Signature Mode" data-es="Modo Insignia">Signature Mode</div>
             </div>
             <h3>GO = NO-GO</h3>
-            <p>
-              One color is your green light. Every rep forces the player to ignore location, read the color, and decide in real time whether to act or hold.
-            </p>
+            <p data-en="One color is your green light. Every rep forces the player to ignore location, read the color, and decide in real time whether to act or hold." data-es="Un color es tu luz verde. Cada repetición obliga al jugador a ignorar la ubicación, leer el color y decidir en tiempo real si actúa o se contiene.">One color is your green light. Every rep forces the player to ignore location, read the color, and decide in real time whether to act or hold.</p>
             <div class="mode-points">
-              <span>Selective attention under speed.</span>
-              <span>Inhibitory control instead of mindless tapping.</span>
-              <span>The clearest basketball-cognitive identity on the page.</span>
+              <span data-en="Selective attention under speed." data-es="Atención selectiva a velocidad.">Selective attention under speed.</span>
+              <span data-en="Inhibitory control instead of mindless tapping." data-es="Control inhibitorio en vez de tocar sin pensar.">Inhibitory control instead of mindless tapping.</span>
+              <span data-en="The clearest basketball-cognitive identity on the page." data-es="La identidad cognitiva-basket más clara de la página.">The clearest basketball-cognitive identity on the page.</span>
             </div>
           </article>
 
           <article class="mode-card" style="--mode-a: var(--blue); --mode-b: var(--purple);">
             <div class="mode-top">
               <div class="mode-icon">🧠</div>
-              <div class="mode-tag">Memory + Processing</div>
+              <div class="mode-tag" data-en="Memory + Processing" data-es="Memoria + Procesamiento">Memory + Processing</div>
             </div>
             <h3>PLAYBOOK</h3>
-            <p>
-              Watch the sequence, remember the sequence, and execute the sequence. This mode trains recall, focus, and clean execution as the load builds.
-            </p>
+            <p data-en="Watch the sequence, remember the sequence, and execute the sequence. This mode trains recall, focus, and clean execution as the load builds." data-es="Mira la secuencia, recuerda la secuencia y ejecuta la secuencia. Este modo entrena el recuerdo, el enfoque y una ejecución limpia mientras sube la carga.">Watch the sequence, remember the sequence, and execute the sequence. This mode trains recall, focus, and clean execution as the load builds.</p>
             <div class="mode-points">
-              <span>Working memory and pattern retention.</span>
-              <span>Sequencing under growing cognitive demand.</span>
-              <span>A premium fit for the basketball mind narrative.</span>
+              <span data-en="Working memory and pattern retention." data-es="Memoria de trabajo y retención de patrones.">Working memory and pattern retention.</span>
+              <span data-en="Sequencing under growing cognitive demand." data-es="Secuenciación bajo demanda cognitiva creciente.">Sequencing under growing cognitive demand.</span>
+              <span data-en="A premium fit for the basketball mind narrative." data-es="Un encaje premium para la narrativa de la mente de baloncesto.">A premium fit for the basketball mind narrative.</span>
             </div>
           </article>
 
           <article class="mode-card" style="--mode-a: var(--gold); --mode-b: var(--teal);">
             <div class="mode-top">
               <div class="mode-icon">⏱️</div>
-              <div class="mode-tag">Pressure Mode</div>
+              <div class="mode-tag" data-en="Pressure Mode" data-es="Modo de Presión">Pressure Mode</div>
             </div>
             <h3>CRUNCH TIME</h3>
-            <p>
-              The clock forces urgency. The pace forces mistakes. The player has to keep producing clean decisions when fatigue and pressure start squeezing the rep.
-            </p>
+            <p data-en="The clock forces urgency. The pace forces mistakes. The player has to keep producing clean decisions when fatigue and pressure start squeezing the rep." data-es="El reloj obliga a la urgencia. El ritmo obliga a errores. El jugador tiene que seguir produciendo decisiones limpias cuando la fatiga y la presión empiezan a apretar la repetición.">The clock forces urgency. The pace forces mistakes. The player has to keep producing clean decisions when fatigue and pressure start squeezing the rep.</p>
             <div class="mode-points">
-              <span>Late-clock focus and competitive urgency.</span>
-              <span>Fast visual processing under pressure.</span>
-              <span>The mode that gives the system game-feel.</span>
+              <span data-en="Late-clock focus and competitive urgency." data-es="Enfoque de reloj apretado y urgencia competitiva.">Late-clock focus and competitive urgency.</span>
+              <span data-en="Fast visual processing under pressure." data-es="Procesamiento visual rápido bajo presión.">Fast visual processing under pressure.</span>
+              <span data-en="The mode that gives the system game-feel." data-es="El modo que le da sensación de juego al sistema.">The mode that gives the system game-feel.</span>
             </div>
           </article>
         </div>
@@ -816,57 +378,53 @@
     <section class="section" id="why">
       <div class="shell impact-grid">
         <div class="panel">
-          <div class="section-kicker">Why It Works</div>
-          <h2>Built for Basketball Decisions</h2>
-          <p style="color:#d9dfeb; line-height:1.75; font-size:1rem;">
-            Publicly, this should not read like generic reaction training. It should read like a basketball decision system. The value is in what the player must process before acting: color, timing, sequence, restraint, urgency, and execution.
-          </p>
+          <div class="section-kicker" data-en="Why It Works" data-es="Por Qué Funciona">Why It Works</div>
+          <h2 data-en="Reaction Training That Carries to the Court" data-es="Entrenamiento de Reacción Que Se Lleva a la Cancha">Reaction Training That Carries to the Court</h2>
+          <p style="color:#d9dfeb; line-height:1.75; font-size:1rem;" data-en="The value of reaction light training is not random tapping. It is faster recognition, cleaner decisions, better restraint, stronger recall, and more composed execution when the rep speeds up." data-es="El valor del entrenamiento con luces de reacción no es tocar al azar. Es reconocimiento más rápido, decisiones más limpias, mejor control, recuerdo más fuerte y una ejecución más compuesta cuando la repetición acelera.">The value of reaction light training is not random tapping. It is faster recognition, cleaner decisions, better restraint, stronger recall, and more composed execution when the rep speeds up.</p>
           <div class="why-grid">
             <div class="why-card">
-              <strong>Decision Speed</strong>
-              <p>Players train the instant between what they see and what they do.</p>
+              <strong data-en="Faster Reads" data-es="Lecturas Más Rápidas">Faster Reads</strong>
+              <p data-en="Players shorten the gap between what they see and how they respond." data-es="Los jugadores acortan la brecha entre lo que ven y cómo responden.">Players shorten the gap between what they see and how they respond.</p>
             </div>
             <div class="why-card">
-              <strong>Impulse Control</strong>
-              <p>Not every signal should be attacked. Holding is part of winning.</p>
+              <strong data-en="Better Restraint" data-es="Mejor Control">Better Restraint</strong>
+              <p data-en="Good reaction training teaches players when to hold, not just when to go." data-es="Un buen entrenamiento de reacción enseña cuándo contenerse, no solo cuándo ir.">Good reaction training teaches players when to hold, not just when to go.</p>
             </div>
             <div class="why-card">
-              <strong>Working Memory</strong>
-              <p>PLAYBOOK pushes retention, focus, and clean recall under load.</p>
+              <strong data-en="Stronger Recall" data-es="Mayor Recuerdo">Stronger Recall</strong>
+              <p data-en="PLAYBOOK builds memory, focus, and cleaner execution under cognitive load." data-es="PLAYBOOK construye memoria, enfoque y una ejecución más limpia bajo carga cognitiva.">PLAYBOOK builds memory, focus, and cleaner execution under cognitive load.</p>
             </div>
             <div class="why-card">
-              <strong>Pressure Performance</strong>
-              <p>CRUNCH TIME gives the system a competitive edge instead of a lab feel.</p>
+              <strong data-en="Game-Speed Composure" data-es="Compostura a Ritmo de Juego">Game-Speed Composure</strong>
+              <p data-en="CRUNCH TIME makes reaction work feel competitive instead of mechanical." data-es="CRUNCH TIME hace que el trabajo de reacción se sienta competitivo en vez de mecánico.">CRUNCH TIME makes reaction work feel competitive instead of mechanical.</p>
             </div>
           </div>
         </div>
 
         <aside class="panel">
-          <div class="section-kicker">Hardware Layer</div>
-          <h2>Powered by Wheeler Lights</h2>
-          <p style="color:#d9dfeb; line-height:1.75; font-size:1rem;">
-            Wheeler brings the physical light system. BPM Basketball brings the basketball logic and the signature game design that makes the system feel built for the court, not just a product listing.
-          </p>
+          <div class="section-kicker" data-en="On-Court System" data-es="Sistema en Cancha">On-Court System</div>
+          <h2 data-en="Powered by Wheeler Lights" data-es="Impulsado por Wheeler Lights">Powered by Wheeler Lights</h2>
+          <p style="color:#d9dfeb; line-height:1.75; font-size:1rem;" data-en="The Wheeler Lights system gives reaction training a real on-court presence. BPM Basketball shapes that hardware into basketball-specific training value through the final three modes." data-es="El sistema Wheeler Lights le da al entrenamiento de reacción una presencia real en cancha. BPM Basketball convierte ese hardware en valor de entrenamiento específico para baloncesto a través de los tres modos finales.">The Wheeler Lights system gives reaction training a real on-court presence. BPM Basketball shapes that hardware into basketball-specific training value through the final three modes.</p>
           <div class="hardware-stack">
             <div class="hardware-item">
               <div class="hardware-dot"></div>
               <div>
-                <strong>Portable 6-light setup</strong>
-                <span>A clean visual system that looks premium on court and reads instantly in content, demos, and public viewing.</span>
+                <strong data-en="Clear visual trigger system" data-es="Sistema claro de señales visuales">Clear visual trigger system</strong>
+                <span data-en="Six lights create fast, readable signals players can react to immediately in live training." data-es="Seis luces crean señales rápidas y legibles a las que los jugadores pueden reaccionar de inmediato en entrenamiento en vivo.">Six lights create fast, readable signals players can react to immediately in live training.</span>
               </div>
             </div>
             <div class="hardware-item">
               <div class="hardware-dot"></div>
               <div>
-                <strong>Built for on-court and off-court engagement</strong>
-                <span>The lights create a strong visual hook for athletes on the floor and a strong marketing hook for coaches, families, and partners online.</span>
+                <strong data-en="Instant training value" data-es="Valor inmediato de entrenamiento">Instant training value</strong>
+                <span data-en="The system helps players work on reaction, timing, restraint, and competitive focus in a format they instantly understand." data-es="El sistema ayuda a los jugadores a trabajar reacción, timing, control y enfoque competitivo en un formato que entienden al instante.">The system helps players work on reaction, timing, restraint, and competitive focus in a format they instantly understand.</span>
               </div>
             </div>
             <div class="hardware-item">
               <div class="hardware-dot"></div>
               <div>
-                <strong>Perfect fit for the final three</strong>
-                <span>GO = NO-GO, PLAYBOOK, and CRUNCH TIME each feel sharper when the hardware looks and behaves like a true on-court training system.</span>
+                <strong data-en="Built for the final three" data-es="Diseñado para los tres finales">Built for the final three</strong>
+                <span data-en="GO = NO-GO, PLAYBOOK, and CRUNCH TIME each show a different reason reaction light training matters." data-es="GO = NO-GO, PLAYBOOK y CRUNCH TIME muestran cada uno una razón distinta por la que importa este entrenamiento.">GO = NO-GO, PLAYBOOK, and CRUNCH TIME each show a different reason reaction light training matters.</span>
               </div>
             </div>
           </div>
@@ -877,14 +435,12 @@
     <section class="cta" id="final-cta">
       <div class="shell">
         <div class="cta-box">
-          <div class="section-kicker">Final Positioning</div>
-          <h2>No One Has Reaction Lights On and Off the Court Like This</h2>
-          <p>
-            Lead with the basketball system, let the hardware elevate it, and turn public curiosity into real interest around Wheeler Lights.
-          </p>
+          <div class="section-kicker" data-en="Start Here" data-es="Empieza Aquí">Start Here</div>
+          <h2 data-en="Train the Reads That Win Possessions" data-es="Entrena las Lecturas que Ganan Posesiones">Train the Reads That Win Possessions</h2>
+          <p data-en="Start with the value of reaction light training, pull players in with the final three, and move that curiosity toward the Wheeler Lights system." data-es="Empieza con el valor del entrenamiento con luces de reacción, atrae a los jugadores con los tres modos finales y mueve esa curiosidad hacia el sistema Wheeler Lights.">Start with the value of reaction light training, pull players in with the final three, and move that curiosity toward the Wheeler Lights system.</p>
           <div class="cta-actions">
-            <a class="btn btn-primary" href="winning-team.html">Meet the Winning Team</a>
-            <a class="btn btn-secondary" href="#why">See the System</a>
+            <a class="btn btn-primary" href="winning-team.html" data-en="Practice Your Reaction Online" data-es="Practica Tu Reacción Online">Practice Your Reaction Online</a>
+            <a class="btn btn-secondary" href="#games" data-en="See the Final Three" data-es="Mira los Tres Finales">See the Final Three</a>
           </div>
         </div>
       </div>
@@ -894,8 +450,30 @@
   <footer>
     <div class="shell footer-inner">
       <div class="footer-mark">BPM Basketball™</div>
-      <div>Created by BPM Basketball</div>
+      <div data-en="Created by BPM Basketball" data-es="Creado por BPM Basketball">Created by BPM Basketball</div>
     </div>
   </footer>
+
+  <script>
+    (function(){
+      const buttons = document.querySelectorAll('[data-lang-btn]');
+      const translatables = document.querySelectorAll('[data-en][data-es]');
+      const saved = localStorage.getItem('bpm-lang') || 'en';
+
+      function setLang(lang){
+        document.documentElement.lang = lang;
+        document.title = lang === 'es' ? 'BPM Basketball | Luces de Reacción' : 'BPM Basketball | Reaction Light Training';
+        translatables.forEach(el => {
+          const value = el.getAttribute('data-' + lang);
+          if(value !== null) el.innerHTML = value;
+        });
+        buttons.forEach(btn => btn.classList.toggle('active', btn.getAttribute('data-lang-btn') === lang));
+        localStorage.setItem('bpm-lang', lang);
+      }
+
+      buttons.forEach(btn => btn.addEventListener('click', () => setLang(btn.getAttribute('data-lang-btn'))));
+      setLang(saved);
+    })();
+  </script>
 </body>
 </html>
