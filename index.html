@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>BPM Basketball x Wheeler Lights | Reaction Lights Training</title>
-  <meta name="description" content="A premium basketball reaction lights landing page featuring the final three signature games: GO=NO-GO, PLAYBOOK, and CRUNCH TIME.">
+  <title>BPM Basketball | Wheeler Lights Reaction Training</title>
+  <meta name="description" content="BPM Basketball presents a premium Wheeler Lights reaction training landing page featuring GO=NO-GO, PLAYBOOK, and CRUNCH TIME.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -71,24 +71,28 @@
     .brand{
       display:flex;
       align-items:center;
-      gap:12px;
+      gap:14px;
       min-width:0;
     }
 
-    .brand-mark{
+    .brand-logo{
+      width:64px;
+      height:64px;
+      flex:0 0 auto;
       display:grid;
-      grid-template-columns:repeat(3,14px);
-      gap:6px;
-      align-items:center;
+      place-items:center;
+      border-radius:18px;
+      padding:6px;
+      background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:0 10px 26px rgba(0,0,0,.28);
     }
 
-    .brand-mark span{
-      width:14px;height:14px;border-radius:999px;
-      box-shadow:0 0 14px currentColor;
+    .brand-logo img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
     }
-    .brand-mark span:nth-child(1){color:var(--pink);background:var(--pink)}
-    .brand-mark span:nth-child(2){color:var(--blue);background:var(--blue)}
-    .brand-mark span:nth-child(3){color:var(--green);background:var(--green)}
 
     .brand-copy{min-width:0}
     .brand-kicker{
@@ -193,6 +197,65 @@
       max-width:62ch;
     }
 
+    .hero-copy{
+      display:flex;
+      flex-direction:column;
+      align-items:flex-start;
+    }
+
+    .hero-logo-stage{
+      width:min(100%, 520px);
+      margin:0 0 20px;
+      padding:18px 18px 14px;
+      border-radius:32px;
+      border:1px solid rgba(255,255,255,.10);
+      background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.02));
+      box-shadow:0 20px 60px rgba(0,0,0,.34);
+      text-align:center;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero-logo-stage::before{
+      content:'';
+      position:absolute;
+      inset:auto 15% -28% 15%;
+      height:56%;
+      background:radial-gradient(circle, rgba(255,138,61,.22) 0%, rgba(255,213,74,.18) 26%, rgba(36,214,224,.08) 55%, transparent 76%);
+      filter:blur(20px);
+      pointer-events:none;
+    }
+
+    .hero-logo-stage img{
+      width:min(100%, 340px);
+      margin:0 auto;
+      object-fit:contain;
+      filter:drop-shadow(0 18px 30px rgba(0,0,0,.42));
+      position:relative;
+      z-index:1;
+    }
+
+    .hero-logo-stage strong{
+      display:block;
+      margin-top:8px;
+      font-family:'Bebas Neue',sans-serif;
+      font-size:clamp(1.6rem,2.8vw,2.2rem);
+      letter-spacing:.12em;
+      color:var(--gold);
+      position:relative;
+      z-index:1;
+    }
+
+    .hero-logo-stage span{
+      display:block;
+      margin-top:2px;
+      color:var(--muted);
+      font-size:.96rem;
+      line-height:1.45;
+      position:relative;
+      z-index:1;
+    }
+
     .hero-actions{
       display:flex;
       gap:14px;
@@ -233,6 +296,41 @@
 
     .hero-media{
       position:relative;
+    }
+
+    .hero-brand-plaque{
+      display:inline-flex;
+      align-items:center;
+      gap:14px;
+      margin-bottom:18px;
+      padding:12px 14px;
+      border-radius:20px;
+      border:1px solid rgba(255,255,255,.09);
+      background:rgba(255,255,255,.03);
+      box-shadow:var(--shadow);
+    }
+
+    .hero-brand-plaque img{
+      width:72px;
+      height:72px;
+      object-fit:contain;
+      flex:0 0 auto;
+    }
+
+    .hero-brand-copy strong{
+      display:block;
+      font-family:'Bebas Neue',sans-serif;
+      font-size:1.4rem;
+      letter-spacing:.08em;
+      color:var(--gold);
+    }
+
+    .hero-brand-copy span{
+      display:block;
+      color:var(--muted);
+      font-size:.92rem;
+      line-height:1.45;
+      max-width:24ch;
     }
 
     .image-frame{
@@ -552,7 +650,9 @@
     @media (max-width: 1080px){
       .hero-grid,
       .impact-grid{grid-template-columns:1fr}
-      .hero-media{order:-1}
+      .hero-media{order:2}
+      .hero-copy{align-items:center;text-align:center}
+      .hero p{max-width:68ch}
       .shell{width:min(100% - 24px,var(--max))}
     }
 
@@ -574,6 +674,9 @@
       .signal-chip{min-width:unset;flex:1 1 100%}
       .image-badge{left:12px;right:12px;max-width:none;bottom:12px}
       .panel,.mode-card,.cta-box{padding:18px}
+      .brand-logo{width:56px;height:56px;border-radius:16px}
+      .hero-logo-stage{padding:14px 14px 12px;border-radius:24px}
+      .hero-logo-stage img{width:min(100%,260px)}
       footer{padding-bottom:22px}
     }
   </style>
@@ -582,18 +685,18 @@
   <header class="nav">
     <div class="shell nav-inner">
       <div class="brand">
-        <div class="brand-mark" aria-hidden="true">
-          <span></span><span></span><span></span>
+        <div class="brand-logo">
+          <img src="bpm-basketball.png" alt="BPM Basketball logo">
         </div>
         <div class="brand-copy">
-          <div class="brand-kicker">BPM Basketball x Wheeler Lights</div>
+          <div class="brand-kicker">BPM Basketball</div>
           <div class="brand-title">Reaction Lights Training</div>
         </div>
       </div>
       <nav class="nav-links" aria-label="Primary">
         <a class="nav-link" href="#games">Games</a>
         <a class="nav-link" href="#why">Why It Works</a>
-        <a class="btn btn-primary" href="winning-team.html">Enter the Winning Team</a>
+        <a class="btn btn-primary" href="winning-team.html">Meet the Winning Team</a>
       </nav>
     </div>
   </header>
@@ -601,18 +704,23 @@
   <main>
     <section class="hero">
       <div class="shell hero-grid">
-        <div>
-          <div class="eyebrow"><i></i> Public Launch Landing Page</div>
+        <div class="hero-copy">
+          <div class="hero-logo-stage">
+            <img src="bpm-basketball.png" alt="BPM Basketball crest">
+            <strong>BPM Basketball</strong>
+            <span>Creating the public-facing reaction lights story around a winning basketball identity.</span>
+          </div>
+          <div class="eyebrow"><i></i> Created by BPM Basketball</div>
           <h1>
             SEE IT.<br>
             DECIDE.<br>
             <span class="headline-accent">ACT FASTER.</span>
           </h1>
           <p>
-            This is basketball reaction training built around a winning three: <strong>GO = NO-GO</strong>, <strong>PLAYBOOK</strong>, and <strong>CRUNCH TIME</strong>. Powered by Wheeler Lights and shaped for basketball decision speed, this system trains recognition, restraint, memory, and pressure performance in one clean public-facing experience.
+            This is basketball reaction training built around a winning three: <strong>GO = NO-GO</strong>, <strong>PLAYBOOK</strong>, and <strong>CRUNCH TIME</strong>. Curiosity pulls players in. The Wheeler Lights system gives the work real on-court presence.
           </p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="winning-team.html">Enter the Winning Team</a>
+            <a class="btn btn-primary" href="winning-team.html">Meet the Winning Team</a>
             <a class="btn btn-secondary" href="#why">Why It Works</a>
           </div>
           <div class="signal-row" aria-label="Highlights">
@@ -622,11 +730,11 @@
             </div>
             <div class="signal-chip">
               <strong>3</strong>
-              <span>Signature games kept on the floor.</span>
+              <span>Three signature games built for public demos and player buy-in.</span>
             </div>
             <div class="signal-chip">
               <strong>1</strong>
-              <span>Sharper basketball decision system.</span>
+              <span>One on-court and off-court reaction lights story.</span>
             </div>
           </div>
         </div>
@@ -646,10 +754,10 @@
     <section class="section" id="games">
       <div class="shell">
         <div class="section-head">
-          <div class="section-kicker">The Winning Team</div>
+          <div class="section-kicker">BPM Basketball Final Three</div>
           <h2>The Final Three</h2>
           <p>
-            We benched the fillers and kept the modes that best represent basketball cognition, reaction discipline, and competitive pressure. These are the games that deserve public-facing spotlight.
+            We benched the fillers and kept the modes that best represent basketball cognition, reaction discipline, and competitive pressure. These are the three games that give the Wheeler Lights system a stronger public-facing identity.
           </p>
         </div>
 
@@ -737,7 +845,7 @@
           <div class="section-kicker">Hardware Layer</div>
           <h2>Powered by Wheeler Lights</h2>
           <p style="color:#d9dfeb; line-height:1.75; font-size:1rem;">
-            Wheeler brings the physical light system. BPM Basketball brings the basketball logic, the public story, and the signature game design.
+            Wheeler brings the physical light system. BPM Basketball brings the basketball logic and the signature game design that makes the system feel built for the court, not just a product listing.
           </p>
           <div class="hardware-stack">
             <div class="hardware-item">
@@ -750,8 +858,8 @@
             <div class="hardware-item">
               <div class="hardware-dot"></div>
               <div>
-                <strong>Built for visible engagement</strong>
-                <span>The lights create a strong visual hook for athletes, coaches, families, and partners the moment they see the page.</span>
+                <strong>Built for on-court and off-court engagement</strong>
+                <span>The lights create a strong visual hook for athletes on the floor and a strong marketing hook for coaches, families, and partners online.</span>
               </div>
             </div>
             <div class="hardware-item">
@@ -770,12 +878,12 @@
       <div class="shell">
         <div class="cta-box">
           <div class="section-kicker">Final Positioning</div>
-          <h2>BPM Basketball Powered by Wheeler Lights</h2>
+          <h2>No One Has Reaction Lights On and Off the Court Like This</h2>
           <p>
-            Lead with the basketball system. Let the hardware elevate it. Publicly, this page should feel less like a product listing and more like a modern basketball performance experience built around reaction, recognition, discipline, and pressure.
+            Lead with the basketball system, let the hardware elevate it, and turn public curiosity into real interest around Wheeler Lights.
           </p>
           <div class="cta-actions">
-            <a class="btn btn-primary" href="winning-team.html">Launch the Winning Team</a>
+            <a class="btn btn-primary" href="winning-team.html">Meet the Winning Team</a>
             <a class="btn btn-secondary" href="#why">See the System</a>
           </div>
         </div>
@@ -786,7 +894,7 @@
   <footer>
     <div class="shell footer-inner">
       <div class="footer-mark">BPM Basketball™</div>
-      <div>Reaction Lights Training Landing Page</div>
+      <div>Created by BPM Basketball</div>
     </div>
   </footer>
 </body>
