@@ -389,20 +389,9 @@ border-radius:24px;border:2px solid rgba(255,255,255,0.06)}
 </div>
 </div>
 
-<div class="setup-section">
-<div class="setup-label" data-en="RHYTHM" data-es="RITMO">RHYTHM</div>
-<div class="pattern-selector">
-<button class="pattern-option active" data-pattern="reggaeton">REGGAETON</button>
-<button class="pattern-option" data-pattern="bomba">BOMBA</button>
-<button class="pattern-option" data-pattern="plena">PLENA</button>
-<button class="pattern-option" data-pattern="salsa">SALSA</button>
-<button class="pattern-option" data-pattern="clave">CLAVE</button>
-<button class="pattern-option" data-pattern="merengue">MERENGUE</button>
-</div>
-</div>
 
 <div class="setup-section">
-<div class="setup-label">TEMPO</div>
+<div class="setup-label" data-en="BEATS PER MINUTE" data-es="BEATS PER MINUTE">BEATS PER MINUTE</div>
 <div class="bpm-selector">
 <button class="bpm-option" data-bpm="60">60</button>
 <button class="bpm-option active" data-bpm="90">90</button>
@@ -525,8 +514,6 @@ bestEl.textContent=best;
 
 var bpmOptions=document.querySelectorAll('.bpm-option');
 bpmOptions.forEach(function(btn){btn.onclick=function(){if(isPlaying)return;bpmOptions.forEach(function(b){b.classList.remove('active')});btn.classList.add('active');bpm=parseInt(btn.dataset.bpm);currentBpmEl.textContent=bpm}});
-var patternOptions=document.querySelectorAll('.pattern-option');
-patternOptions.forEach(function(btn){btn.onclick=function(){if(isPlaying)return;patternOptions.forEach(function(b){b.classList.remove('active')});btn.classList.add('active');currentPattern=btn.dataset.pattern}});
 
 var currentMode='warmup',modeOptions=document.querySelectorAll('.mode-card');
 var challengeTimer=document.getElementById('challengeTimer'),challengeGoal=document.getElementById('challengeGoal'),goalProgress=document.getElementById('goalProgress'),challengeComplete=document.getElementById('challengeComplete'),challengeResult=document.getElementById('challengeResult'),challengeStats=document.getElementById('challengeStats'),retryBtn=document.getElementById('retryBtn'),practiceIndicator=document.getElementById('practiceIndicator'),countdownOverlay=document.getElementById('countdownOverlay'),countdownNumber=document.getElementById('countdownNumber'),repiteloIndicator=document.getElementById('repiteloIndicator'),repiteloProgress=document.getElementById('repiteloProgress');
