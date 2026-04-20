@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<title>BPM REACTION LIGHTS PROGRAM | BPM Basketball</title>
+<title>REACTION LIGHTS TRAINING PROGRAM | BPM Basketball</title>
 <link rel="icon" type="image/png" href="bpm-basketball.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -101,6 +101,8 @@ border-radius:24px;border:2px solid rgba(255,255,255,0.06)}
 .feedback-text.late{color:var(--hot-pink)}
 .feedback-text.miss{color:#ff4444}
 .feedback-text.wrong{color:#ff4444}
+.feedback-text.nogo{color:#ff6b6b}
+.feedback-text.go{color:var(--gold);text-shadow:0 0 18px var(--gold)}
 .feedback-text.start{color:var(--cream);opacity:0.7;font-size:0.9rem}
 
 /* SETUP SCREEN */
@@ -200,8 +202,9 @@ border-radius:24px;border:2px solid rgba(255,255,255,0.06)}
 .challenge-retry-btn{padding:14px 36px;border:none;border-radius:30px;font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:2px;cursor:pointer;background:linear-gradient(135deg,var(--gold),var(--orange));color:#1a0f0f;box-shadow:0 4px 16px rgba(255,215,0,0.35)}
 .challenge-retry-btn:active{transform:scale(0.95)}
 
-.practice-indicator{position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:rgba(100,149,237,0.85);border-radius:20px;padding:7px 18px;font-family:'Bebas Neue',sans-serif;font-size:0.8rem;color:white;letter-spacing:2px;display:none;z-index:100}
+.practice-indicator{position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:rgba(100,149,237,0.88);border-radius:20px;padding:8px 18px;font-family:'Bebas Neue',sans-serif;font-size:0.82rem;color:white;letter-spacing:2px;display:none;z-index:100;border:1.5px solid rgba(255,255,255,0.2);white-space:nowrap}
 .practice-indicator.show{display:block}
+.practice-indicator .go-chip{display:inline-block;min-width:64px;padding:2px 10px;border-radius:999px;border:1px solid rgba(255,255,255,0.18);color:#081018;text-align:center;margin:0 4px;font-size:0.74rem;letter-spacing:1.2px;box-shadow:0 0 18px rgba(255,255,255,0.18)}
 .repitelo-indicator{position:fixed;bottom:90px;left:50%;transform:translateX(-50%);border-radius:20px;padding:7px 18px;font-family:'Bebas Neue',sans-serif;font-size:0.9rem;color:white;letter-spacing:2px;display:none;z-index:100}
 .repitelo-indicator.listening{background:rgba(46,125,82,0.9);display:block}
 .repitelo-indicator.watching{background:rgba(155,89,182,0.9);display:block;animation:pulse 1s ease-in-out infinite}
@@ -355,7 +358,7 @@ border-radius:24px;border:2px solid rgba(255,255,255,0.06)}
 <div class="beat-hero-ball" aria-hidden="true">
 <span class="mini-light"></span><span class="mini-light"></span><span class="mini-light"></span><span class="mini-light"></span><span class="mini-light"></span><span class="mini-light"></span>
 </div>
-<div class="beat-hero-title">BPM REACTION LIGHTS</div>
+<div class="beat-hero-title">REACTION LIGHTS TRAINING</div>
 <div class="beat-hero-sub" data-en="See It · Decide · Act Faster" data-es="Míralo · Decide · Reacciona Más Rápido">See It · Decide · Act Faster</div>
 </div>
 
@@ -382,8 +385,8 @@ border-radius:24px;border:2px solid rgba(255,255,255,0.06)}
 <button class="mode-help-btn" data-help="nothingbutnet">?</button>
 </div>
 <div class="mode-card" data-mode="shootaround">
-<div class="mode-card-icon">📚</div>
-<div class="mode-card-info"><div class="mode-card-name">SHOOTAROUND</div><div class="mode-card-desc" data-en="Slower tempo. Learn the beat." data-es="Más lento. Aprende el ritmo.">Slower tempo. Learn the beat.</div></div>
+<div class="mode-card-icon">🚦</div>
+<div class="mode-card-info"><div class="mode-card-name">GO=NO-GO</div><div class="mode-card-desc" data-en="All 6 lights flash. Hit only the GO color." data-es="Las 6 luces se activan. Toca solo el color GO.">All 6 lights flash. Hit only the GO color.</div></div>
 <button class="mode-help-btn" data-help="shootaround">?</button>
 </div>
 </div>
@@ -446,7 +449,7 @@ border-radius:24px;border:2px solid rgba(255,255,255,0.06)}
 <div class="challenge-stats" id="challengeStats"></div>
 <button class="challenge-retry-btn" id="retryBtn" data-en="RUN IT BACK!" data-es="¡OTRA VEZ!">RUN IT BACK!</button>
 </div>
-<div class="practice-indicator" id="practiceIndicator" data-en="📚 REACTION TRAINING — NO SCORE" data-es="📚 ENTRENAMIENTO DE LUCES — SIN PUNTOS">📚 REACTION TRAINING — NO SCORE</div>
+<div class="practice-indicator" id="practiceIndicator" data-en="🎯 GO=NO-GO" data-es="🎯 GO=NO-GO">🎯 GO=NO-GO</div>
 <div class="repitelo-indicator" id="repiteloIndicator">🧠 LISTEN...</div>
 <div class="repitelo-progress" id="repiteloProgress"></div>
 
@@ -478,6 +481,7 @@ if(v.indexOf('<')!==-1)el.innerHTML=v;else el.textContent=v;
 });
 document.getElementById('langEN').classList.toggle('active',l==='en');
 document.getElementById('langES').classList.toggle('active',l==='es');
+if(currentMode==='shootaround'&&goNoGoTarget>=0)updateGoNoGoIndicator();
 };
 setLang(currentLang);
 
@@ -518,6 +522,7 @@ bpmOptions.forEach(function(btn){btn.onclick=function(){if(isPlaying)return;bpmO
 var currentMode='warmup',modeOptions=document.querySelectorAll('.mode-card');
 var challengeTimer=document.getElementById('challengeTimer'),challengeGoal=document.getElementById('challengeGoal'),goalProgress=document.getElementById('goalProgress'),challengeComplete=document.getElementById('challengeComplete'),challengeResult=document.getElementById('challengeResult'),challengeStats=document.getElementById('challengeStats'),retryBtn=document.getElementById('retryBtn'),practiceIndicator=document.getElementById('practiceIndicator'),countdownOverlay=document.getElementById('countdownOverlay'),countdownNumber=document.getElementById('countdownNumber'),repiteloIndicator=document.getElementById('repiteloIndicator'),repiteloProgress=document.getElementById('repiteloProgress');
 var challengeTimerInterval=null,challengeTimeLeft=60,perfectCount=0,isPracticeMode=false;
+var goNoGoRound=0,goNoGoTarget=-1,lastGoNoGoTarget=-1;
 
 modeOptions.forEach(function(btn){btn.onclick=function(e){if(e.target.classList.contains('mode-help-btn'))return;if(isPlaying)return;modeOptions.forEach(function(b){b.classList.remove('active')});btn.classList.add('active');currentMode=btn.dataset.mode}});
 
@@ -549,8 +554,22 @@ function playBuzzerBeater(){if(!audioCtx)return;var n=audioCtx.currentTime;[0,2,
 
 /* Effects */
 var ballColors=['#ff8ba7','#9fd0ff','#8ff5d4','#b6bfff','#ff9a9a','#98ffbf'];
+var goNoGoNamesEn=['PINK','BLUE','GREEN','VIOLET','RED','MINT'];
+var goNoGoNamesEs=['ROSA','AZUL','VERDE','VIOLETA','ROJO','MENTA'];
 var callouts=['REACT!','FAST!','LOCK IN!','GO!','SHARP!','QUICK!','READ!','MOVE!','⚡','🔥','🎯','💨'];
 var calloutCounter=0;
+
+function pickNextGoNoGoTarget(){
+var next=Math.floor(Math.random()*tapBalls.length);
+if(tapBalls.length>1){while(next===lastGoNoGoTarget){next=Math.floor(Math.random()*tapBalls.length)}}
+goNoGoTarget=next;lastGoNoGoTarget=next;goNoGoRound++;updateGoNoGoIndicator()
+}
+function updateGoNoGoIndicator(){
+if(currentMode!=='shootaround')return;
+var label=(currentLang==='es'?goNoGoNamesEs:goNoGoNamesEn)[goNoGoTarget]||'GO';
+var roundLabel=currentLang==='es'?'RONDA ':'ROUND ';
+practiceIndicator.innerHTML='🎯 GO = <span class="go-chip" style="background:'+ballColors[goNoGoTarget]+'">'+label+'</span> · '+roundLabel+goNoGoRound
+}
 
 function createColorBurst(el,ci){var b=document.createElement('div');b.className='color-burst';b.style.setProperty('--burst-color',ballColors[ci]);el.appendChild(b);setTimeout(function(){b.remove()},500)}
 function createSparks(el,ci){var c=ballColors[ci];for(var i=0;i<6;i++){var s=document.createElement('div');s.className='spark';s.style.background=c;s.style.boxShadow='0 0 5px '+c;s.style.left='50%';s.style.top='40%';var a=(i/6)*Math.PI*2;var d=40+Math.random()*30;s.style.setProperty('--tx',Math.cos(a)*d+'px');s.style.setProperty('--ty',Math.sin(a)*d-15+'px');el.appendChild(s);setTimeout(function(x){x.remove()}.bind(null,s),500)}}
@@ -631,7 +650,7 @@ function showCountdown(cb){var count=3;countdownOverlay.classList.add('show');co
 /* CHALLENGE MODES */
 function updateChallengeTimer(){challengeTimeLeft--;challengeTimer.textContent=challengeTimeLeft;if(challengeTimeLeft<=10){challengeTimer.classList.add('critical');challengeTimer.classList.remove('warning')}else if(challengeTimeLeft<=20){challengeTimer.classList.add('warning')}if(challengeTimeLeft<=0)endChallenge(true)}
 
-function startChallenge(){switch(currentMode){case'crunchtime':challengeTimeLeft=60;challengeTimer.textContent=60;challengeTimer.classList.add('show');challengeTimer.classList.remove('warning','critical');challengeTimerInterval=setInterval(updateChallengeTimer,1000);break;case'nothingbutnet':perfectCount=0;goalProgress.textContent='0/10';challengeGoal.classList.add('show');break;case'shootaround':isPracticeMode=true;practiceIndicator.classList.add('show');break}}
+function startChallenge(){switch(currentMode){case'crunchtime':challengeTimeLeft=60;challengeTimer.textContent=60;challengeTimer.classList.add('show');challengeTimer.classList.remove('warning','critical');challengeTimerInterval=setInterval(updateChallengeTimer,1000);break;case'nothingbutnet':perfectCount=0;goalProgress.textContent='0/10';challengeGoal.classList.add('show');break;case'shootaround':isPracticeMode=true;practiceIndicator.classList.add('show');goNoGoRound=0;goNoGoTarget=-1;lastGoNoGoTarget=-1;pickNextGoNoGoTarget();break}}
 
 function endChallenge(survived){clearInterval(challengeTimerInterval);challengeTimerInterval=null;isPlaying=false;clearInterval(beatInterval);beatInterval=null;
 if(currentMode==='crunchtime'){if(survived&&challengeTimeLeft<=0){challengeResult.textContent=currentLang==='es'?'¡SOBREVIVISTE! 🏆':'SURVIVED! 🏆';challengeResult.className='challenge-result win';playBuzzerBeater();launchConfetti();trackSurvivalWin()}else{challengeResult.textContent=currentLang==='es'?'¡CASI! 💪':'ALMOST! 💪';challengeResult.className='challenge-result lose'}challengeStats.textContent='Streak: '+streak+' | Best: '+best}
@@ -646,16 +665,23 @@ retryBtn.onclick=function(){challengeComplete.classList.remove('show');if(curren
 function startGame(){initAudio();if(currentMode==='playbook'){showCountdown(function(){repStart()});return}if(currentMode!=='shootaround'){showCountdown(actuallyStart)}else{actuallyStart()}}
 
 function actuallyStart(){isPlaying=true;streak=0;streakEl.textContent=0;patternIndex=0;lastMilestone=0;currentlyLit=-1;tappedThisBeat=false;perfectCount=0;isPracticeMode=(currentMode==='shootaround');setOnFire(false);if(!isPracticeMode)trackGame();startChallenge();
-var gameBpm=isPracticeMode?Math.max(45,bpm-30):bpm;var iv=60000/gameBpm;
-function tick(){if(!isPracticeMode&&currentlyLit>=0&&!tappedThisBeat&&patternIndex>0){streak=0;streakEl.textContent=0;showFeedback('miss');checkMilestone(0);vibrate(50)}
+var gameBpm=isPracticeMode?Math.max(45,bpm-20):bpm;var iv=60000/gameBpm;
+function tick(){
+if(currentMode==='shootaround'){
+if(currentlyLit===goNoGoTarget&&!tappedThisBeat&&patternIndex>0){showFeedback('miss');vibrate(50)}
+}else if(!isPracticeMode&&currentlyLit>=0&&!tappedThisBeat&&patternIndex>0){streak=0;streakEl.textContent=0;showFeedback('miss');checkMilestone(0);vibrate(50)}
 lastBeatTime=Date.now();tappedThisBeat=false;tapBalls.forEach(function(c){c.classList.remove('lit')});
+if(currentMode==='shootaround'){
+if(patternIndex>0&&patternIndex%tapBalls.length===0)pickNextGoNoGoTarget();
+currentlyLit=patternIndex%tapBalls.length;
+}else{
 var pat=rhythmPatterns5[currentPattern];
 currentlyLit=pat[patternIndex%pat.length];
-
+}
 tapBalls[currentlyLit].classList.add('lit');playBeatTick();beatPulse();patternIndex++}
 tick();beatInterval=setInterval(tick,iv)}
 
-function stopGame(){isPlaying=false;clearInterval(beatInterval);beatInterval=null;if(challengeTimerInterval){clearInterval(challengeTimerInterval);challengeTimerInterval=null}repCleanup();tapBalls.forEach(function(c){c.classList.remove('lit')});setOnFire(false);lastMilestone=0;isPracticeMode=false;challengeTimer.classList.remove('show','warning','critical');challengeGoal.classList.remove('show');practiceIndicator.classList.remove('show');patternIndex=0;currentlyLit=-1}
+function stopGame(){isPlaying=false;clearInterval(beatInterval);beatInterval=null;if(challengeTimerInterval){clearInterval(challengeTimerInterval);challengeTimerInterval=null}repCleanup();tapBalls.forEach(function(c){c.classList.remove('lit')});setOnFire(false);lastMilestone=0;isPracticeMode=false;challengeTimer.classList.remove('show','warning','critical');challengeGoal.classList.remove('show');practiceIndicator.classList.remove('show');goNoGoRound=0;goNoGoTarget=-1;lastGoNoGoTarget=-1;patternIndex=0;currentlyLit=-1}
 
 /* PLAYBOOK (REPITELO) MODE */
 var repSequence=[],repPlayerIndex=0,repRound=0,repBestRound=parseInt(localStorage.getItem('beat-rep-best')||'0'),repIsPlaying=false,repIsListening=false;
@@ -694,14 +720,14 @@ warmup:{icon:'⚡',title:'WARMUP',steps:['A reaction light flashes on the beat',
 playbook:{icon:'🧠',title:'PLAYBOOK',steps:['Watch the sequence of lights flash','When you see "YOUR TURN!" repeat the exact sequence','Each round adds one more light to the sequence','Game ends when you miss — how far can you go?'],tip:'💡 The sequence plays at your selected BPM. Start at 60 if you\'re new.'},
 crunchtime:{icon:'⏱️',title:'CRUNCH TIME',steps:['You have 60 seconds on the clock','Tap every light that flashes — don\'t miss!','If you miss, your streak resets','Survive all 60 seconds to win 🏆'],tip:'💡 The clock turns red at 10 seconds. Stay locked in!'},
 nothingbutnet:{icon:'🎯',title:'NOTHING BUT NET',steps:['You need 10 PERFECT taps to win','A perfect tap is right on the beat — timing is everything','Good taps don\'t count — only perfects','Get all 10 and you win 🎯'],tip:'💡 Listen to the rhythm and anticipate the beat.'},
-shootaround:{icon:'📚',title:'SHOOTAROUND',steps:['The tempo is slower so you can learn','No score or streak tracking','Practice the patterns without pressure','Perfect for learning the rhythms'],tip:'💡 Great for learning Bomba, Plena, and other Latin beats.'}
+shootaround:{icon:'🚦',title:'GO=NO-GO',steps:['All 6 lights flash in sequence','Only tap the light color marked GO','Every full round changes the GO color','The GO color never repeats back-to-back'],tip:'💡 Read fast, stay disciplined, and do not chase the wrong color.'}
 };
 var helpDataEs={
 warmup:{icon:'⚡',title:'CALENTAMIENTO',steps:['Una luz de reacción se ilumina al ritmo','Toca la luz correcta antes del próximo beat','Mantén tu racha — ¡mientras más, mejor!','A los 10 seguidos entras en MODO FUEGO 🔥'],tip:'💡 Sin límite de tiempo. Relájate y siente el ritmo.'},
 playbook:{icon:'🧠',title:'PLAYBOOK',steps:['Observa la secuencia de luces','Cuando veas "¡TU TURNO!" repite la secuencia exacta','Cada ronda añade una luz más','El juego termina cuando fallas — ¡intenta llegar más lejos!'],tip:'💡 La secuencia se toca al BPM seleccionado. Empieza con 60.'},
 crunchtime:{icon:'⏱️',title:'CRUNCH TIME',steps:['Tienes 60 segundos en el reloj','Toca cada luz que se ilumina — ¡no la dejes pasar!','Si fallas, tu racha se reinicia','Sobrevive los 60 segundos para ganar 🏆'],tip:'💡 El reloj cambia a rojo a los 10 segundos. ¡Enfoque!'},
 nothingbutnet:{icon:'🎯',title:'NOTHING BUT NET',steps:['Necesitas 10 toques PERFECTOS para ganar','Un toque perfecto es justo en el beat','Los toques "buenos" no cuentan — solo perfectos','Logra los 10 y ganas 🎯'],tip:'💡 Escucha el ritmo y anticipa el beat.'},
-shootaround:{icon:'📚',title:'SHOOTAROUND',steps:['El ritmo va más lento para aprender','No se cuentan puntos ni rachas','Practica los patrones sin presión','Perfecto para conocer los ritmos'],tip:'💡 Ideal para aprender Bomba, Plena y ritmos latinos.'}
+shootaround:{icon:'🚦',title:'GO=NO-GO',steps:['Las 6 luces se activan en secuencia','Toca solo el color marcado como GO','En cada ronda completa cambia el color GO','El color GO nunca se repite corrido'],tip:'💡 Lee rápido, mantén disciplina y no persigas el color equivocado.'}
 };
 
 function showHelp(mode){var d=currentLang==='es'?helpDataEs[mode]:helpData[mode];if(!d)return;document.getElementById('helpIcon').textContent=d.icon;document.getElementById('helpTitle').textContent=d.title;var stepsEl=document.getElementById('helpSteps');stepsEl.innerHTML='';d.steps.forEach(function(s,i){var step=document.createElement('div');step.className='help-step';step.innerHTML='<div class="help-step-num">'+(i+1)+'</div><div class="help-step-text">'+s+'</div>';stepsEl.appendChild(step)});document.getElementById('helpTip').textContent=d.tip;helpOverlay.classList.add('show')}
@@ -711,7 +737,7 @@ helpOverlay.addEventListener('click',function(e){if(e.target===helpOverlay)close
 
 /* SCREEN TRANSITIONS */
 var setupScreen=document.getElementById('setupScreen'),playScreen=document.getElementById('playScreen'),stopBtn=document.getElementById('stopBtn'),playBackBtn=document.getElementById('playBackBtn'),playModeName=document.getElementById('playModeName'),playBpmLabel=document.getElementById('playBpmLabel'),navBackBtn=document.getElementById('navBackBtn');
-var MODE_LABELS={warmup:'WARMUP',playbook:'PLAYBOOK',crunchtime:'CRUNCH TIME',nothingbutnet:'NOTHING BUT NET',shootaround:'SHOOTAROUND'};
+var MODE_LABELS={warmup:'WARMUP',playbook:'PLAYBOOK',crunchtime:'CRUNCH TIME',nothingbutnet:'NOTHING BUT NET',shootaround:'GO=NO-GO'};
 
 function showPlayScreen(){setupScreen.style.display='none';playScreen.classList.remove('hidden');playModeName.textContent=MODE_LABELS[currentMode]||'WARMUP';playBpmLabel.textContent=bpm+' BPM';navBackBtn.textContent='← Back';navBackBtn.href='#';navBackBtn.onclick=function(e){e.preventDefault();if(isPlaying){if(currentMode==='playbook')repCleanup();stopGame()}showSetupScreen()};window.scrollTo(0,0)}
 
@@ -726,6 +752,11 @@ function handleTap(ci,el){initAudio();playBounce(ci,'good');createTapParticles(e
 el.classList.add('hit-correct');setTimeout(function(){el.classList.remove('hit-correct')},200);
 if(currentMode==='playbook'&&isPlaying){if(repIsListening)repHandleTap(ci);return}
 if(!isPlaying){el.classList.add('tapped');createColorBurst(el,ci);createSparks(el,ci);showCallout(el);setTimeout(function(){el.classList.remove('tapped')},150);showFeedback('start');return}
+if(currentMode==='shootaround'){
+if(currentlyLit!==ci){el.classList.remove('hit-correct');el.classList.add('hit-wrong');setTimeout(function(){el.classList.remove('hit-wrong')},300);playWrongSound();showFeedback('wrong');return}
+if(ci!==goNoGoTarget){el.classList.remove('hit-correct');el.classList.add('hit-wrong');setTimeout(function(){el.classList.remove('hit-wrong')},300);playWrongSound();showFeedback('nogo');vibrate(70);return}
+tappedThisBeat=true;playBounce(ci,'perfect');playSwish();screenShake();showFeedback('go');createColorBurst(el,ci);createSparks(el,ci);showCallout(el);vibrate(40);return
+}
 if(currentlyLit!==ci){el.classList.remove('hit-correct');el.classList.add('hit-wrong');setTimeout(function(){el.classList.remove('hit-wrong')},300);playWrongSound();showFeedback('wrong');streak=0;streakEl.textContent=0;checkMilestone(0);return}
 var now=Date.now(),iv=60000/bpm,tsb=now-lastBeatTime,ttn=iv-tsb,tol=iv*0.35,q;
 if(tsb<tol||ttn<tol){if(tsb<tol*0.4||ttn<tol*0.4){q='perfect';if(!isPracticeMode){streak++;trackPerfect();trackTap(true)}screenShake();vibrate(40);if(streak>=3)playSwish()}else{q='good';if(!isPracticeMode){streak++;trackTap(false)}}tappedThisBeat=true}
@@ -734,7 +765,7 @@ playBounce(ci,q);showFeedback(q);createColorBurst(el,ci);createSparks(el,ci);sho
 streakEl.textContent=streak;if(!isPracticeMode){checkMilestone(streak);trackStreak(streak)}
 if(streak>best&&!isPracticeMode){best=streak;bestEl.textContent=best;localStorage.setItem('beat-best',best)}}
 
-function showFeedback(q){clearTimeout(feedbackTimeout);var msgs={perfect:currentLang==='es'?'¡SWISH!':'SWISH!',good:currentLang==='es'?'¡BUCKET!':'BUCKET!',early:currentLang==='es'?'TEMPRANO':'EARLY',late:currentLang==='es'?'TARDE':'LATE',wrong:currentLang==='es'?'¡OTRO!':'WRONG!',miss:'MISS!',start:currentLang==='es'?"TOCA UNA LUZ ↓":'TAP A LIGHT ↓'};feedback.textContent=msgs[q]||'';feedback.className='feedback-text show '+q;feedbackTimeout=setTimeout(function(){feedback.classList.remove('show')},400)}
+function showFeedback(q){clearTimeout(feedbackTimeout);var msgs={perfect:currentLang==='es'?'¡SWISH!':'SWISH!',good:currentLang==='es'?'¡BUCKET!':'BUCKET!',early:currentLang==='es'?'TEMPRANO':'EARLY',late:currentLang==='es'?'TARDE':'LATE',wrong:currentLang==='es'?'¡OTRA!':'WRONG!',nogo:currentLang==='es'?'NO-GO':'NO-GO',go:currentLang==='es'?'¡GO!':'GO!',miss:currentLang==='es'?'MISS GO':'MISS GO',start:currentLang==='es'?"TOCA UNA LUZ ↓":'TAP A LIGHT ↓'};feedback.textContent=msgs[q]||'';feedback.className='feedback-text show '+q;feedbackTimeout=setTimeout(function(){feedback.classList.remove('show')},500)}
 
 tapBalls.forEach(function(c,i){c.addEventListener('touchstart',function(e){e.preventDefault();handleTap(i,c)},{passive:false});c.addEventListener('mousedown',function(e){e.preventDefault();handleTap(i,c)});c.addEventListener('touchend',function(e){e.preventDefault()},{passive:false})});
 })();
