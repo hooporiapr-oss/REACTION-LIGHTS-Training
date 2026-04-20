@@ -26,7 +26,7 @@
 html,body{height:100%;overflow-x:hidden;font-family:'Outfit',sans-serif;background:var(--dark);color:var(--cream);touch-action:manipulation;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none}
 
 .mini-nav{position:fixed;top:0;left:0;right:0;background:rgba(10,10,15,0.95);border-bottom:1px solid var(--border);padding-top:env(safe-area-inset-top);z-index:1000;backdrop-filter:blur(10px)}
-.nav-row{display:flex;align-items:center;justify-content:space-between;height:50px;padding:0 12px}
+.nav-row{display:flex;align-items:center;justify-content:space-between;height:50px;padding:0 clamp(12px,2vw,24px);width:min(100%,1400px);margin:0 auto;gap:12px}
 .back-btn{display:flex;align-items:center;gap:6px;padding:8px 12px;background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:8px;font-family:'Outfit',sans-serif;font-size:0.75rem;font-weight:600;cursor:pointer;text-decoration:none;transition:all 0.2s}
 .back-btn:active{border-color:var(--gold);color:var(--gold)}
 .nav-title{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:2px;color:var(--gold)}
@@ -37,12 +37,12 @@ html,body{height:100%;overflow-x:hidden;font-family:'Outfit',sans-serif;backgrou
 .nav-lang-btn{padding:5px 8px;border:1px solid var(--border);background:0;color:var(--muted);border-radius:4px;font-size:0.6rem;font-weight:600;cursor:pointer;min-width:28px;min-height:28px}
 .nav-lang-btn.active{border-color:var(--gold);color:var(--gold)}
 
-.container{width:100%;max-width:min(100%,1100px);margin:0 auto;padding:calc(var(--nav-height) + env(safe-area-inset-top) + 10px) clamp(12px,4vw,20px) 20px;min-height:100dvh;display:flex;flex-direction:column;--board-size:clamp(280px,86vw,420px);--content-max:min(100%,760px)}
+.container{width:100%;max-width:1400px;margin:0 auto;padding:calc(var(--nav-height) + env(safe-area-inset-top) + 10px) clamp(12px,3vw,28px) clamp(24px,4vw,36px);min-height:100dvh;display:flex;flex-direction:column;--board-ratio:1.2714285714;--chrome-space:clamp(250px,31dvh,360px);--board-size:min(clamp(290px,88vw,680px),calc((100dvh - var(--chrome-space)) * var(--board-ratio)));--content-max:min(100%,980px)}
 .setup-screen,.play-screen{width:100%;max-width:var(--content-max);margin:0 auto}
 .setup-section,.play-header,.game-area,.powered-strip{width:100%}
 
 /* HERO */
-.beat-hero{text-align:center;padding:4px 0 10px}
+.beat-hero{text-align:center;padding:clamp(4px,1.5vw,14px) 0 clamp(10px,2vw,18px)}
 .beat-hero-ball{display:flex;justify-content:center;gap:8px;margin:0 auto 10px;width:max-content}
 .beat-hero-hex-row{display:flex;justify-content:center;gap:clamp(6px,2.5vw,10px);margin:0 auto 14px;flex-wrap:wrap}
 .hero-hex{
@@ -76,7 +76,7 @@ html,body{height:100%;overflow-x:hidden;font-family:'Outfit',sans-serif;backgrou
 .beat-hero-ball .mini-dot:nth-child(6){background:var(--gc5);box-shadow:0 0 10px var(--gc5);animation-delay:.75s}
 @keyframes heroPulse{0%,100%{transform:translateY(0) scale(1);opacity:.8}50%{transform:translateY(-5px) scale(1.15);opacity:1}}
 .beat-hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.65rem,7vw,2.4rem);letter-spacing:clamp(2px,1vw,4px);background:linear-gradient(135deg,var(--gold),#dff8ff,var(--teal),var(--gold));background-size:300% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 3s linear infinite;line-height:1}
-.beat-hero-sub{font-size:11px;font-weight:700;color:rgba(255,255,255,.38);letter-spacing:2px;text-transform:uppercase;margin-top:4px}
+.beat-hero-sub{font-size:clamp(10px,1.3vw,12px);font-weight:700;color:rgba(255,255,255,.38);letter-spacing:2px;text-transform:uppercase;margin-top:4px}
 @keyframes shimmer{0%{background-position:200% center}100%{background-position:-200% center}}
 
 /* ── 6-LIGHT BOARD ── */
@@ -248,7 +248,7 @@ html,body{height:100%;overflow-x:hidden;font-family:'Outfit',sans-serif;backgrou
 .info-value{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;color:var(--gold)}
 
 /* FEEDBACK */
-.feedback{height:34px;display:flex;align-items:center;justify-content:center;margin-top:8px}
+.feedback{height:34px;display:flex;align-items:center;justify-content:center;margin-top:8px;text-align:center;width:min(100%,var(--board-size))}
 .feedback-text{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:3px;opacity:0;transition:opacity 0.1s}
 .feedback-text.show{opacity:1}
 .feedback-text.perfect,.feedback-text.go{color:var(--gold);text-shadow:0 0 20px var(--gold)}
@@ -264,7 +264,7 @@ html,body{height:100%;overflow-x:hidden;font-family:'Outfit',sans-serif;backgrou
 .setup-label{font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:3px;color:rgba(255,255,255,.35);text-align:center;margin-bottom:6px}
 
 /* MODE CARDS */
-.mode-cards{display:flex;flex-direction:column;gap:8px;width:100%}
+.mode-cards{display:flex;flex-direction:column;gap:10px;width:100%}
 
 .mode-cards,.setup-section{width:100%}
 .beat-hero,.powered-strip{width:100%}
@@ -297,10 +297,10 @@ html,body{height:100%;overflow-x:hidden;font-family:'Outfit',sans-serif;backgrou
 .mode-help-btn{position:absolute;right:10px;top:50%;transform:translateY(-50%);width:32px;height:32px;border-radius:50%;border:1.5px solid rgba(255,255,255,.15);background:rgba(255,255,255,.05);color:rgba(255,255,255,.35);font-family:'Bebas Neue',sans-serif;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10}
 .mode-help-btn:active{background:rgba(255,255,255,.15)}
 
-.bpm-selector{display:flex;gap:8px;justify-content:center}
+.bpm-selector{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
 .bpm-option{padding:10px 18px;border:2px solid rgba(255,215,0,0.25);border-radius:10px;background:transparent;color:var(--cream);font-family:'Bebas Neue',sans-serif;font-size:0.9rem;letter-spacing:2px;cursor:pointer;transition:all 0.2s}
 .bpm-option.active{border-color:var(--gold);background:rgba(255,215,0,0.12);color:var(--gold)}
-.drum-toggle{display:flex;justify-content:center;gap:0;margin:4px 0}
+.drum-toggle{display:flex;justify-content:center;gap:0;margin:4px 0;flex-wrap:wrap}
 .drum-toggle-btn{padding:8px 18px;border:2px solid rgba(255,215,0,0.3);background:transparent;color:var(--cream);font-family:'Bebas Neue',sans-serif;font-size:0.8rem;letter-spacing:1px;cursor:pointer;transition:all 0.2s}
 .drum-toggle-btn:first-child{border-radius:20px 0 0 20px;border-right:none}
 .drum-toggle-btn:last-child{border-radius:0 20px 20px 0}
@@ -310,14 +310,14 @@ html,body{height:100%;overflow-x:hidden;font-family:'Outfit',sans-serif;backgrou
 .start-btn:active{transform:scale(0.98)}
 
 /* PLAY SCREEN */
-.play-screen{display:flex;flex-direction:column;align-items:center;min-height:calc(100dvh - 20px)}
+.play-screen{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;min-height:calc(100dvh - var(--nav-height) - env(safe-area-inset-top) - 24px)}
 .play-screen.hidden{display:none}
 .play-header{display:flex;align-items:center;justify-content:space-between;width:min(100%,var(--board-size));margin:0 auto;padding:8px 0 10px;gap:12px}
 .play-back-btn{background:none;border:2px solid rgba(255,255,255,.15);border-radius:50%;width:36px;height:36px;color:var(--cream);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center}
 .play-back-btn:active{background:rgba(255,255,255,.1)}
 .play-mode-name{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:3px;color:var(--teal)}
 .play-bpm{font-family:'Bebas Neue',sans-serif;font-size:0.9rem;letter-spacing:2px;color:rgba(255,255,255,.4)}
-.game-area{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px 0}
+.game-area{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px 0 12px;min-height:min(72dvh,820px)}
 .stop-btn{width:min(100%,var(--board-size));align-self:center;padding:16px;border:none;border-radius:12px;background:rgba(239,68,68,.15);border:2px solid rgba(239,68,68,.3);color:#EF4444;font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:3px;cursor:pointer;margin-top:auto}
 .stop-btn:active{background:rgba(239,68,68,.25);transform:scale(.98)}
 
@@ -397,12 +397,12 @@ html,body{height:100%;overflow-x:hidden;font-family:'Outfit',sans-serif;backgrou
 @keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
 
 /* STATS PANEL */
-.stats-panel{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.98);z-index:10000;display:none;flex-direction:column;padding:20px;overflow-y:auto}
+.stats-panel{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.98);z-index:10000;display:none;flex-direction:column;padding:clamp(16px,3vw,28px);overflow-y:auto}
 .stats-panel.show{display:flex}
-.panel-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.panel-header{display:flex;justify-content:space-between;align-items:center;margin:0 auto 20px;width:min(100%,980px);gap:16px}
 .panel-title{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:var(--gold);letter-spacing:3px}
 .panel-close{width:44px;height:44px;border-radius:50%;border:2px solid var(--gold);background:rgba(10,10,15,0.9);color:var(--gold);font-size:1.4rem;cursor:pointer;display:flex;align-items:center;justify-content:center;text-decoration:none}
-.rank-section{background:rgba(255,255,255,0.05);border-radius:14px;padding:16px;margin-bottom:16px}
+.rank-section{background:rgba(255,255,255,0.05);border-radius:14px;padding:16px;margin:0 auto 16px;width:min(100%,980px)}
 .rank-section-title{font-family:'Bebas Neue',sans-serif;font-size:0.9rem;color:var(--cream);opacity:0.7;letter-spacing:2px;margin-bottom:12px}
 .current-rank{display:flex;align-items:center;gap:12px}
 .rank-icon-large{font-size:2.5rem}
@@ -429,12 +429,55 @@ html,body{height:100%;overflow-x:hidden;font-family:'Outfit',sans-serif;backgrou
 .achievement-popup-title{font-size:0.6rem;opacity:0.8;letter-spacing:1px}
 .achievement-popup-name{font-size:1rem;letter-spacing:2px}
 
-.powered-strip{text-align:center;padding:12px 0;margin-top:10px;opacity:0.4}
+.powered-strip{text-align:center;padding:12px 0 4px;margin-top:10px;opacity:0.4}
 .powered-strip span{font-family:'Bebas Neue',sans-serif;font-size:0.7rem;color:var(--gold);letter-spacing:2px}
 
-@media(min-width:768px){.container{--board-size:500px;--content-max:min(100%,860px)}.setup-screen,.play-screen{max-width:860px}.mode-cards,.setup-section{max-width:760px;margin-inline:auto}.beat-hero{padding-top:14px}.beat-hero-sub{font-size:12px}.go-hud-name{font-size:1.9rem}}
-@media(min-width:1024px){.container{--board-size:560px;--content-max:min(100%,980px)}}
-@media(max-width:360px){.mode-card{padding:12px 42px 12px 12px}.mode-card-name{font-size:1rem}.mode-card-desc{font-size:10px}.bpm-option{padding:9px 14px}.go-hud-name{font-size:1.3rem}.info-value{font-size:1.25rem}.challenge-result{font-size:2rem}.challenge-stats{font-size:1rem}.nav-title{font-size:.9rem;letter-spacing:1px}}
+@media(min-width:768px){
+  .container{--chrome-space:clamp(270px,28dvh,360px);--content-max:min(100%,1040px)}
+  .setup-screen,.play-screen{max-width:1040px}
+  .mode-cards,.setup-section{max-width:820px;margin-inline:auto}
+  .beat-hero{padding-top:14px}
+  .go-hud-name{font-size:1.9rem}
+  .feedback-text{font-size:1.45rem}
+}
+@media(min-width:1024px){
+  .container{--chrome-space:clamp(290px,27dvh,360px);--content-max:min(100%,1160px)}
+  .setup-screen,.play-screen{max-width:1160px}
+  .mode-cards,.setup-section{max-width:860px}
+  .play-header,.game-area,.powered-strip{max-width:900px;margin-inline:auto}
+}
+@media(min-width:1280px){
+  .container{--chrome-space:310px;--content-max:min(100%,1240px)}
+}
+@media(max-width:540px){
+  .container{--chrome-space:clamp(300px,42dvh,380px)}
+  .play-header{gap:10px}
+  .play-mode-name{font-size:1rem;letter-spacing:2px}
+  .play-bpm{font-size:0.8rem}
+  .info-box{padding:8px 12px;min-width:84px}
+  .go-hud{padding:10px 14px}
+}
+@media(max-width:420px){
+  .container{padding-inline:12px;--chrome-space:clamp(320px,44dvh,400px);--board-size:min(clamp(280px,90vw,420px),calc((100dvh - var(--chrome-space)) * var(--board-ratio)))}
+  .mode-card{padding:13px 44px 13px 14px}
+  .mode-card-name{font-size:1.02rem}
+  .mode-card-desc{font-size:10px}
+  .bpm-option{padding:9px 14px}
+  .start-btn,.stop-btn{font-size:1.05rem;letter-spacing:2px}
+  .challenge-result{font-size:2rem}
+  .challenge-stats{font-size:1rem}
+}
+@media(max-width:360px){
+  .nav-row{padding-inline:10px}
+  .back-btn{padding:8px 10px;font-size:0.7rem}
+  .nav-title{font-size:.88rem;letter-spacing:1px}
+  .go-hud-name{font-size:1.2rem}
+  .info-value{font-size:1.2rem}
+}
+@media(max-height:760px){
+  .container{--chrome-space:clamp(330px,46dvh,430px)}
+  .game-area{min-height:auto}
+}
 </style>
 </head>
 <body>
