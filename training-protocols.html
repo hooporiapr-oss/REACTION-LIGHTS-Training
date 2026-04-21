@@ -573,7 +573,7 @@ html,body{height:100%;overflow-x:hidden;font-family:'Outfit',sans-serif;backgrou
 </div>
 <div class="mode-card active" data-mode="shootaround">
 <div class="mode-card-icon">🚦</div>
-<div class="mode-card-info"><div class="mode-card-name">GO=NO-GO</div><div class="mode-card-desc" data-en="Your signature mode. React fast. Hold discipline." data-es="Tu modo estrella. Reacciona rápido. Mantén disciplina.">Your signature mode. React fast. Hold discipline.</div></div>
+<div class="mode-card-info"><div class="mode-card-name">GO/NO-GO</div><div class="mode-card-desc" data-en="Your signature mode. React fast. Hold discipline." data-es="Tu modo estrella. Reacciona rápido. Mantén disciplina.">Your signature mode. React fast. Hold discipline.</div></div>
 <button class="mode-help-btn" data-help="shootaround">?</button>
 </div>
 </div>
@@ -790,7 +790,7 @@ document.querySelectorAll('.mode-help-btn').forEach(function(hb){
   hb.addEventListener('touchstart',function(e){e.preventDefault();e.stopPropagation();showHelp(hb.dataset.help)},{passive:false});
 });
 
-// ── GO=NO-GO STATE ────────────────────────────────────────────────────────
+// ── GO/NO-GO STATE ────────────────────────────────────────────────────────
 // NEW: GO color is fixed for the session. Only its POSITION moves.
 var goColorIndex  = -1;   // which of the 6 colors is GO (index into GAME_COLORS)
 var goPosition    = -1;   // which light position (0-5) currently holds the GO color
@@ -952,7 +952,7 @@ function actuallyStart(){
   startChallenge();
   court.classList.add('playing');
 
-  // ── GO=NO-GO INIT ────────────────────────────────────────────────────────
+  // ── GO/NO-GO INIT ────────────────────────────────────────────────────────
   if(currentMode==='shootaround'){
     goColorIndex = Math.floor(Math.random()*6);
     goPosition   = -1;
@@ -964,7 +964,7 @@ function actuallyStart(){
   var iv = 60000/bpm;
 
   function tick(){
-    // Miss penalty for GO=NO-GO (missed a GO light without tapping)
+    // Miss penalty for GO/NO-GO (missed a GO light without tapping)
     if(currentMode==='shootaround' && gnRoundGoLit && !tappedThisGoRound && goRound>1){
       streak=0; streakEl.textContent=0; showFeedback('miss'); checkMilestone(0); vibrate(50);
     }
@@ -1093,7 +1093,7 @@ function handleTap(tapPos, el){
     showFeedback('start');return
   }
 
-  // ── GO=NO-GO TAP LOGIC ─────────────────────────────────────────────────
+  // ── GO/NO-GO TAP LOGIC ─────────────────────────────────────────────────
   if(currentMode==='shootaround'){
     if(tappedThisGoRound) return; // only one tap per beat
     tappedThisGoRound = true;
