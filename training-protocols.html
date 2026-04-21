@@ -280,10 +280,10 @@ html,body{height:100%;overflow-x:hidden;font-family:'Outfit',sans-serif;backgrou
 .mode-card[data-mode="warmup"] .mode-card-icon{background:rgba(255,215,0,.1)}
 .mode-card[data-mode="warmup"] .mode-card-name{color:#FFD700}
 .mode-card[data-mode="warmup"].active{background:rgba(255,215,0,.12);border-color:rgba(255,215,0,.4)}
-.mode-card[data-mode="sequence memory"]{background:rgba(155,89,182,.06);border-color:rgba(155,89,182,.15)}
-.mode-card[data-mode="sequence memory"] .mode-card-icon{background:rgba(155,89,182,.1)}
-.mode-card[data-mode="sequence memory"] .mode-card-name{color:#BB86FC}
-.mode-card[data-mode="sequence memory"].active{background:rgba(155,89,182,.12);border-color:rgba(155,89,182,.4)}
+.mode-card[data-mode="playbook"]{background:rgba(155,89,182,.06);border-color:rgba(155,89,182,.15)}
+.mode-card[data-mode="playbook"] .mode-card-icon{background:rgba(155,89,182,.1)}
+.mode-card[data-mode="playbook"] .mode-card-name{color:#BB86FC}
+.mode-card[data-mode="playbook"].active{background:rgba(155,89,182,.12);border-color:rgba(155,89,182,.4)}
 .mode-card[data-mode="crunchtime"]{background:rgba(239,68,68,.06);border-color:rgba(239,68,68,.15)}
 .mode-card[data-mode="crunchtime"] .mode-card-icon{background:rgba(239,68,68,.1)}
 .mode-card[data-mode="crunchtime"] .mode-card-name{color:#EF4444}
@@ -492,7 +492,7 @@ html,body{height:100%;overflow-x:hidden;font-family:'Outfit',sans-serif;backgrou
 
 <nav class="mini-nav">
 <div class="nav-row">
-<a href="training-protocols.html" class="back-btn" id="navBackBtn">← Back</a>
+<a href="index.html" class="back-btn" id="navBackBtn">← Back</a>
 <div class="nav-title">⚡ REACTION</div>
 <div class="nav-right">
 <div class="nav-lang">
@@ -561,10 +561,10 @@ html,body{height:100%;overflow-x:hidden;font-family:'Outfit',sans-serif;backgrou
 
 <div class="setup-section">
 <div class="mode-cards final-three" id="modeCards">
-<div class="mode-card" data-mode="sequence memory">
+<div class="mode-card" data-mode="playbook">
 <div class="mode-card-icon">🧠</div>
-<div class="mode-card-info"><div class="mode-card-name">SEQUENCE MEMORY</div><div class="mode-card-desc" data-en="See it. Remember it. Execute it." data-es="Míralo. Recuérdalo. Ejecútalo.">See it. Remember it. Execute it.</div></div>
-<button class="mode-help-btn" data-help="sequence memory">?</button>
+<div class="mode-card-info"><div class="mode-card-name">PLAYBOOK</div><div class="mode-card-desc" data-en="See it. Remember it. Execute it." data-es="Míralo. Recuérdalo. Ejecútalo.">See it. Remember it. Execute it.</div></div>
+<button class="mode-help-btn" data-help="playbook">?</button>
 </div>
 <div class="mode-card" data-mode="crunchtime">
 <div class="mode-card-icon">⏱️</div>
@@ -933,14 +933,14 @@ function trackPerfect(){if(currentMode==='nothingbutnet'){perfectCount++;goalPro
 
 retryBtn.onclick=function(){
   challengeComplete.classList.remove('show');
-  if(currentMode==='sequence memory'){showCountdown(function(){repStart()})}
+  if(currentMode==='playbook'){showCountdown(function(){repStart()})}
   else{showCountdown(actuallyStart)};
 };
 
 // ── MAIN GAME ENGINE ───────────────────────────────────────────────────────
 function startGame(){
   initAudio();
-  if(currentMode==='sequence memory'){showCountdown(function(){repStart()});return}
+  if(currentMode==='playbook'){showCountdown(function(){repStart()});return}
   showCountdown(actuallyStart);
 }
 
@@ -1027,28 +1027,32 @@ function stopGame(){
   tapBalls.forEach(function(b,i){if(b)b.setAttribute('data-color',i)});
 }
 
-// ── SEQUENCE MEMORY (REPITELO) ────────────────────────────────────────────────────
+// ── PLAYBOOK (REPITELO) ────────────────────────────────────────────────────
 var repSequence=[],repPlayerIndex=0,repRound=0,repBestRound=parseInt(localStorage.getItem('beat-rep-best')||'0'),repIsPlaying=false,repIsListening=false;
 var repiteloIndicator=document.getElementById('repiteloIndicator'),repiteloProgress=document.getElementById('repiteloProgress');
 
 function repStart(){repSequence=[];repRound=0;repPlayerIndex=0;repIsPlaying=false;repIsListening=false;isPlaying=true;repNextRound()}
 function repNextRound(){repRound++;repPlayerIndex=0;repIsListening=false;repIsPlaying=true;var maxB=6;repSequence.push(Math.floor(Math.random()*maxB));repRenderDots();repiteloIndicator.textContent='🧠 '+(currentLang==='es'?'RONDA '+repRound+' · ESCUCHA...':'ROUND '+repRound+' · LISTEN...');repiteloIndicator.className='repitelo-indicator watching';setTimeout(function(){repPlaySequence(0)},repRound===1?600:900)}
 function repRenderDots(){repiteloProgress.innerHTML='';for(var i=0;i<repSequence.length;i++){var dot=document.createElement('div');dot.className='rep-dot';dot.id='repDot'+i;repiteloProgress.appendChild(dot)}repiteloProgress.classList.add('show')}
-function repPlaySequence(idx){if(!isPlaying||currentMode!=='sequence memory')return;if(idx>=repSequence.length){repIsPlaying=false;repIsListening=true;repPlayerIndex=0;repiteloIndicator.textContent='⚡ '+(currentLang==='es'?'¡AHORA TÚ! ('+repSequence.length+' luces)':'YOUR TURN! ('+repSequence.length+' lights)');repiteloIndicator.className='repitelo-indicator listening';var fd=document.getElementById('repDot0');if(fd)fd.classList.add('current');return}var ci=repSequence[idx],el=ballAt(ci);allBalls(function(c){c.classList.remove('lit')});if(el){el.setAttribute('data-color',ci);el.classList.add('lit');};playBounce(ci,'good');createTapParticles(el);vibrate(15);var dot=document.getElementById('repDot'+idx);if(dot)dot.classList.add('played');var speed=60000/bpm;setTimeout(function(){el.classList.remove('lit');setTimeout(function(){repPlaySequence(idx+1)},speed*0.2)},speed*0.6)}
-function repHandleTap(ci){if(!repIsListening||repIsPlaying)return false;if(currentMode!=='sequence memory')return false;var expected=repSequence[repPlayerIndex];var dot=document.getElementById('repDot'+repPlayerIndex);if(ci===expected){if(dot){dot.classList.remove('current');dot.classList.add('correct')}repPlayerIndex++;if(repPlayerIndex<repSequence.length){var nd=document.getElementById('repDot'+repPlayerIndex);if(nd)nd.classList.add('current')}if(repPlayerIndex>=repSequence.length){repIsListening=false;repiteloIndicator.textContent=currentLang==='es'?'¡WEPA! 🔥 Ronda '+repRound:'BUCKET! 🔥 Round '+repRound;repiteloIndicator.className='repitelo-indicator listening';playBuzzerBeater();if(repRound>=3)launchConfetti();if(repRound>repBestRound){repBestRound=repRound;localStorage.setItem('beat-rep-best',String(repBestRound))}setTimeout(function(){repNextRound()},1400)}return true}else{if(dot){dot.classList.remove('current');dot.classList.add('wrong')}repIsListening=false;playWrongSound();vibrate(80);repiteloIndicator.textContent=(currentLang==='es'?'¡CASI! Era la luz ':'CLOSE! It was light ')+(expected+1);repiteloIndicator.className='repitelo-indicator watching';allBalls(function(c){c.classList.remove('lit')});var _ex=ballAt(expected);if(_ex){_ex.setAttribute('data-color',expected);_ex.classList.add('lit');}setTimeout(function(){var _ex2=ballAt(expected);if(_ex2)_ex2.classList.remove('lit');repEndGame()},1200);return true}}
+function repPlaySequence(idx){if(!isPlaying||currentMode!=='playbook')return;if(idx>=repSequence.length){repIsPlaying=false;repIsListening=true;repPlayerIndex=0;repiteloIndicator.textContent='⚡ '+(currentLang==='es'?'¡AHORA TÚ! ('+repSequence.length+' luces)':'YOUR TURN! ('+repSequence.length+' lights)');repiteloIndicator.className='repitelo-indicator listening';var fd=document.getElementById('repDot0');if(fd)fd.classList.add('current');return}var ci=repSequence[idx],el=ballAt(ci);allBalls(function(c){c.classList.remove('lit')});if(el){el.setAttribute('data-color',ci);el.classList.add('lit');};playBounce(ci,'good');createTapParticles(el);vibrate(15);var dot=document.getElementById('repDot'+idx);if(dot)dot.classList.add('played');var speed=60000/bpm;setTimeout(function(){el.classList.remove('lit');setTimeout(function(){repPlaySequence(idx+1)},speed*0.2)},speed*0.6)}
+function repHandleTap(ci){if(!repIsListening||repIsPlaying)return false;if(currentMode!=='playbook')return false;var expected=repSequence[repPlayerIndex];var dot=document.getElementById('repDot'+repPlayerIndex);if(ci===expected){if(dot){dot.classList.remove('current');dot.classList.add('correct')}repPlayerIndex++;if(repPlayerIndex<repSequence.length){var nd=document.getElementById('repDot'+repPlayerIndex);if(nd)nd.classList.add('current')}if(repPlayerIndex>=repSequence.length){repIsListening=false;repiteloIndicator.textContent=currentLang==='es'?'¡WEPA! 🔥 Ronda '+repRound:'BUCKET! 🔥 Round '+repRound;repiteloIndicator.className='repitelo-indicator listening';playBuzzerBeater();if(repRound>=3)launchConfetti();if(repRound>repBestRound){repBestRound=repRound;localStorage.setItem('beat-rep-best',String(repBestRound))}setTimeout(function(){repNextRound()},1400)}return true}else{if(dot){dot.classList.remove('current');dot.classList.add('wrong')}repIsListening=false;playWrongSound();vibrate(80);repiteloIndicator.textContent=(currentLang==='es'?'¡CASI! Era la luz ':'CLOSE! It was light ')+(expected+1);repiteloIndicator.className='repitelo-indicator watching';allBalls(function(c){c.classList.remove('lit')});var _ex=ballAt(expected);if(_ex){_ex.setAttribute('data-color',expected);_ex.classList.add('lit');}setTimeout(function(){var _ex2=ballAt(expected);if(_ex2)_ex2.classList.remove('lit');repEndGame()},1200);return true}}
 function repEndGame(){repIsPlaying=false;repIsListening=false;var completed=repRound-1;challengeResult.textContent=completed>=5?(currentLang==='es'?'¡FLOOR GENERAL! 🧠':'FLOOR GENERAL! 🧠'):completed>=3?(currentLang==='es'?'¡MUY BIEN! 🔥':'NICE! 🔥'):(currentLang==='es'?'¡BUEN INTENTO! 💪':'GOOD TRY! 💪');challengeResult.className='challenge-result '+(completed>=3?'win':'lose');challengeStats.textContent=(currentLang==='es'?'Rondas: ':'Rounds: ')+completed+' | '+(currentLang==='es'?'Récord: ':'Record: ')+repBestRound;if(completed>=3){playBuzzerBeater();launchConfetti()}challengeComplete.classList.add('show');isPlaying=false;repiteloIndicator.className='repitelo-indicator';repiteloProgress.classList.remove('show');allBalls(function(c){c.classList.remove('lit')});court.classList.remove('playing');if(completed>0){ps.gamesPlayed++;addXP(completed*5);checkAchievements();saveStats()}}
 function repCleanup(){repIsPlaying=false;repIsListening=false;repSequence=[];repRound=0;repPlayerIndex=0;repiteloIndicator.className='repitelo-indicator';repiteloProgress.classList.remove('show')}
 
 // ── HELP ───────────────────────────────────────────────────────────────────
 var helpOverlay=document.getElementById('helpOverlay');
 var helpData={
-sequence memory:{icon:'🧠',title:'SEQUENCE MEMORY',steps:['Watch the sequence of lights flash','When you see "YOUR TURN!" repeat the exact sequence','Each round adds one more light','Game ends when you miss'],tip:'💡 Start at 60 BPM if you\'re new to the mode.'},
+warmup:{icon:'⚡',title:'WARMUP',steps:['A light flashes on the beat','Tap the flashing light before the next beat','Keep your streak going — longer = better!','Hit 10 in a row to enter FIRE MODE 🔥'],tip:'💡 No time limit. Relax and feel the rhythm.'},
+playbook:{icon:'🧠',title:'PLAYBOOK',steps:['Watch the sequence of lights flash','When you see "YOUR TURN!" repeat the exact sequence','Each round adds one more light','Game ends when you miss'],tip:'💡 Start at 60 BPM if you\'re new to the mode.'},
 crunchtime:{icon:'⏱️',title:'CRUNCH TIME',steps:['You have 60 seconds on the clock','Tap every light that flashes','If you miss, your streak resets','Survive all 60 seconds to win 🏆'],tip:'💡 The clock turns red at 10 seconds. Stay locked in!'},
+nothingbutnet:{icon:'🎯',title:'NOTHING BUT NET',steps:['You need 10 PERFECT taps to win','A perfect tap is right on the beat','Good taps don\'t count — only perfects','Get all 10 and you win 🎯'],tip:'💡 Listen and anticipate. Feel the beat.'},
 shootaround:{icon:'🚦',title:'GO = NO-GO',steps:['One color is assigned as YOUR GO color — shown in the HUD below the board','Every beat: ALL 6 lights show different colors, one lights up','Tap ONLY if the LIT light matches YOUR GO color','If a different color lights up — HOLD IT. Do not tap.','Your GO color stays the same but appears at a different position each beat'],tip:'💡 Your brain must identify color, NOT position. This is pure inhibitory control training.'}
 };
 var helpDataEs={
-sequence memory:{icon:'🧠',title:'SEQUENCE MEMORY',steps:['Observa la secuencia de luces','Cuando veas "¡TU TURNO!" repite la secuencia','Cada ronda añade una luz más','El juego termina cuando fallas'],tip:'💡 Empieza con 60 BPM si es nuevo.'},
+warmup:{icon:'⚡',title:'CALENTAMIENTO',steps:['Una luz se enciende al ritmo','Toca la luz antes del próximo beat','Mantén tu racha — ¡más larga, mejor!','Con 10 seguidos entras en MODO FUEGO 🔥'],tip:'💡 Sin límite de tiempo. Siente el ritmo.'},
+playbook:{icon:'🧠',title:'PLAYBOOK',steps:['Observa la secuencia de luces','Cuando veas "¡TU TURNO!" repite la secuencia','Cada ronda añade una luz más','El juego termina cuando fallas'],tip:'💡 Empieza con 60 BPM si es nuevo.'},
 crunchtime:{icon:'⏱️',title:'CRUNCH TIME',steps:['Tienes 60 segundos','Toca cada luz que se enciende','Si fallas, tu racha se reinicia','Sobrevive los 60 segundos para ganar 🏆'],tip:'💡 A los 10 segundos el reloj cambia a rojo.'},
+nothingbutnet:{icon:'🎯',title:'NOTHING BUT NET',steps:['Necesitas 10 toques PERFECTOS para ganar','Un toque perfecto es justo en el beat','Los buenos no cuentan — solo perfectos','Logra los 10 y ganas 🎯'],tip:'💡 Anticipa el beat, no lo reacciones.'},
 shootaround:{icon:'🚦',title:'GO = NO-GO',steps:['Se te asigna UN color como tu GO — visible en el HUD bajo el tablero','Cada beat: los 6 botones muestran colores distintos, uno se enciende','Toca SOLO si la luz encendida tiene TU color GO','Si se enciende otro color — AGUANTA. No toques.','Tu color GO se mantiene pero aparece en una posición diferente cada beat'],tip:'💡 Tu cerebro debe identificar el COLOR, no la posición. Esto entrena el control inhibitorio puro.'}
 };
 function showHelp(mode){var d=currentLang==='es'?helpDataEs[mode]:helpData[mode];if(!d)return;document.getElementById('helpIcon').textContent=d.icon;document.getElementById('helpTitle').textContent=d.title;var stepsEl=document.getElementById('helpSteps');stepsEl.innerHTML='';d.steps.forEach(function(s,i){var step=document.createElement('div');step.className='help-step';step.innerHTML='<div class="help-step-num">'+(i+1)+'</div><div class="help-step-text">'+s+'</div>';stepsEl.appendChild(step)});document.getElementById('helpTip').textContent=d.tip;helpOverlay.classList.add('show')}
@@ -1058,14 +1062,14 @@ helpOverlay.addEventListener('click',function(e){if(e.target===helpOverlay)close
 
 // ── SCREENS ────────────────────────────────────────────────────────────────
 var setupScreen=document.getElementById('setupScreen'),playScreen=document.getElementById('playScreen'),stopBtn=document.getElementById('stopBtn'),playBackBtn=document.getElementById('playBackBtn'),playModeName=document.getElementById('playModeName'),playBpmLabel=document.getElementById('playBpmLabel'),navBackBtn=document.getElementById('navBackBtn');
-var MODE_LABELS={warmup:'WARMUP',sequence memory:'SEQUENCE MEMORY',crunchtime:'CRUNCH TIME',nothingbutnet:'NOTHING BUT NET',shootaround:'GO = NO-GO'};
+var MODE_LABELS={warmup:'WARMUP',playbook:'PLAYBOOK',crunchtime:'CRUNCH TIME',nothingbutnet:'NOTHING BUT NET',shootaround:'GO = NO-GO'};
 
-function showPlayScreen(){setupScreen.style.display='none';playScreen.classList.remove('hidden');playModeName.textContent=MODE_LABELS[currentMode]||'GO = NO-GO';playBpmLabel.textContent=bpm+' BPM';navBackBtn.textContent='← Back';navBackBtn.href='#';navBackBtn.onclick=function(e){e.preventDefault();if(isPlaying){if(currentMode==='sequence memory')repCleanup();stopGame()}showSetupScreen()};window.scrollTo(0,0)}
-function showSetupScreen(){playScreen.classList.add('hidden');setupScreen.style.display='flex';navBackBtn.textContent='← Back';navBackBtn.href='/training-protocols.html';navBackBtn.onclick=null}
+function showPlayScreen(){setupScreen.style.display='none';playScreen.classList.remove('hidden');playModeName.textContent=MODE_LABELS[currentMode]||'GO = NO-GO';playBpmLabel.textContent=bpm+' BPM';navBackBtn.textContent='← Back';navBackBtn.href='#';navBackBtn.onclick=function(e){e.preventDefault();if(isPlaying){if(currentMode==='playbook')repCleanup();stopGame()}showSetupScreen()};window.scrollTo(0,0)}
+function showSetupScreen(){playScreen.classList.add('hidden');setupScreen.style.display='flex';navBackBtn.textContent='← Back';navBackBtn.href='/index.html';navBackBtn.onclick=null}
 
 startBtn.onclick=function(){initAudio();showPlayScreen();startGame()};
-stopBtn.onclick=function(){if(currentMode==='sequence memory')repCleanup();stopGame();showSetupScreen()};
-playBackBtn.onclick=function(){if(isPlaying){if(currentMode==='sequence memory')repCleanup();stopGame()}showSetupScreen()};
+stopBtn.onclick=function(){if(currentMode==='playbook')repCleanup();stopGame();showSetupScreen()};
+playBackBtn.onclick=function(){if(isPlaying){if(currentMode==='playbook')repCleanup();stopGame()}showSetupScreen()};
 
 // ── TAP HANDLER ────────────────────────────────────────────────────────────
 function handleTap(tapPos, el){
@@ -1077,8 +1081,8 @@ function handleTap(tapPos, el){
   el.classList.add('hit-correct');
   setTimeout(function(){el.classList.remove('hit-correct')},200);
 
-  // SEQUENCE MEMORY mode
-  if(currentMode==='sequence memory'&&isPlaying){if(repIsListening)repHandleTap(tapPos);return}
+  // PLAYBOOK mode
+  if(currentMode==='playbook'&&isPlaying){if(repIsListening)repHandleTap(tapPos);return}
 
   // Not playing — demo tap
   if(!isPlaying){
