@@ -492,7 +492,7 @@ html,body{height:100%;overflow-x:hidden;font-family:'Outfit',sans-serif;backgrou
 
 <nav class="mini-nav">
 <div class="nav-row">
-<a href="index.html" class="back-btn" id="navBackBtn">← Back</a>
+<a href="training-protocols.html" class="back-btn" id="navBackBtn">← Back</a>
 <div class="nav-title">⚡ REACTION</div>
 <div class="nav-right">
 <div class="nav-lang">
@@ -1065,7 +1065,7 @@ var setupScreen=document.getElementById('setupScreen'),playScreen=document.getEl
 var MODE_LABELS={warmup:'WARMUP',playbook:'PLAYBOOK',crunchtime:'CRUNCH TIME',nothingbutnet:'NOTHING BUT NET',shootaround:'GO = NO-GO'};
 
 function showPlayScreen(){setupScreen.style.display='none';playScreen.classList.remove('hidden');playModeName.textContent=MODE_LABELS[currentMode]||'GO = NO-GO';playBpmLabel.textContent=bpm+' BPM';navBackBtn.textContent='← Back';navBackBtn.href='#';navBackBtn.onclick=function(e){e.preventDefault();if(isPlaying){if(currentMode==='playbook')repCleanup();stopGame()}showSetupScreen()};window.scrollTo(0,0)}
-function showSetupScreen(){playScreen.classList.add('hidden');setupScreen.style.display='flex';navBackBtn.textContent='← Back';navBackBtn.href='/index.html';navBackBtn.onclick=null}
+function showSetupScreen(){playScreen.classList.add('hidden');setupScreen.style.display='flex';navBackBtn.textContent='← Back';navBackBtn.href='/training-protocols.html';navBackBtn.onclick=null}
 
 startBtn.onclick=function(){initAudio();showPlayScreen();startGame()};
 stopBtn.onclick=function(){if(currentMode==='playbook')repCleanup();stopGame();showSetupScreen()};
