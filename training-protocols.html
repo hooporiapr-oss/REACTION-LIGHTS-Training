@@ -366,7 +366,7 @@ function newPlaybookRound(){playbookSequence.push(randomInt(6));flashSeqStep(0)}
 function startPlaybook(){playbookSequence=[];newPlaybookRound()}
 function startGame(){stopGame();streak=0;updateStats();document.getElementById('challengeComplete').classList.remove('show');document.getElementById('setupScreen').classList.add('hidden');document.getElementById('playScreen').classList.remove('hidden');document.body.classList.add('playing');updateModeUI();countdown(function(){isPlaying=true;if(currentMode==='shootaround')startShootaround();else if(currentMode==='crunchtime')startCrunchTime();else startPlaybook()})}
 document.getElementById('startBtn').onclick=startGame;
-document.getElementById('playBackBtn').onclick=function(){stopGame();document.getElementById('playScreen').classList.add('hidden');document.getElementById('setupScreen').classList.remove('hidden');document.getElementById('challengeComplete').classList.remove('show')};
+document.getElementById('playBackBtn').onclick=function(){stopGame();document.getElementById('playScreen').classList.add('hidden');document.getElementById('setupScreen').classList.remove('hidden');document.getElementById('challengeComplete').classList.remove('show');document.body.classList.remove('playing')};
 document.getElementById('stopBtn').onclick=document.getElementById('playBackBtn').onclick;
 document.getElementById('retryBtn').onclick=function(){document.getElementById('challengeComplete').classList.remove('show');startGame()};
 
