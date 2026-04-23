@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Reaction Basketball | A Cognitive Performance System for Basketball</title>
-  <meta name="description" content="A proprietary cognitive performance system for basketball — built around how the game is seen, processed, and answered. On-court and online, reinforcing the same architecture." />
+  <title>Reaction Basketball | On-Court Cognitive Performance System</title>
+  <meta name="description" content="A proprietary on-court cognitive performance system for basketball — built around how the game is actually seen, processed, and answered under live pressure." />
   <meta name="theme-color" content="#0a0a0d" />
   <style>
     :root {
@@ -302,11 +302,9 @@
     .insight,
     .application,
     .faq-item,
-    .form-card,
     .manifesto,
     .visual-card,
-    .value-band,
-    .layer-card {
+    .value-band {
       border: 1px solid rgba(255,255,255,0.09);
       background: rgba(255,255,255,0.035);
       border-radius: var(--radius);
@@ -372,7 +370,6 @@
 
     /* ========== VIVID REACTION LIGHT SYSTEM ========== */
 
-    /* Scan sweep across the visual */
     .visual-scan {
       position: absolute;
       inset: 0;
@@ -388,7 +385,6 @@
       100% { transform: translateY(100%); }
     }
 
-    /* Live HUD indicator */
     .visual-hud {
       position: absolute;
       top: 1.1rem;
@@ -423,7 +419,6 @@
       50%      { opacity: 0.4; }
     }
 
-    /* Pillar readout on right side */
     .visual-pillars {
       position: absolute;
       top: 1.1rem;
@@ -467,7 +462,6 @@
       }
     }
 
-    /* Neural connection lines */
     .visual-neural {
       position: absolute;
       inset: 0;
@@ -493,7 +487,6 @@
       100% { stroke-dashoffset: 0; opacity: 0.15; }
     }
 
-    /* Player core glow — subtle energy pulse at center mass */
     .player-core {
       position: absolute;
       top: 24%;
@@ -513,7 +506,6 @@
       50%      { opacity: 1;   transform: translate(-50%, -50%) scale(1.1); }
     }
 
-    /* ========== REACTION LIGHT PODS ========== */
     .pod {
       position: absolute;
       width: 86px;
@@ -537,7 +529,6 @@
     .pod-5 { bottom: 18%; left: 12%; }
     .pod-6 { bottom: 12%; right: 12%; }
 
-    /* Outer ring — glass housing */
     .pod-ring {
       position: absolute;
       inset: 0;
@@ -553,7 +544,6 @@
       backdrop-filter: blur(6px);
     }
 
-    /* Inner colored core — the actual light */
     .pod-core {
       position: absolute;
       inset: 14px;
@@ -568,7 +558,6 @@
       animation: podBreathe 3s infinite ease-in-out;
     }
 
-    /* Flash — the activation pulse */
     .pod-flash {
       position: absolute;
       inset: -10px;
@@ -578,7 +567,6 @@
       box-shadow: 0 0 32px var(--pod-glow);
     }
 
-    /* Sequential activation — each pod fires in turn */
     .pod-1 .pod-core { animation-delay: 0s;   }
     .pod-2 .pod-core { animation-delay: 0.5s; }
     .pod-3 .pod-core { animation-delay: 1.0s; }
@@ -591,7 +579,6 @@
       50%      { opacity: 1;   transform: scale(1.04); }
     }
 
-    /* Activation flash ring — expands outward when pod fires */
     .pod-1 .pod-flash { animation: podFlash 3s infinite; animation-delay: 0s;   }
     .pod-2 .pod-flash { animation: podFlash 3s infinite; animation-delay: 0.5s; }
     .pod-3 .pod-flash { animation: podFlash 3s infinite; animation-delay: 1.0s; }
@@ -606,12 +593,37 @@
       100%     { opacity: 0; transform: scale(1.6); }
     }
 
-    /* Give player silhouette more presence */
     .player-silhouette {
       z-index: 1;
       background: linear-gradient(180deg, rgba(184,245,22,0.2) 0%, rgba(127,226,255,0.14) 45%, rgba(255,255,255,0.04) 100%) !important;
       filter: drop-shadow(0 0 40px rgba(127,226,255,0.25)) drop-shadow(0 0 80px rgba(184,245,22,0.12)) !important;
       opacity: 0.92 !important;
+    }
+
+    .visual-copy {
+      position: absolute;
+      left: 1.2rem;
+      right: 1.2rem;
+      bottom: 1.2rem;
+      padding: 1rem 1.05rem;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.09);
+      backdrop-filter: blur(10px);
+      z-index: 5;
+    }
+
+    .visual-copy strong {
+      display: block;
+      font-size: 1.05rem;
+      margin-bottom: 0.45rem;
+      letter-spacing: -0.03em;
+    }
+
+    .visual-copy span {
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 0.95rem;
     }
 
     /* Mobile adjustments */
@@ -624,9 +636,215 @@
       .pillar-chip { font-size: 0.55rem; padding: 0.25rem 0.5rem; }
     }
 
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); box-shadow: 0 0 30px rgba(255,255,255,0.12), inset 0 0 18px rgba(255,255,255,0.2); }
-      50% { transform: scale(1.08); box-shadow: 0 0 44px rgba(255,255,255,0.2), inset 0 0 24px rgba(255,255,255,0.24); }
+    .split {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .feature-grid,
+    .applications-grid,
+    .faq-grid,
+    .insight-grid,
+    .decision-grid,
+    .pillar-grid {
+      display: grid;
+      gap: 1.25rem;
+    }
+
+    .feature-grid,
+    .decision-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .insight-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .applications-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .faq-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .pillar-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+    .card,
+    .insight,
+    .application,
+    .faq-item,
+    .value-band { padding: 1.5rem; }
+
+    .pillar {
+      padding: 1.4rem 1.2rem;
+      border: 1px solid rgba(255,255,255,0.09);
+      background: rgba(255,255,255,0.035);
+      border-radius: 20px;
+      text-align: left;
+    }
+
+    .pillar-num {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      font-weight: 800;
+      margin-bottom: 0.6rem;
+      display: block;
+    }
+
+    .pillar h4 {
+      margin: 0 0 0.5rem;
+      font-size: 1.05rem;
+      letter-spacing: -0.02em;
+    }
+
+    .pillar p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.65;
+    }
+
+    .card h3,
+    .insight h3,
+    .application h3,
+    .faq-item h3,
+    .value-band h3 {
+      margin: 0 0 0.75rem;
+      font-size: 1.15rem;
+      letter-spacing: -0.03em;
+    }
+
+    .card p,
+    .insight p,
+    .application p,
+    .faq-item p,
+    .value-band p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 0.98rem;
+    }
+
+    .manifesto {
+      padding: 2rem;
+      border-radius: 36px;
+      background:
+        radial-gradient(circle at top right, rgba(184,245,22,0.12), transparent 30%),
+        radial-gradient(circle at 18% 82%, rgba(127,226,255,0.12), transparent 28%),
+        linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.025));
+      box-shadow: var(--shadow);
+    }
+
+    .manifesto blockquote {
+      margin: 0;
+      font-size: clamp(1.6rem, 3.5vw, 3.25rem);
+      line-height: 1.08;
+      letter-spacing: -0.06em;
+      max-width: 20ch;
+    }
+
+    .manifesto p {
+      margin-top: 1rem;
+      color: var(--muted);
+      line-height: 1.85;
+      max-width: 62ch;
+    }
+
+    .marquee {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-top: 1.4rem;
+    }
+
+    .pill {
+      padding: 0.75rem 1rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #dde1e9;
+      font-size: 0.88rem;
+    }
+
+    .section-divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+      margin: 0;
+      border: 0;
+    }
+
+    .cta-band {
+      padding: 2rem;
+      border-radius: 34px;
+      background:
+        radial-gradient(circle at 85% 15%, rgba(127,226,255,0.16), transparent 28%),
+        radial-gradient(circle at 15% 80%, rgba(184,245,22,0.14), transparent 32%),
+        linear-gradient(145deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .cta-band h2 {
+      margin: 0 0 0.6rem;
+      font-size: clamp(2rem, 4vw, 3.6rem);
+      line-height: 0.95;
+      letter-spacing: -0.06em;
+      max-width: 14ch;
+    }
+
+    .cta-band p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 52ch;
+      line-height: 1.8;
+    }
+
+    footer {
+      padding: 2rem 0 3rem;
+      color: var(--muted);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 2rem;
+      align-items: end;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .footer-links a {
+      color: #d9dde6;
+      opacity: 0.82;
+    }
+
+    .footer-links a:hover { opacity: 1; }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 700ms ease, transform 700ms ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .mobile-toggle {
+      display: none;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--text);
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      font-size: 1.1rem;
+      cursor: pointer;
     }
 
     @media (max-width: 1080px) {
@@ -639,8 +857,7 @@
       .faq-grid,
       .feature-grid,
       .decision-grid,
-      .pillar-grid,
-      .layer-grid { grid-template-columns: 1fr 1fr; }
+      .pillar-grid { grid-template-columns: 1fr 1fr; }
     }
 
     @media (max-width: 820px) {
@@ -688,9 +905,7 @@
       .insight-grid,
       .faq-grid,
       .decision-grid,
-      .pillar-grid,
-      .layer-grid,
-      .form-grid { grid-template-columns: 1fr; }
+      .pillar-grid { grid-template-columns: 1fr; }
 
       .hero {
         min-height: auto;
@@ -707,16 +922,14 @@
       .hero-copy h1 { font-size: clamp(2.6rem, 11vw, 4.1rem); }
       .section-title { font-size: clamp(2rem, 8vw, 2.95rem); }
       .manifesto,
-      .form-card,
       .cta-band,
       .visual-card { border-radius: 24px; }
       .btn,
       .btn-secondary { width: 100%; }
       .hero-actions { display: grid; }
-      .react-light { width: 58px; height: 58px; border-radius: 18px; }
     }
 
-    /* Chat FAB + panel (base layout — chat.js injects bubble styles) */
+    /* Chat FAB + panel */
     .chat-fab {
       position: fixed;
       right: 22px;
@@ -752,8 +965,7 @@
         0 0 42px rgba(184,245,22,0.7),
         0 0 80px rgba(184,245,22,0.35);
     }
-    }
-    /* Basketball emoji centered in the FAB with pulse ring */
+
     .fab-ball {
       position: relative;
       display: inline-flex;
@@ -779,11 +991,11 @@
       0%, 100% { transform: scale(0.92); }
       50%      { transform: scale(1.08); }
     }
-
     @keyframes fabPulseRing {
       0%   { transform: scale(0.6); opacity: 0.9; }
       100% { transform: scale(2);   opacity: 0; }
     }
+
     .chat-fab.is-hidden {
       opacity: 0;
       pointer-events: none;
@@ -957,14 +1169,12 @@
         <a href="#home" data-en="Home" data-es="Inicio">Home</a>
         <a href="#system" data-en="The System" data-es="El Sistema">The System</a>
         <a href="#pillars" data-en="Cognitive Pillars" data-es="Pilares Cognitivos">Cognitive Pillars</a>
-        <a href="#layers" data-en="On-Court & Online" data-es="Cancha y Online">On-Court & Online</a>
         <a href="#applications" data-en="Applications" data-es="Aplicaciones">Applications</a>
         <a href="#faq" data-en="FAQ" data-es="Preguntas">FAQ</a>
-        <a href="#online-system" data-en="Online System" data-es="Sistema Online">Online System</a>
       </nav>
 
       <div class="nav-actions">
-        <a href="training-protocols.html" class="btn-secondary" data-en="Training Protocols" data-es="Protocolos">Training Protocols</a>
+        <button type="button" class="btn-secondary" id="navChatBtn" data-en="Start the Conversation" data-es="Comienza la Conversación">Start the Conversation</button>
       </div>
 
       <div class="language-row">
@@ -979,9 +1189,9 @@
     <section class="hero" id="home">
       <div class="container hero-grid">
         <div class="hero-copy reveal">
-          <span class="eyebrow" data-en="A cognitive performance system" data-es="Un sistema de rendimiento cognitivo">A cognitive performance system</span>
+          <span class="eyebrow" data-en="On-court cognitive performance" data-es="Rendimiento cognitivo en cancha">On-court cognitive performance</span>
           <h1 data-en="Basketball is won in the gap between seeing and doing." data-es="El baloncesto se gana en la distancia entre ver y hacer.">Basketball is won in the gap between seeing and doing.</h1>
-          <p data-en="This is our cognitive performance system for basketball. It is not reaction training repackaged. It is a model built around how the game is actually seen, processed, and answered — engineered across an on-court layer and an online layer that reinforce the same architecture." data-es="Este es nuestro sistema de rendimiento cognitivo para el baloncesto. No es entrenamiento de reacción reempacado. Es un modelo construido alrededor de cómo el juego realmente se ve, se procesa y se responde — diseñado en una capa de cancha y una capa online que refuerzan la misma arquitectura.">This is our cognitive performance system for basketball. It is not reaction training repackaged. It is a model built around how the game is actually seen, processed, and answered — engineered across an on-court layer and an online layer that reinforce the same architecture.</p>
+          <p data-en="Reaction Basketball is an on-court cognitive performance system. It is not reaction training repackaged. It is a live, in-gym model built around how the game is actually seen, processed, and answered — under real basketball pressure, with real basketball movement, on the only surface where the game is actually played." data-es="Reaction Basketball es un sistema de rendimiento cognitivo en cancha. No es entrenamiento de reacción reempacado. Es un modelo en vivo, dentro del gimnasio, construido alrededor de cómo el juego realmente se ve, se procesa y se responde — bajo presión real de baloncesto, con movimiento real de baloncesto, en la única superficie donde el juego de verdad se juega.">Reaction Basketball is an on-court cognitive performance system. It is not reaction training repackaged. It is a live, in-gym model built around how the game is actually seen, processed, and answered — under real basketball pressure, with real basketball movement, on the only surface where the game is actually played.</p>
           <div class="hero-actions">
             <a href="#system" class="btn" data-en="Enter the System" data-es="Entra al Sistema">Enter the System</a>
             <button type="button" class="btn-secondary" id="heroChatBtn" data-en="Start the Conversation" data-es="Comienza la Conversación">Start the Conversation</button>
@@ -992,12 +1202,12 @@
               <span data-en="A proprietary cognitive architecture designed around basketball's real decision demands." data-es="Una arquitectura cognitiva propia diseñada alrededor de las exigencias reales de decisión en el baloncesto.">A proprietary cognitive architecture designed around basketball's real decision demands.</span>
             </div>
             <div class="stat">
-              <strong data-en="On-Court" data-es="En Cancha">On-Court</strong>
-              <span data-en="Live drills where the system is expressed in real basketball movement and real pressure." data-es="Ejercicios en vivo donde el sistema se expresa en movimiento real de baloncesto y presión real.">Live drills where the system is expressed in real basketball movement and real pressure.</span>
+              <strong data-en="Five Pillars" data-es="Cinco Pilares">Five Pillars</strong>
+              <span data-en="Recognition, selection, inhibition, initiation, response quality — trained as distinct skills." data-es="Reconocimiento, selección, inhibición, iniciación, calidad de respuesta — entrenados como destrezas distintas.">Recognition, selection, inhibition, initiation, response quality — trained as distinct skills.</span>
             </div>
             <div class="stat">
-              <strong data-en="Online" data-es="Online">Online</strong>
-              <span data-en="The digital reinforcement layer that keeps the same cognitive patterns sharp between sessions." data-es="La capa digital de refuerzo que mantiene los mismos patrones cognitivos afilados entre sesiones.">The digital reinforcement layer that keeps the same cognitive patterns sharp between sessions.</span>
+              <strong data-en="Live On Court" data-es="En Vivo en Cancha">Live On Court</strong>
+              <span data-en="Coached reps under real basketball movement, real pressure, real game speed." data-es="Repeticiones guiadas por coach bajo movimiento real de baloncesto, presión real y velocidad de juego real.">Coached reps under real basketball movement, real pressure, real game speed.</span>
             </div>
           </div>
         </div>
@@ -1006,13 +1216,11 @@
           <div class="visual-grid"></div>
           <div class="visual-scan"></div>
 
-          <!-- Cognitive HUD -->
           <div class="visual-hud">
             <div class="hud-dot"></div>
             <span class="hud-label" data-en="System: LIVE" data-es="Sistema: EN VIVO">System: LIVE</span>
           </div>
 
-          <!-- Pillar readout -->
           <div class="visual-pillars">
             <span class="pillar-chip active" data-pillar="1" data-en="RECOGNITION" data-es="RECONOCIMIENTO">RECOGNITION</span>
             <span class="pillar-chip" data-pillar="2" data-en="SELECTION" data-es="SELECCIÓN">SELECTION</span>
@@ -1021,7 +1229,6 @@
             <span class="pillar-chip" data-pillar="5" data-en="RESPONSE" data-es="RESPUESTA">RESPONSE</span>
           </div>
 
-          <!-- Neural connection lines (SVG) -->
           <svg class="visual-neural" viewBox="0 0 400 600" preserveAspectRatio="none" aria-hidden="true">
             <defs>
               <linearGradient id="neuralGrad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -1039,42 +1246,15 @@
             </g>
           </svg>
 
-          <!-- Player silhouette -->
           <div class="player-silhouette"></div>
           <div class="player-core"></div>
 
-          <!-- Reaction light pods -->
-          <div class="pod pod-1" data-color="cyan">
-            <div class="pod-ring"></div>
-            <div class="pod-core"></div>
-            <div class="pod-flash"></div>
-          </div>
-          <div class="pod pod-2" data-color="lime">
-            <div class="pod-ring"></div>
-            <div class="pod-core"></div>
-            <div class="pod-flash"></div>
-          </div>
-          <div class="pod pod-3" data-color="magenta">
-            <div class="pod-ring"></div>
-            <div class="pod-core"></div>
-            <div class="pod-flash"></div>
-          </div>
-          <div class="pod pod-4" data-color="amber">
-            <div class="pod-ring"></div>
-            <div class="pod-core"></div>
-            <div class="pod-flash"></div>
-          </div>
-          <div class="pod pod-5" data-color="violet">
-            <div class="pod-ring"></div>
-            <div class="pod-core"></div>
-            <div class="pod-flash"></div>
-          </div>
-          <div class="pod pod-6" data-color="white">
-            <div class="pod-ring"></div>
-            <div class="pod-core"></div>
-            <div class="pod-flash"></div>
-          </div>
-        </div>
+          <div class="pod pod-1" data-color="cyan"><div class="pod-ring"></div><div class="pod-core"></div><div class="pod-flash"></div></div>
+          <div class="pod pod-2" data-color="lime"><div class="pod-ring"></div><div class="pod-core"></div><div class="pod-flash"></div></div>
+          <div class="pod pod-3" data-color="magenta"><div class="pod-ring"></div><div class="pod-core"></div><div class="pod-flash"></div></div>
+          <div class="pod pod-4" data-color="amber"><div class="pod-ring"></div><div class="pod-core"></div><div class="pod-flash"></div></div>
+          <div class="pod pod-5" data-color="violet"><div class="pod-ring"></div><div class="pod-core"></div><div class="pod-flash"></div></div>
+          <div class="pod pod-6" data-color="white"><div class="pod-ring"></div><div class="pod-core"></div><div class="pod-flash"></div></div>
         </div>
       </div>
     </section>
@@ -1084,7 +1264,7 @@
         <div class="reveal">
           <span class="eyebrow" data-en="The system" data-es="El sistema">The system</span>
           <h2 class="section-title" data-en="We did not build reaction training. We built a cognitive model." data-es="No construimos un entrenamiento de reacción. Construimos un modelo cognitivo.">We did not build reaction training. We built a cognitive model.</h2>
-          <p class="section-lead" data-en="Reaction training, as it is sold in the market, is a game. Lights flash, athletes tap, scores go up. That is not a performance system. That is entertainment with sensors. We built something different — a structured cognitive model that targets the specific mental processes basketball actually rewards: recognition, selection, inhibition, initiation, and response quality under uncertainty. Every drill, every mode, every progression inside our system exists because it trains one of those processes on purpose." data-es="El entrenamiento de reacción, tal como se vende en el mercado, es un juego. Luces que parpadean, atletas que tocan, puntuaciones que suben. Eso no es un sistema de rendimiento. Es entretenimiento con sensores. Nosotros construimos algo diferente — un modelo cognitivo estructurado que apunta a los procesos mentales específicos que el baloncesto realmente recompensa: reconocimiento, selección, inhibición, iniciación y calidad de respuesta bajo incertidumbre. Cada ejercicio, cada modo, cada progresión dentro de nuestro sistema existe porque entrena uno de esos procesos con intención.">Reaction training, as it is sold in the market, is a game. Lights flash, athletes tap, scores go up. That is not a performance system. That is entertainment with sensors. We built something different — a structured cognitive model that targets the specific mental processes basketball actually rewards: recognition, selection, inhibition, initiation, and response quality under uncertainty. Every drill, every mode, every progression inside our system exists because it trains one of those processes on purpose.</p>
+          <p class="section-lead" data-en="Reaction training, as it is sold in the market, is a game. Lights flash, athletes tap, scores go up. That is not a performance system. That is entertainment with sensors. We built something different — a structured cognitive model trained entirely on the court, expressed through coached reps under live basketball movement, targeting the specific mental processes basketball actually rewards: recognition, selection, inhibition, initiation, and response quality under uncertainty. Every drill, every progression, every session exists because it trains one of those processes on purpose — in the gym, at game speed, with real consequences." data-es="El entrenamiento de reacción, tal como se vende en el mercado, es un juego. Luces que parpadean, atletas que tocan, puntuaciones que suben. Eso no es un sistema de rendimiento. Es entretenimiento con sensores. Nosotros construimos algo diferente — un modelo cognitivo estructurado entrenado completamente en la cancha, expresado a través de repeticiones guiadas por coach bajo movimiento real de baloncesto, apuntando a los procesos mentales específicos que el baloncesto realmente recompensa: reconocimiento, selección, inhibición, iniciación y calidad de respuesta bajo incertidumbre. Cada ejercicio, cada progresión, cada sesión existe porque entrena uno de esos procesos con intención — en el gimnasio, a velocidad de juego, con consecuencias reales.">Reaction training, as it is sold in the market, is a game. Lights flash, athletes tap, scores go up. That is not a performance system. That is entertainment with sensors. We built something different — a structured cognitive model trained entirely on the court, expressed through coached reps under live basketball movement, targeting the specific mental processes basketball actually rewards: recognition, selection, inhibition, initiation, and response quality under uncertainty. Every drill, every progression, every session exists because it trains one of those processes on purpose — in the gym, at game speed, with real consequences.</p>
         </div>
 
         <div class="manifesto reveal">
@@ -1108,7 +1288,7 @@
         <div class="reveal">
           <span class="eyebrow" data-en="Cognitive pillars" data-es="Pilares cognitivos">Cognitive pillars</span>
           <h2 class="section-title" data-en="The five cognitive pillars the system is built on." data-es="Los cinco pilares cognitivos sobre los que se construye el sistema.">The five cognitive pillars the system is built on.</h2>
-          <p class="section-lead" data-en="Every mode, every drill, every progression inside the system targets one of these five pillars. This is not a list of buzzwords. It is the architecture — the reason the system exists and the reason it compounds into usable basketball performance instead of noise." data-es="Cada modo, cada ejercicio, cada progresión dentro del sistema apunta a uno de estos cinco pilares. Esto no es una lista de palabras de moda. Es la arquitectura — la razón por la que el sistema existe y la razón por la que se compone en rendimiento útil de baloncesto en vez de ruido.">Every mode, every drill, every progression inside the system targets one of these five pillars. This is not a list of buzzwords. It is the architecture — the reason the system exists and the reason it compounds into usable basketball performance instead of noise.</p>
+          <p class="section-lead" data-en="Every drill, every progression, every on-court session inside the system targets one of these five pillars. This is not a list of buzzwords. It is the architecture — the reason the system exists and the reason it compounds into usable basketball performance instead of noise." data-es="Cada ejercicio, cada progresión, cada sesión en cancha dentro del sistema apunta a uno de estos cinco pilares. Esto no es una lista de palabras de moda. Es la arquitectura — la razón por la que el sistema existe y la razón por la que se compone en rendimiento útil de baloncesto en vez de ruido.">Every drill, every progression, every on-court session inside the system targets one of these five pillars. This is not a list of buzzwords. It is the architecture — the reason the system exists and the reason it compounds into usable basketball performance instead of noise.</p>
         </div>
 
         <div class="pillar-grid reveal" style="margin-top: 2rem; grid-template-columns: repeat(5, minmax(0, 1fr));">
@@ -1143,42 +1323,12 @@
 
     <hr class="section-divider" />
 
-    <section class="section" id="layers">
-      <div class="container">
-        <div class="reveal">
-          <span class="eyebrow" data-en="On-court and online" data-es="Cancha y online">On-court and online</span>
-          <h2 class="section-title" data-en="One system. Two layers. Same architecture." data-es="Un sistema. Dos capas. La misma arquitectura.">One system. Two layers. Same architecture.</h2>
-          <p class="section-lead" data-en="The system is expressed through two training layers that reinforce each other. The on-court layer puts the athlete inside live basketball movement under real physical and spatial pressure. The online layer keeps the same cognitive patterns active between sessions — recognition, inhibition, selection, initiation — so the athlete arrives at the next on-court session sharper, not reset." data-es="El sistema se expresa a través de dos capas de entrenamiento que se refuerzan entre sí. La capa de cancha pone al atleta dentro del movimiento real de baloncesto bajo presión física y espacial real. La capa online mantiene los mismos patrones cognitivos activos entre sesiones — reconocimiento, inhibición, selección, iniciación — para que el atleta llegue a la próxima sesión de cancha más afilado, no reiniciado.">The system is expressed through two training layers that reinforce each other. The on-court layer puts the athlete inside live basketball movement under real physical and spatial pressure. The online layer keeps the same cognitive patterns active between sessions — recognition, inhibition, selection, initiation — so the athlete arrives at the next on-court session sharper, not reset.</p>
-        </div>
-
-        <div class="layer-grid reveal" style="margin-top: 2rem;">
-          <article class="layer-card">
-            <span class="layer-tag" data-en="Layer 01 · On-court" data-es="Capa 01 · Cancha">Layer 01 · On-court</span>
-            <h3 data-en="Where the system meets real basketball." data-es="Donde el sistema se encuentra con el baloncesto real.">Where the system meets real basketball.</h3>
-            <p data-en="Live reaction drills, structured progressions, and coached reps where the cognitive model is expressed under the full load of basketball movement: footwork, body control, contact, angles, recovery, and game speed. This is where the architecture becomes performance." data-es="Ejercicios de reacción en vivo, progresiones estructuradas y repeticiones guiadas por coach donde el modelo cognitivo se expresa bajo la carga completa del movimiento de baloncesto: trabajo de pies, control corporal, contacto, ángulos, recuperación y velocidad de juego. Aquí es donde la arquitectura se convierte en rendimiento.">Live reaction drills, structured progressions, and coached reps where the cognitive model is expressed under the full load of basketball movement: footwork, body control, contact, angles, recovery, and game speed. This is where the architecture becomes performance.</p>
-          </article>
-          <article class="layer-card online">
-            <span class="layer-tag" data-en="Layer 02 · Online" data-es="Capa 02 · Online">Layer 02 · Online</span>
-            <h3 data-en="Where the system stays sharp between sessions." data-es="Donde el sistema se mantiene afilado entre sesiones.">Where the system stays sharp between sessions.</h3>
-            <p data-en="A digital reinforcement layer built to train the same cognitive pillars the on-court system trains — recognition, selection, inhibition, initiation — on any device, at any hour. The online layer does not replace the court. It keeps the athlete's mind in the system when the court is not available." data-es="Una capa digital de refuerzo construida para entrenar los mismos pilares cognitivos que entrena el sistema de cancha — reconocimiento, selección, inhibición, iniciación — en cualquier dispositivo, a cualquier hora. La capa online no reemplaza la cancha. Mantiene la mente del atleta dentro del sistema cuando la cancha no está disponible.">A digital reinforcement layer built to train the same cognitive pillars the on-court system trains — recognition, selection, inhibition, initiation — on any device, at any hour. The online layer does not replace the court. It keeps the athlete's mind in the system when the court is not available.</p>
-          </article>
-        </div>
-
-        <div class="manifesto reveal" style="margin-top: 2rem;">
-          <blockquote data-en="The court builds the habit. The online layer keeps it awake." data-es="La cancha construye el hábito. La capa online lo mantiene despierto.">The court builds the habit. The online layer keeps it awake.</blockquote>
-          <p data-en="Cognitive skill decays fast without repetition. On-court training alone cannot cover the gap between sessions. The online layer is not a bonus feature — it is an intentional part of the design, the reason the system compounds instead of resets. Two layers. One architecture. One outcome: an athlete whose decision-making is always in training." data-es="La destreza cognitiva se deteriora rápido sin repetición. El entrenamiento en cancha por sí solo no puede cubrir la distancia entre sesiones. La capa online no es una función extra — es parte intencional del diseño, la razón por la que el sistema se compone en vez de reiniciarse. Dos capas. Una arquitectura. Un resultado: un atleta cuya toma de decisiones siempre está en entrenamiento.">Cognitive skill decays fast without repetition. On-court training alone cannot cover the gap between sessions. The online layer is not a bonus feature — it is an intentional part of the design, the reason the system compounds instead of resets. Two layers. One architecture. One outcome: an athlete whose decision-making is always in training.</p>
-        </div>
-      </div>
-    </section>
-
-    <hr class="section-divider" />
-
     <section class="section" id="applications">
       <div class="container">
         <div class="reveal">
           <span class="eyebrow" data-en="System applications" data-es="Aplicaciones del sistema">System applications</span>
           <h2 class="section-title" data-en="How the system applies to real basketball roles." data-es="Cómo el sistema se aplica a los roles reales del baloncesto.">How the system applies to real basketball roles.</h2>
-          <p class="section-lead" data-en="The cognitive architecture does not change across positions. What changes is how it expresses itself. A guard uses the same five pillars differently than a big. A defender uses them differently than a scorer. The system adjusts the emphasis without losing the model." data-es="La arquitectura cognitiva no cambia entre posiciones. Lo que cambia es cómo se expresa. Un guard usa los cinco pilares de forma diferente a un big. Un defensor los usa de forma diferente a un anotador. El sistema ajusta el énfasis sin perder el modelo.">The cognitive architecture does not change across positions. What changes is how it expresses itself. A guard uses the same five pillars differently than a big. A defender uses them differently than a scorer. The system adjusts the emphasis without losing the model.</p>
+          <p class="section-lead" data-en="The cognitive architecture does not change across positions. What changes is how it expresses itself on the court. A guard uses the same five pillars differently than a big. A defender uses them differently than a scorer. The system adjusts the emphasis without losing the model." data-es="La arquitectura cognitiva no cambia entre posiciones. Lo que cambia es cómo se expresa en la cancha. Un guard usa los cinco pilares de forma diferente a un big. Un defensor los usa de forma diferente a un anotador. El sistema ajusta el énfasis sin perder el modelo.">The cognitive architecture does not change across positions. What changes is how it expresses itself on the court. A guard uses the same five pillars differently than a big. A defender uses them differently than a scorer. The system adjusts the emphasis without losing the model.</p>
         </div>
 
         <div class="applications-grid" style="margin-top: 2rem;">
@@ -1188,23 +1338,22 @@
           <article class="application reveal"><h3 data-en="Defensive Movement" data-es="Movimiento Defensivo">Defensive Movement</h3><p data-en="This is where inhibition earns its place. The system trains the athlete to hold the stance, read the cue, and commit the feet only when the decision is right — not when the hips sell a fake." data-es="Aquí es donde la inhibición se gana su lugar. El sistema entrena al atleta a sostener la postura, leer el estímulo y comprometer los pies solo cuando la decisión es correcta — no cuando las caderas venden un amague.">This is where inhibition earns its place. The system trains the athlete to hold the stance, read the cue, and commit the feet only when the decision is right — not when the hips sell a fake.</p></article>
           <article class="application reveal"><h3 data-en="First-Step Attack" data-es="Ataque del Primer Paso">First-Step Attack</h3><p data-en="The system attacks the gap between cue and commitment. Less hesitation. Cleaner initiation. The first step becomes a decision expressed at full intent, not a guess." data-es="El sistema ataca la distancia entre el estímulo y el compromiso. Menos duda. Iniciación más limpia. El primer paso se convierte en una decisión expresada con intención completa, no en una suposición.">The system attacks the gap between cue and commitment. Less hesitation. Cleaner initiation. The first step becomes a decision expressed at full intent, not a guess.</p></article>
           <article class="application reveal"><h3 data-en="Youth Development" data-es="Desarrollo Juvenil">Youth Development</h3><p data-en="The system installs recognition and inhibition before bad cognitive habits harden. It builds the architecture before bad default speeds become the athlete's identity." data-es="El sistema instala el reconocimiento y la inhibición antes de que los malos hábitos cognitivos se endurezcan. Construye la arquitectura antes de que las velocidades por defecto mal formadas se conviertan en la identidad del atleta.">The system installs recognition and inhibition before bad cognitive habits harden. It builds the architecture before bad default speeds become the athlete's identity.</p></article>
-          <article class="application reveal"><h3 data-en="In-Season Support" data-es="Apoyo en Temporada">In-Season Support</h3><p data-en="The online layer is built for this. Short, high-quality cognitive reps athletes can run anywhere keep the system active across a long season without stacking physical load." data-es="La capa online está construida para esto. Repeticiones cognitivas cortas y de alta calidad que los atletas pueden ejecutar en cualquier lugar mantienen el sistema activo a lo largo de una temporada larga sin acumular carga física.">The online layer is built for this. Short, high-quality cognitive reps athletes can run anywhere keep the system active across a long season without stacking physical load.</p></article>
           <article class="application reveal"><h3 data-en="Programs & Academies" data-es="Programas y Academias">Programs & Academies</h3><p data-en="The system installs the same cognitive model across every athlete in the program — a shared architecture that coaches can reference, coach from, and measure against." data-es="El sistema instala el mismo modelo cognitivo en cada atleta del programa — una arquitectura compartida que los coaches pueden referenciar, desde la cual coachear y contra la cual medir.">The system installs the same cognitive model across every athlete in the program — a shared architecture that coaches can reference, coach from, and measure against.</p></article>
           <article class="application reveal"><h3 data-en="Trainers & Coaches" data-es="Trainers y Coaches">Trainers & Coaches</h3><p data-en="The system gives the trainer a model to teach from — a structured vocabulary for the invisible layer of the game that players feel but coaches rarely name clearly." data-es="El sistema le da al trainer un modelo desde el cual enseñar — un vocabulario estructurado para la capa invisible del juego que los jugadores sienten pero que los coaches rara vez nombran con claridad.">The system gives the trainer a model to teach from — a structured vocabulary for the invisible layer of the game that players feel but coaches rarely name clearly.</p></article>
         </div>
       </div>
     </section>
 
-    <section class="section" id="online-system">
+    <section class="section">
       <div class="container">
         <div class="cta-band reveal">
           <div>
-            <span class="eyebrow" data-en="The online system" data-es="El sistema online">The online system</span>
-            <h2 data-en="Train the system between sessions." data-es="Entrena el sistema entre sesiones.">Train the system between sessions.</h2>
-            <p data-en="The online layer runs the same cognitive pillars the court runs — recognition, selection, inhibition, initiation, response quality. Any device. Any hour. Protocols built around how the game actually demands decisions." data-es="La capa online entrena los mismos pilares cognitivos que entrena la cancha — reconocimiento, selección, inhibición, iniciación, calidad de respuesta. Cualquier dispositivo. Cualquier hora. Protocolos construidos alrededor de cómo el juego realmente exige decisiones.">The online layer runs the same cognitive pillars the court runs — recognition, selection, inhibition, initiation, response quality. Any device. Any hour. Protocols built around how the game actually demands decisions.</p>
+            <span class="eyebrow" data-en="Why this matters" data-es="Por qué esto importa">Why this matters</span>
+            <h2 data-en="Speed is not the edge. The decision is." data-es="La velocidad no es la ventaja. La decisión sí.">Speed is not the edge. The decision is.</h2>
+            <p data-en="The basketball market sells faster feet. The game rewards faster decisions. Our system is built for the game, not the market — and it lives where the game lives: on the court." data-es="El mercado del baloncesto vende pies más rápidos. El juego recompensa decisiones más rápidas. Nuestro sistema está construido para el juego, no para el mercado — y vive donde vive el juego: en la cancha.">The basketball market sells faster feet. The game rewards faster decisions. Our system is built for the game, not the market — and it lives where the game lives: on the court.</p>
           </div>
           <div style="display:flex; gap:1rem; flex-wrap:wrap;">
-            <a href="training-protocols.html" class="btn" data-en="Enter the Online Protocols" data-es="Entra a los Protocolos">Enter the Online Protocols</a>
+            <button type="button" class="btn" id="ctaChatBtn" data-en="Start the Conversation" data-es="Comienza la Conversación">Start the Conversation</button>
             <a href="#faq" class="btn-secondary" data-en="Read the FAQ" data-es="Lee las Preguntas">Read the FAQ</a>
           </div>
         </div>
@@ -1222,13 +1371,11 @@
 
         <div class="faq-grid" style="margin-top: 2rem;">
           <article class="faq-item reveal"><h3 data-en="Is this reaction training?" data-es="¿Esto es entrenamiento de reacción?">Is this reaction training?</h3><p data-en="No. Reaction training is a category in the market. This is a cognitive performance system built for basketball. Reaction is one input the system uses. It is not what the system is." data-es="No. El entrenamiento de reacción es una categoría del mercado. Esto es un sistema de rendimiento cognitivo construido para el baloncesto. La reacción es un insumo que el sistema usa. No es lo que el sistema es.">No. Reaction training is a category in the market. This is a cognitive performance system built for basketball. Reaction is one input the system uses. It is not what the system is.</p></article>
-          <article class="faq-item reveal"><h3 data-en="What does the system actually train?" data-es="¿Qué entrena realmente el sistema?">What does the system actually train?</h3><p data-en="Five cognitive pillars: recognition, selection, inhibition, initiation, and response quality. Every drill and every mode targets at least one of them on purpose." data-es="Cinco pilares cognitivos: reconocimiento, selección, inhibición, iniciación y calidad de respuesta. Cada ejercicio y cada modo apunta a al menos uno de ellos con intención.">Five cognitive pillars: recognition, selection, inhibition, initiation, and response quality. Every drill and every mode targets at least one of them on purpose.</p></article>
-          <article class="faq-item reveal"><h3 data-en="Why an on-court layer and an online layer?" data-es="¿Por qué una capa de cancha y una capa online?">Why an on-court layer and an online layer?</h3><p data-en="Cognitive skill decays without repetition. The court cannot cover every hour between sessions. The online layer keeps the same architecture active so the athlete returns to the court sharper, not reset." data-es="La destreza cognitiva se deteriora sin repetición. La cancha no puede cubrir cada hora entre sesiones. La capa online mantiene la misma arquitectura activa para que el atleta regrese a la cancha más afilado, no reiniciado.">Cognitive skill decays without repetition. The court cannot cover every hour between sessions. The online layer keeps the same architecture active so the athlete returns to the court sharper, not reset.</p></article>
-          <article class="faq-item reveal"><h3 data-en="Does the online layer replace the court?" data-es="¿La capa online reemplaza la cancha?">Does the online layer replace the court?</h3><p data-en="No. The court is where cognition meets live basketball movement. The online layer is reinforcement, not replacement. The two are designed to compound." data-es="No. La cancha es donde la cognición se encuentra con el movimiento real del baloncesto. La capa online es refuerzo, no reemplazo. Las dos están diseñadas para componerse.">No. The court is where cognition meets live basketball movement. The online layer is reinforcement, not replacement. The two are designed to compound.</p></article>
+          <article class="faq-item reveal"><h3 data-en="What does the system actually train?" data-es="¿Qué entrena realmente el sistema?">What does the system actually train?</h3><p data-en="Five cognitive pillars: recognition, selection, inhibition, initiation, and response quality. Every drill and every on-court session targets at least one of them on purpose." data-es="Cinco pilares cognitivos: reconocimiento, selección, inhibición, iniciación y calidad de respuesta. Cada ejercicio y cada sesión en cancha apunta a al menos uno de ellos con intención.">Five cognitive pillars: recognition, selection, inhibition, initiation, and response quality. Every drill and every on-court session targets at least one of them on purpose.</p></article>
+          <article class="faq-item reveal"><h3 data-en="Where does the training happen?" data-es="¿Dónde ocurre el entrenamiento?">Where does the training happen?</h3><p data-en="On the court. Every rep, every drill, every progression is live — inside real basketball movement, under real physical and spatial pressure. The court is where cognition meets the game, and that is where the system is expressed." data-es="En la cancha. Cada repetición, cada ejercicio, cada progresión es en vivo — dentro del movimiento real del baloncesto, bajo presión física y espacial real. La cancha es donde la cognición se encuentra con el juego, y ahí es donde se expresa el sistema.">On the court. Every rep, every drill, every progression is live — inside real basketball movement, under real physical and spatial pressure. The court is where cognition meets the game, and that is where the system is expressed.</p></article>
           <article class="faq-item reveal"><h3 data-en="Is this useful for youth players?" data-es="¿Es útil para jugadores jóvenes?">Is this useful for youth players?</h3><p data-en="Especially for youth players. The system installs recognition and inhibition before bad cognitive defaults harden into identity. Easier to build the architecture than to rewire it later." data-es="Especialmente para jugadores jóvenes. El sistema instala el reconocimiento y la inhibición antes de que los valores cognitivos mal formados se endurezcan y se conviertan en identidad. Es más fácil construir la arquitectura que recablearla después.">Especially for youth players. The system installs recognition and inhibition before bad cognitive defaults harden into identity. Easier to build the architecture than to rewire it later.</p></article>
-          <article class="faq-item reveal"><h3 data-en="Can this run in-season?" data-es="¿Puede correr en temporada?">Can this run in-season?</h3><p data-en="The online layer is built for exactly that. Short, high-quality cognitive reps that keep the system active without stacking physical load during a long season." data-es="La capa online está construida precisamente para eso. Repeticiones cognitivas cortas y de alta calidad que mantienen el sistema activo sin acumular carga física durante una temporada larga.">The online layer is built for exactly that. Short, high-quality cognitive reps that keep the system active without stacking physical load during a long season.</p></article>
-          <article class="faq-item reveal"><h3 data-en="How is this different from other reaction products?" data-es="¿En qué se diferencia esto de otros productos de reacción?">How is this different from other reaction products?</h3><p data-en="Most reaction products are games with sensors. This is a structured cognitive model with a defined architecture, designed specifically around the decision demands of basketball and delivered across two reinforcing layers." data-es="La mayoría de los productos de reacción son juegos con sensores. Esto es un modelo cognitivo estructurado con una arquitectura definida, diseñado específicamente alrededor de las exigencias de decisión del baloncesto y entregado a través de dos capas que se refuerzan.">Most reaction products are games with sensors. This is a structured cognitive model with a defined architecture, designed specifically around the decision demands of basketball and delivered across two reinforcing layers.</p></article>
-          <article class="faq-item reveal"><h3 data-en="Who is this for?" data-es="¿Para quién es esto?">Who is this for?</h3><p data-en="Athletes who want cognitive quality to match their physical tools. Coaches who want a shared model they can teach from. Programs that want the same architecture installed across every athlete." data-es="Atletas que quieren calidad cognitiva que iguale sus herramientas físicas. Coaches que quieren un modelo compartido desde el cual enseñar. Programas que quieren la misma arquitectura instalada en cada atleta.">Athletes who want cognitive quality to match their physical tools. Coaches who want a shared model they can teach from. Programs that want the same architecture installed across every athlete.</p></article>
+          <article class="faq-item reveal"><h3 data-en="How is this different from other reaction products?" data-es="¿En qué se diferencia esto de otros productos de reacción?">How is this different from other reaction products?</h3><p data-en="Most reaction products are games with sensors, run outside of real basketball. This is a structured cognitive model with a defined architecture, designed specifically around the decision demands of basketball and delivered inside live, coached, on-court training." data-es="La mayoría de los productos de reacción son juegos con sensores, corridos fuera del baloncesto real. Esto es un modelo cognitivo estructurado con una arquitectura definida, diseñado específicamente alrededor de las exigencias de decisión del baloncesto y entregado dentro de entrenamiento en vivo, guiado por coach, en cancha.">Most reaction products are games with sensors, run outside of real basketball. This is a structured cognitive model with a defined architecture, designed specifically around the decision demands of basketball and delivered inside live, coached, on-court training.</p></article>
+          <article class="faq-item reveal"><h3 data-en="Who is this for?" data-es="¿Para quién es esto?">Who is this for?</h3><p data-en="Athletes who want cognitive quality to match their physical tools. Coaches who want a shared model they can teach from. Programs that want the same architecture installed across every athlete — all trained live on the floor." data-es="Atletas que quieren calidad cognitiva que iguale sus herramientas físicas. Coaches que quieren un modelo compartido desde el cual enseñar. Programas que quieren la misma arquitectura instalada en cada atleta — todos entrenados en vivo en la cancha.">Athletes who want cognitive quality to match their physical tools. Coaches who want a shared model they can teach from. Programs that want the same architecture installed across every athlete — all trained live on the floor.</p></article>
         </div>
       </div>
     </section>
@@ -1242,16 +1389,14 @@
           <span class="brand-mark" aria-hidden="true"></span>
           <span data-en="Reaction Basketball" data-es="Reaction Basketball">Reaction Basketball</span>
         </div>
-        <p style="max-width:62ch; margin:0; line-height:1.8;" data-en="A proprietary cognitive performance system for basketball. On-court and online, engineered to train the same architecture the game actually rewards." data-es="Un sistema propio de rendimiento cognitivo para el baloncesto. En cancha y online, diseñado para entrenar la misma arquitectura que el juego realmente recompensa.">A proprietary cognitive performance system for basketball. On-court and online, engineered to train the same architecture the game actually rewards.</p>
+        <p style="max-width:62ch; margin:0; line-height:1.8;" data-en="An on-court cognitive performance system for basketball. Engineered to train the architecture the game actually rewards — live, in the gym, under real pressure." data-es="Un sistema de rendimiento cognitivo en cancha para el baloncesto. Diseñado para entrenar la arquitectura que el juego realmente recompensa — en vivo, en el gimnasio, bajo presión real.">An on-court cognitive performance system for basketball. Engineered to train the architecture the game actually rewards — live, in the gym, under real pressure.</p>
       </div>
       <div class="footer-links">
         <a href="#home" data-en="Home" data-es="Inicio">Home</a>
         <a href="#system" data-en="The System" data-es="El Sistema">The System</a>
         <a href="#pillars" data-en="Pillars" data-es="Pilares">Pillars</a>
-        <a href="#layers" data-en="Layers" data-es="Capas">Layers</a>
         <a href="#applications" data-en="Applications" data-es="Aplicaciones">Applications</a>
         <a href="#faq" data-en="FAQ" data-es="Preguntas">FAQ</a>
-        <a href="#contact" data-en="Contact" data-es="Contacto">Contact</a>
       </div>
     </div>
   </footer>
@@ -1264,7 +1409,7 @@
   <aside class="chat-panel" id="chatPanel" aria-hidden="true">
     <div class="chat-head">
       <div class="chat-title-wrap">
-        <span class="chat-kicker" data-en="Cognitive System" data-es="Sistema Cognitivo">Cognitive System</span>
+        <span class="chat-kicker" data-en="On-Court System" data-es="Sistema en Cancha">On-Court System</span>
         <span class="chat-title" data-en="Reaction Advisor" data-es="Reaction Advisor">Reaction Advisor</span>
       </div>
       <button class="chat-close" id="chatClose" type="button" aria-label="Close advisor">✕</button>
@@ -1290,7 +1435,6 @@
       toggle.addEventListener('click', () => {
         navLinks.classList.toggle('open');
       });
-
       document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', () => navLinks.classList.remove('open'));
       });
@@ -1301,19 +1445,15 @@
 
     function setLanguage(lang) {
       document.documentElement.lang = lang === 'es' ? 'es' : 'en';
-
       document.querySelectorAll('[data-en][data-es]').forEach(el => {
         el.innerHTML = lang === 'es' ? el.dataset.es : el.dataset.en;
       });
-
       document.querySelectorAll('[data-placeholder-en][data-placeholder-es]').forEach(el => {
         el.placeholder = lang === 'es' ? el.dataset.placeholderEs : el.dataset.placeholderEn;
       });
-
       document.querySelectorAll('option[data-en][data-es]').forEach(el => {
         el.textContent = lang === 'es' ? el.dataset.es : el.dataset.en;
       });
-
       langEn.classList.toggle('active', lang === 'en');
       langEs.classList.toggle('active', lang === 'es');
       localStorage.setItem('siteLanguage', lang);
@@ -1321,7 +1461,6 @@
 
     langEn.addEventListener('click', () => setLanguage('en'));
     langEs.addEventListener('click', () => setLanguage('es'));
-
     setLanguage(localStorage.getItem('siteLanguage') || 'en');
 
     const observer = new IntersectionObserver((entries) => {
@@ -1329,7 +1468,6 @@
         if (entry.isIntersecting) entry.target.classList.add('is-visible');
       });
     }, { threshold: 0.12 });
-
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
     // Chat panel open / close
@@ -1366,9 +1504,12 @@
     }
     if (chatClose) chatClose.addEventListener('click', closeChat);
     if (chatOverlay) chatOverlay.addEventListener('click', closeChat);
-    // Hero "Start the Conversation" button → open chat
-    const heroChatBtn = document.getElementById('heroChatBtn');
-    if (heroChatBtn) heroChatBtn.addEventListener('click', openChat);
+
+    // All "Start the Conversation" buttons → open chat
+    ['heroChatBtn', 'navChatBtn', 'ctaChatBtn'].forEach(id => {
+      const btn = document.getElementById(id);
+      if (btn) btn.addEventListener('click', openChat);
+    });
   </script>
 
   <script src="/chat.js" defer></script>
