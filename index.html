@@ -749,6 +749,74 @@
         0 0 36px rgba(127,226,255,0.35);
     }
     }
+    /* Mini reaction lights inside the FAB */
+    .fab-lights {
+      position: relative;
+      width: 30px;
+      height: 30px;
+      display: block;
+    }
+    .fab-light {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      box-shadow:
+        inset 0 0 6px rgba(255,255,255,0.5),
+        0 0 14px currentColor,
+        0 0 24px currentColor;
+      opacity: 0.25;
+    }
+    .fab-light-1 {
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: fabFlash1 1.8s infinite ease-in-out;
+      animation-delay: 0s;
+      background: #b8f516;
+      color: #b8f516;
+    }
+    .fab-light-2 {
+      bottom: 0;
+      left: 2px;
+      animation: fabFlash2 1.8s infinite ease-in-out;
+      animation-delay: 0.6s;
+      background: #7fe2ff;
+      color: #7fe2ff;
+    }
+    .fab-light-3 {
+      bottom: 0;
+      right: 2px;
+      animation: fabFlash3 1.8s infinite ease-in-out;
+      animation-delay: 1.2s;
+      background: #ff3ea5;
+      color: #ff3ea5;
+    }
+
+    @keyframes fabFlash1 {
+      0%, 100% { opacity: 0.2; background: #b8f516; color: #b8f516; }
+      15%      { opacity: 1;   background: #b8f516; color: #b8f516; }
+      33%      { opacity: 0.25; background: #ffb82e; color: #ffb82e; }
+      50%      { opacity: 1;    background: #ffb82e; color: #ffb82e; }
+      66%      { opacity: 0.25; background: #a775ff; color: #a775ff; }
+      83%      { opacity: 1;    background: #a775ff; color: #a775ff; }
+    }
+    @keyframes fabFlash2 {
+      0%, 100% { opacity: 0.2; background: #7fe2ff; color: #7fe2ff; }
+      15%      { opacity: 1;   background: #7fe2ff; color: #7fe2ff; }
+      33%      { opacity: 0.25; background: #b8f516; color: #b8f516; }
+      50%      { opacity: 1;    background: #b8f516; color: #b8f516; }
+      66%      { opacity: 0.25; background: #ff3ea5; color: #ff3ea5; }
+      83%      { opacity: 1;    background: #ff3ea5; color: #ff3ea5; }
+    }
+    @keyframes fabFlash3 {
+      0%, 100% { opacity: 0.2; background: #ff3ea5; color: #ff3ea5; }
+      15%      { opacity: 1;   background: #ff3ea5; color: #ff3ea5; }
+      33%      { opacity: 0.25; background: #a775ff; color: #a775ff; }
+      50%      { opacity: 1;    background: #a775ff; color: #a775ff; }
+      66%      { opacity: 0.25; background: #7fe2ff; color: #7fe2ff; }
+      83%      { opacity: 1;    background: #7fe2ff; color: #7fe2ff; }
+    }
     .chat-fab.is-hidden {
       opacity: 0;
       pointer-events: none;
