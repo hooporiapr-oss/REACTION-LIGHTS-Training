@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Reaction Basketball | See Faster. React Sharper. Play Ahead.</title>
-  <meta name="description" content="A premium basketball performance website focused on reaction training, decision speed, visual response, and real basketball movement." />
+  <title>Reaction Basketball | A Cognitive Performance System for Basketball</title>
+  <meta name="description" content="A proprietary cognitive performance system for basketball — built around how the game is seen, processed, and answered. On-court and online, reinforcing the same architecture." />
   <meta name="theme-color" content="#0a0a0d" />
   <style>
     :root {
@@ -90,7 +90,7 @@
       line-height: 0.96;
       letter-spacing: -0.055em;
       margin: 1rem 0;
-      max-width: 12ch;
+      max-width: 14ch;
     }
 
     .section-lead {
@@ -267,11 +267,11 @@
     }
 
     .hero-copy h1 {
-      font-size: clamp(3.2rem, 8vw, 6.9rem);
-      line-height: 0.9;
-      letter-spacing: -0.078em;
+      font-size: clamp(3rem, 7.5vw, 6.4rem);
+      line-height: 0.92;
+      letter-spacing: -0.07em;
       margin: 1rem 0 1.2rem;
-      max-width: 9.3ch;
+      max-width: 12ch;
     }
 
     .hero-copy p {
@@ -305,7 +305,8 @@
     .form-card,
     .manifesto,
     .visual-card,
-    .value-band {
+    .value-band,
+    .layer-card {
       border: 1px solid rgba(255,255,255,0.09);
       background: rgba(255,255,255,0.035);
       border-radius: var(--radius);
@@ -423,7 +424,9 @@
     .applications-grid,
     .faq-grid,
     .insight-grid,
-    .decision-grid {
+    .decision-grid,
+    .pillar-grid,
+    .layer-grid {
       display: grid;
       gap: 1.25rem;
     }
@@ -433,12 +436,46 @@
     .insight-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .applications-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .faq-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .pillar-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .layer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
     .card,
     .insight,
     .application,
     .faq-item,
-    .value-band { padding: 1.35rem; }
+    .value-band,
+    .layer-card { padding: 1.5rem; }
+
+    .pillar {
+      padding: 1.4rem 1.2rem;
+      border: 1px solid rgba(255,255,255,0.09);
+      background: rgba(255,255,255,0.035);
+      border-radius: 20px;
+      text-align: left;
+    }
+
+    .pillar-num {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      font-weight: 800;
+      margin-bottom: 0.6rem;
+      display: block;
+    }
+
+    .pillar h4 {
+      margin: 0 0 0.5rem;
+      font-size: 1.05rem;
+      letter-spacing: -0.02em;
+    }
+
+    .pillar p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.65;
+    }
 
     .card .index,
     .value-band .index {
@@ -459,7 +496,8 @@
     .insight h3,
     .application h3,
     .faq-item h3,
-    .value-band h3 {
+    .value-band h3,
+    .layer-card h3 {
       margin: 0 0 0.75rem;
       font-size: 1.15rem;
       letter-spacing: -0.03em;
@@ -469,12 +507,29 @@
     .insight p,
     .application p,
     .faq-item p,
-    .value-band p {
+    .value-band p,
+    .layer-card p {
       margin: 0;
       color: var(--muted);
       line-height: 1.75;
       font-size: 0.98rem;
     }
+
+    .layer-card {
+      position: relative;
+    }
+
+    .layer-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      font-weight: 800;
+      margin-bottom: 0.8rem;
+    }
+
+    .layer-card.online .layer-tag { color: var(--accent); }
 
     .manifesto {
       padding: 2rem;
@@ -491,7 +546,7 @@
       font-size: clamp(1.6rem, 3.5vw, 3.25rem);
       line-height: 1.08;
       letter-spacing: -0.06em;
-      max-width: 18ch;
+      max-width: 20ch;
     }
 
     .manifesto p {
@@ -546,7 +601,7 @@
       font-size: clamp(2rem, 4vw, 3.6rem);
       line-height: 0.95;
       letter-spacing: -0.06em;
-      max-width: 10ch;
+      max-width: 14ch;
     }
 
     .cta-band p {
@@ -669,7 +724,9 @@
       .insight-grid,
       .faq-grid,
       .feature-grid,
-      .decision-grid { grid-template-columns: 1fr 1fr; }
+      .decision-grid,
+      .pillar-grid,
+      .layer-grid { grid-template-columns: 1fr 1fr; }
     }
 
     @media (max-width: 820px) {
@@ -717,6 +774,8 @@
       .insight-grid,
       .faq-grid,
       .decision-grid,
+      .pillar-grid,
+      .layer-grid,
       .form-grid { grid-template-columns: 1fr; }
 
       .hero {
@@ -731,7 +790,7 @@
     @media (max-width: 560px) {
       .container { width: min(calc(100% - 1.2rem), var(--max)); }
       .section { padding: 5rem 0; }
-      .hero-copy h1 { font-size: clamp(2.7rem, 12vw, 4.35rem); }
+      .hero-copy h1 { font-size: clamp(2.6rem, 11vw, 4.1rem); }
       .section-title { font-size: clamp(2rem, 8vw, 2.95rem); }
       .manifesto,
       .form-card,
@@ -756,10 +815,10 @@
 
       <nav class="nav-links" id="navLinks">
         <a href="#home" data-en="Home" data-es="Inicio">Home</a>
-        <a href="#why" data-en="Why It Matters" data-es="Por Qué Importa">Why It Matters</a>
-        <a href="#applications" data-en="Basketball Applications" data-es="Aplicaciones">Basketball Applications</a>
-        <a href="#decision" data-en="Decision Speed" data-es="Velocidad de Decisión">Decision Speed</a>
-        <a href="#movement" data-en="Movement Response" data-es="Respuesta del Movimiento">Movement Response</a>
+        <a href="#system" data-en="The System" data-es="El Sistema">The System</a>
+        <a href="#pillars" data-en="Cognitive Pillars" data-es="Pilares Cognitivos">Cognitive Pillars</a>
+        <a href="#layers" data-en="On-Court & Online" data-es="Cancha y Online">On-Court & Online</a>
+        <a href="#applications" data-en="Applications" data-es="Aplicaciones">Applications</a>
         <a href="#faq" data-en="FAQ" data-es="Preguntas">FAQ</a>
         <a href="#contact" data-en="Contact" data-es="Contacto">Contact</a>
       </nav>
@@ -780,30 +839,30 @@
     <section class="hero" id="home">
       <div class="container hero-grid">
         <div class="hero-copy reveal">
-          <span class="eyebrow" data-en="Basketball visual response" data-es="Respuesta visual en baloncesto">Basketball visual response</span>
-          <h1 data-en="See faster. React sharper. Play ahead." data-es="Ve más rápido. Reacciona más preciso. Juega adelante.">See faster. React sharper. Play ahead.</h1>
-          <p data-en="Basketball is a game of visual triggers, rapid processing, body response, and repeated decisions under pressure. The edge does not belong only to the fastest player. It belongs to the player who sees, processes, and responds before the moment is gone." data-es="El baloncesto es un juego de estímulos visuales, procesamiento rápido, respuesta corporal y decisiones repetidas bajo presión. La ventaja no pertenece solo al jugador más rápido. Pertenece al jugador que ve, procesa y responde antes de que el momento se vaya.">Basketball is a game of visual triggers, rapid processing, body response, and repeated decisions under pressure. The edge does not belong only to the fastest player. It belongs to the player who sees, processes, and responds before the moment is gone.</p>
+          <span class="eyebrow" data-en="A cognitive performance system" data-es="Un sistema de rendimiento cognitivo">A cognitive performance system</span>
+          <h1 data-en="Basketball is won in the gap between seeing and doing." data-es="El baloncesto se gana en la distancia entre ver y hacer.">Basketball is won in the gap between seeing and doing.</h1>
+          <p data-en="This is our cognitive performance system for basketball. It is not reaction training repackaged. It is a model built around how the game is actually seen, processed, and answered — engineered across an on-court layer and an online layer that reinforce the same architecture." data-es="Este es nuestro sistema de rendimiento cognitivo para el baloncesto. No es entrenamiento de reacción reempacado. Es un modelo construido alrededor de cómo el juego realmente se ve, se procesa y se responde — diseñado en una capa de cancha y una capa online que refuerzan la misma arquitectura.">This is our cognitive performance system for basketball. It is not reaction training repackaged. It is a model built around how the game is actually seen, processed, and answered — engineered across an on-court layer and an online layer that reinforce the same architecture.</p>
           <div class="hero-actions">
-            <a href="#why" class="btn" data-en="Why It Matters" data-es="Por Qué Importa">Why It Matters</a>
+            <a href="#system" class="btn" data-en="Enter the System" data-es="Entra al Sistema">Enter the System</a>
             <a href="#contact" class="btn-secondary" data-en="Start the Conversation" data-es="Comienza la Conversación">Start the Conversation</a>
           </div>
           <div class="hero-meta">
             <div class="stat">
-              <strong data-en="Decision Speed" data-es="Velocidad de Decisión">Decision Speed</strong>
-              <span data-en="Train how quickly the mind recognizes what the game is asking for." data-es="Entrena cuán rápido la mente reconoce lo que el juego está pidiendo.">Train how quickly the mind recognizes what the game is asking for.</span>
+              <strong data-en="The Model" data-es="El Modelo">The Model</strong>
+              <span data-en="A proprietary cognitive architecture designed around basketball's real decision demands." data-es="Una arquitectura cognitiva propia diseñada alrededor de las exigencias reales de decisión en el baloncesto.">A proprietary cognitive architecture designed around basketball's real decision demands.</span>
             </div>
             <div class="stat">
-              <strong data-en="Visual Response" data-es="Respuesta Visual">Visual Response</strong>
-              <span data-en="Sharpen the link between what the eyes catch and how the body moves." data-es="Afina el vínculo entre lo que captan los ojos y cómo se mueve el cuerpo.">Sharpen the link between what the eyes catch and how the body moves.</span>
+              <strong data-en="On-Court" data-es="En Cancha">On-Court</strong>
+              <span data-en="Live drills where the system is expressed in real basketball movement and real pressure." data-es="Ejercicios en vivo donde el sistema se expresa en movimiento real de baloncesto y presión real.">Live drills where the system is expressed in real basketball movement and real pressure.</span>
             </div>
             <div class="stat">
-              <strong data-en="Game Transfer" data-es="Transferencia al Juego">Game Transfer</strong>
-              <span data-en="Build reaction quality that feels closer to live basketball decisions and movement." data-es="Construye una calidad de reacción que se sienta más cercana a las decisiones y movimientos reales del baloncesto.">Build reaction quality that feels closer to live basketball decisions and movement.</span>
+              <strong data-en="Online" data-es="Online">Online</strong>
+              <span data-en="The digital reinforcement layer that keeps the same cognitive patterns sharp between sessions." data-es="La capa digital de refuerzo que mantiene los mismos patrones cognitivos afilados entre sesiones.">The digital reinforcement layer that keeps the same cognitive patterns sharp between sessions.</span>
             </div>
           </div>
         </div>
 
-        <div class="visual-card reveal" aria-label="Dynamic basketball reaction training visual">
+        <div class="visual-card reveal" aria-label="Dynamic basketball cognitive system visual">
           <div class="visual-grid"></div>
           <div class="player-silhouette"></div>
           <div class="react-light one"></div>
@@ -813,26 +872,101 @@
           <div class="react-light five"></div>
           <div class="react-light six"></div>
           <div class="visual-copy">
-            <strong data-en="Reaction changes the possession before the possession shows it." data-es="La reacción cambia la posesión antes de que la posesión lo enseñe.">Reaction changes the possession before the possession shows it.</strong>
-            <span data-en="The best response is not random movement. It is visual recognition organized into clean, usable basketball action." data-es="La mejor respuesta no es movimiento al azar. Es reconocimiento visual organizado en una acción limpia y útil para el baloncesto.">The best response is not random movement. It is visual recognition organized into clean, usable basketball action.</span>
+            <strong data-en="The possession is decided before the body fully commits." data-es="La posesión se decide antes de que el cuerpo se comprometa por completo.">The possession is decided before the body fully commits.</strong>
+            <span data-en="Our system trains the invisible layer between perception and action — the one that separates ordinary speed from useful basketball speed." data-es="Nuestro sistema entrena la capa invisible entre percepción y acción — la que separa la velocidad ordinaria de la velocidad útil en el baloncesto.">Our system trains the invisible layer between perception and action — the one that separates ordinary speed from useful basketball speed.</span>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="why">
+    <section class="section" id="system">
       <div class="container split">
         <div class="reveal">
-          <span class="eyebrow" data-en="Why it matters" data-es="Por qué importa">Why it matters</span>
-          <h2 class="section-title" data-en="Reaction is not a side skill. It is a game skill." data-es="La reacción no es una destreza secundaria. Es una destreza del juego.">Reaction is not a side skill. It is a game skill.</h2>
-          <p class="section-lead" data-en="In basketball, the body does not move in a vacuum. It moves because it saw something, processed something, recognized timing, and committed to an action. Reaction training matters because the sport rewards the athlete who can shorten the gap between seeing and doing without losing control, rhythm, or quality." data-es="En baloncesto, el cuerpo no se mueve en el vacío. Se mueve porque vio algo, procesó algo, reconoció un timing y se comprometió con una acción. El entrenamiento de reacción importa porque el deporte recompensa al atleta que puede acortar la distancia entre ver y actuar sin perder control, ritmo ni calidad.">In basketball, the body does not move in a vacuum. It moves because it saw something, processed something, recognized timing, and committed to an action. Reaction training matters because the sport rewards the athlete who can shorten the gap between seeing and doing without losing control, rhythm, or quality.</p>
+          <span class="eyebrow" data-en="The system" data-es="El sistema">The system</span>
+          <h2 class="section-title" data-en="We did not build reaction training. We built a cognitive model." data-es="No construimos un entrenamiento de reacción. Construimos un modelo cognitivo.">We did not build reaction training. We built a cognitive model.</h2>
+          <p class="section-lead" data-en="Reaction training, as it is sold in the market, is a game. Lights flash, athletes tap, scores go up. That is not a performance system. That is entertainment with sensors. We built something different — a structured cognitive model that targets the specific mental processes basketball actually rewards: recognition, selection, inhibition, initiation, and response quality under uncertainty. Every drill, every mode, every progression inside our system exists because it trains one of those processes on purpose." data-es="El entrenamiento de reacción, tal como se vende en el mercado, es un juego. Luces que parpadean, atletas que tocan, puntuaciones que suben. Eso no es un sistema de rendimiento. Es entretenimiento con sensores. Nosotros construimos algo diferente — un modelo cognitivo estructurado que apunta a los procesos mentales específicos que el baloncesto realmente recompensa: reconocimiento, selección, inhibición, iniciación y calidad de respuesta bajo incertidumbre. Cada ejercicio, cada modo, cada progresión dentro de nuestro sistema existe porque entrena uno de esos procesos con intención.">Reaction training, as it is sold in the market, is a game. Lights flash, athletes tap, scores go up. That is not a performance system. That is entertainment with sensors. We built something different — a structured cognitive model that targets the specific mental processes basketball actually rewards: recognition, selection, inhibition, initiation, and response quality under uncertainty. Every drill, every mode, every progression inside our system exists because it trains one of those processes on purpose.</p>
         </div>
 
-        <div class="feature-grid reveal">
-          <article class="card"><span class="index">01</span><h3 data-en="Visual Recognition" data-es="Reconocimiento Visual">Visual Recognition</h3><p data-en="Train the athlete to identify cues earlier so the game slows down mentally before it speeds up physically." data-es="Entrena al atleta para identificar estímulos más temprano y que el juego se desacelere mentalmente antes de acelerarse físicamente.">Train the athlete to identify cues earlier so the game slows down mentally before it speeds up physically.</p></article>
-          <article class="card"><span class="index">02</span><h3 data-en="Response Timing" data-es="Timing de Respuesta">Response Timing</h3><p data-en="Sharpen the split-second window where recognition becomes usable movement instead of hesitation." data-es="Afina esa ventana de fracción de segundo donde el reconocimiento se convierte en movimiento útil en vez de duda.">Sharpen the split-second window where recognition becomes usable movement instead of hesitation.</p></article>
-          <article class="card"><span class="index">03</span><h3 data-en="Readiness Under Pressure" data-es="Preparación Bajo Presión">Readiness Under Pressure</h3><p data-en="Build the ability to stay organized when visual information arrives quickly and demands a decision." data-es="Desarrolla la capacidad de mantenerse organizado cuando la información visual llega rápido y exige una decisión.">Build the ability to stay organized when visual information arrives quickly and demands a decision.</p></article>
-          <article class="card"><span class="index">04</span><h3 data-en="Basketball Transfer" data-es="Transferencia al Baloncesto">Basketball Transfer</h3><p data-en="Make training feel closer to the live demands of reacting, adjusting, and moving with purpose inside the game." data-es="Haz que el entrenamiento se sienta más cercano a las exigencias reales de reaccionar, ajustar y moverse con propósito dentro del juego.">Make training feel closer to the live demands of reacting, adjusting, and moving with purpose inside the game.</p></article>
+        <div class="manifesto reveal">
+          <blockquote data-en="The athlete who sees, decides, and answers first owns the possession before the possession reveals itself." data-es="El atleta que ve, decide y responde primero es dueño de la posesión antes de que la posesión se revele.">The athlete who sees, decides, and answers first owns the possession before the possession reveals itself.</blockquote>
+          <p data-en="This is the core belief the system is organized around. It sounds simple. The architecture behind it is not. Recognition speed, response selection, and the discipline to not move when the cue is wrong are distinct skills. The system trains them as distinct skills — and then compounds them into one response under live basketball conditions." data-es="Esta es la creencia central alrededor de la cual el sistema está organizado. Suena simple. La arquitectura detrás no lo es. La velocidad de reconocimiento, la selección de respuesta y la disciplina de no moverse cuando el estímulo está equivocado son destrezas distintas. El sistema las entrena como destrezas distintas — y luego las compone en una sola respuesta bajo condiciones reales de baloncesto.">This is the core belief the system is organized around. It sounds simple. The architecture behind it is not. Recognition speed, response selection, and the discipline to not move when the cue is wrong are distinct skills. The system trains them as distinct skills — and then compounds them into one response under live basketball conditions.</p>
+          <div class="marquee">
+            <span class="pill" data-en="Recognition" data-es="Reconocimiento">Recognition</span>
+            <span class="pill" data-en="Selection" data-es="Selección">Selection</span>
+            <span class="pill" data-en="Inhibition" data-es="Inhibición">Inhibition</span>
+            <span class="pill" data-en="Initiation" data-es="Iniciación">Initiation</span>
+            <span class="pill" data-en="Response quality" data-es="Calidad de respuesta">Response quality</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider" />
+
+    <section class="section" id="pillars">
+      <div class="container">
+        <div class="reveal">
+          <span class="eyebrow" data-en="Cognitive pillars" data-es="Pilares cognitivos">Cognitive pillars</span>
+          <h2 class="section-title" data-en="The five cognitive pillars the system is built on." data-es="Los cinco pilares cognitivos sobre los que se construye el sistema.">The five cognitive pillars the system is built on.</h2>
+          <p class="section-lead" data-en="Every mode, every drill, every progression inside the system targets one of these five pillars. This is not a list of buzzwords. It is the architecture — the reason the system exists and the reason it compounds into usable basketball performance instead of noise." data-es="Cada modo, cada ejercicio, cada progresión dentro del sistema apunta a uno de estos cinco pilares. Esto no es una lista de palabras de moda. Es la arquitectura — la razón por la que el sistema existe y la razón por la que se compone en rendimiento útil de baloncesto en vez de ruido.">Every mode, every drill, every progression inside the system targets one of these five pillars. This is not a list of buzzwords. It is the architecture — the reason the system exists and the reason it compounds into usable basketball performance instead of noise.</p>
+        </div>
+
+        <div class="pillar-grid reveal" style="margin-top: 2rem; grid-template-columns: repeat(5, minmax(0, 1fr));">
+          <div class="pillar">
+            <span class="pillar-num">01</span>
+            <h4 data-en="Recognition" data-es="Reconocimiento">Recognition</h4>
+            <p data-en="How fast the athlete identifies what the game is showing. Trained before speed, because speed without recognition is empty motion." data-es="Cuán rápido el atleta identifica lo que el juego está mostrando. Se entrena antes que la velocidad, porque la velocidad sin reconocimiento es movimiento vacío.">How fast the athlete identifies what the game is showing. Trained before speed, because speed without recognition is empty motion.</p>
+          </div>
+          <div class="pillar">
+            <span class="pillar-num">02</span>
+            <h4 data-en="Selection" data-es="Selección">Selection</h4>
+            <p data-en="How cleanly the athlete chooses the right response from the available options. Training the decision, not the reaction." data-es="Con cuánta limpieza el atleta elige la respuesta correcta entre las opciones disponibles. Entrenando la decisión, no la reacción.">How cleanly the athlete chooses the right response from the available options. Training the decision, not the reaction.</p>
+          </div>
+          <div class="pillar">
+            <span class="pillar-num">03</span>
+            <h4 data-en="Inhibition" data-es="Inhibición">Inhibition</h4>
+            <p data-en="The discipline to not commit when the cue is wrong. The most underrated cognitive skill in basketball and the one closeouts and defense are built on." data-es="La disciplina de no comprometerse cuando el estímulo es incorrecto. La destreza cognitiva más subvalorada del baloncesto y sobre la que se construyen los closeouts y la defensa.">The discipline to not commit when the cue is wrong. The most underrated cognitive skill in basketball and the one closeouts and defense are built on.</p>
+          </div>
+          <div class="pillar">
+            <span class="pillar-num">04</span>
+            <h4 data-en="Initiation" data-es="Iniciación">Initiation</h4>
+            <p data-en="The quality of the first moment the body commits after the decision. Not speed of movement — speed of commitment." data-es="La calidad del primer momento en que el cuerpo se compromete después de la decisión. No es velocidad de movimiento — es velocidad de compromiso.">The quality of the first moment the body commits after the decision. Not speed of movement — speed of commitment.</p>
+          </div>
+          <div class="pillar">
+            <span class="pillar-num">05</span>
+            <h4 data-en="Response Quality" data-es="Calidad de Respuesta">Response Quality</h4>
+            <p data-en="How organized, balanced, and useful the movement is after the commitment. The system does not reward panic disguised as speed." data-es="Cuán organizado, balanceado y útil es el movimiento después del compromiso. El sistema no recompensa el pánico disfrazado de velocidad.">How organized, balanced, and useful the movement is after the commitment. The system does not reward panic disguised as speed.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider" />
+
+    <section class="section" id="layers">
+      <div class="container">
+        <div class="reveal">
+          <span class="eyebrow" data-en="On-court and online" data-es="Cancha y online">On-court and online</span>
+          <h2 class="section-title" data-en="One system. Two layers. Same architecture." data-es="Un sistema. Dos capas. La misma arquitectura.">One system. Two layers. Same architecture.</h2>
+          <p class="section-lead" data-en="The system is expressed through two training layers that reinforce each other. The on-court layer puts the athlete inside live basketball movement under real physical and spatial pressure. The online layer keeps the same cognitive patterns active between sessions — recognition, inhibition, selection, initiation — so the athlete arrives at the next on-court session sharper, not reset." data-es="El sistema se expresa a través de dos capas de entrenamiento que se refuerzan entre sí. La capa de cancha pone al atleta dentro del movimiento real de baloncesto bajo presión física y espacial real. La capa online mantiene los mismos patrones cognitivos activos entre sesiones — reconocimiento, inhibición, selección, iniciación — para que el atleta llegue a la próxima sesión de cancha más afilado, no reiniciado.">The system is expressed through two training layers that reinforce each other. The on-court layer puts the athlete inside live basketball movement under real physical and spatial pressure. The online layer keeps the same cognitive patterns active between sessions — recognition, inhibition, selection, initiation — so the athlete arrives at the next on-court session sharper, not reset.</p>
+        </div>
+
+        <div class="layer-grid reveal" style="margin-top: 2rem;">
+          <article class="layer-card">
+            <span class="layer-tag" data-en="Layer 01 · On-court" data-es="Capa 01 · Cancha">Layer 01 · On-court</span>
+            <h3 data-en="Where the system meets real basketball." data-es="Donde el sistema se encuentra con el baloncesto real.">Where the system meets real basketball.</h3>
+            <p data-en="Live reaction drills, structured progressions, and coached reps where the cognitive model is expressed under the full load of basketball movement: footwork, body control, contact, angles, recovery, and game speed. This is where the architecture becomes performance." data-es="Ejercicios de reacción en vivo, progresiones estructuradas y repeticiones guiadas por coach donde el modelo cognitivo se expresa bajo la carga completa del movimiento de baloncesto: trabajo de pies, control corporal, contacto, ángulos, recuperación y velocidad de juego. Aquí es donde la arquitectura se convierte en rendimiento.">Live reaction drills, structured progressions, and coached reps where the cognitive model is expressed under the full load of basketball movement: footwork, body control, contact, angles, recovery, and game speed. This is where the architecture becomes performance.</p>
+          </article>
+          <article class="layer-card online">
+            <span class="layer-tag" data-en="Layer 02 · Online" data-es="Capa 02 · Online">Layer 02 · Online</span>
+            <h3 data-en="Where the system stays sharp between sessions." data-es="Donde el sistema se mantiene afilado entre sesiones.">Where the system stays sharp between sessions.</h3>
+            <p data-en="A digital reinforcement layer built to train the same cognitive pillars the on-court system trains — recognition, selection, inhibition, initiation — on any device, at any hour. The online layer does not replace the court. It keeps the athlete's mind in the system when the court is not available." data-es="Una capa digital de refuerzo construida para entrenar los mismos pilares cognitivos que entrena el sistema de cancha — reconocimiento, selección, inhibición, iniciación — en cualquier dispositivo, a cualquier hora. La capa online no reemplaza la cancha. Mantiene la mente del atleta dentro del sistema cuando la cancha no está disponible.">A digital reinforcement layer built to train the same cognitive pillars the on-court system trains — recognition, selection, inhibition, initiation — on any device, at any hour. The online layer does not replace the court. It keeps the athlete's mind in the system when the court is not available.</p>
+          </article>
+        </div>
+
+        <div class="manifesto reveal" style="margin-top: 2rem;">
+          <blockquote data-en="The court builds the habit. The online layer keeps it awake." data-es="La cancha construye el hábito. La capa online lo mantiene despierto.">The court builds the habit. The online layer keeps it awake.</blockquote>
+          <p data-en="Cognitive skill decays fast without repetition. On-court training alone cannot cover the gap between sessions. The online layer is not a bonus feature — it is an intentional part of the design, the reason the system compounds instead of resets. Two layers. One architecture. One outcome: an athlete whose decision-making is always in training." data-es="La destreza cognitiva se deteriora rápido sin repetición. El entrenamiento en cancha por sí solo no puede cubrir la distancia entre sesiones. La capa online no es una función extra — es parte intencional del diseño, la razón por la que el sistema se compone en vez de reiniciarse. Dos capas. Una arquitectura. Un resultado: un atleta cuya toma de decisiones siempre está en entrenamiento.">Cognitive skill decays fast without repetition. On-court training alone cannot cover the gap between sessions. The online layer is not a bonus feature — it is an intentional part of the design, the reason the system compounds instead of resets. Two layers. One architecture. One outcome: an athlete whose decision-making is always in training.</p>
         </div>
       </div>
     </section>
@@ -842,74 +976,21 @@
     <section class="section" id="applications">
       <div class="container">
         <div class="reveal">
-          <span class="eyebrow" data-en="Basketball applications" data-es="Aplicaciones en baloncesto">Basketball applications</span>
-          <h2 class="section-title" data-en="Built for real basketball decisions, not random movement." data-es="Diseñado para decisiones reales del baloncesto, no para movimiento al azar.">Built for real basketball decisions, not random movement.</h2>
-          <p class="section-lead" data-en="Reaction training has value because basketball is full of triggers: a drive, a closeout, a cut, a pass window, a rebound angle, a recovery step, a defensive read. The goal is not simply to move fast. The goal is to respond with quality inside the right basketball moment." data-es="El entrenamiento de reacción tiene valor porque el baloncesto está lleno de estímulos: un ataque al aro, un closeout, un corte, una ventana de pase, un ángulo de rebote, un paso de recuperación, una lectura defensiva. La meta no es simplemente moverse rápido. La meta es responder con calidad dentro del momento correcto del baloncesto.">Reaction training has value because basketball is full of triggers: a drive, a closeout, a cut, a pass window, a rebound angle, a recovery step, a defensive read. The goal is not simply to move fast. The goal is to respond with quality inside the right basketball moment.</p>
+          <span class="eyebrow" data-en="System applications" data-es="Aplicaciones del sistema">System applications</span>
+          <h2 class="section-title" data-en="How the system applies to real basketball roles." data-es="Cómo el sistema se aplica a los roles reales del baloncesto.">How the system applies to real basketball roles.</h2>
+          <p class="section-lead" data-en="The cognitive architecture does not change across positions. What changes is how it expresses itself. A guard uses the same five pillars differently than a big. A defender uses them differently than a scorer. The system adjusts the emphasis without losing the model." data-es="La arquitectura cognitiva no cambia entre posiciones. Lo que cambia es cómo se expresa. Un guard usa los cinco pilares de forma diferente a un big. Un defensor los usa de forma diferente a un anotador. El sistema ajusta el énfasis sin perder el modelo.">The cognitive architecture does not change across positions. What changes is how it expresses itself. A guard uses the same five pillars differently than a big. A defender uses them differently than a scorer. The system adjusts the emphasis without losing the model.</p>
         </div>
 
         <div class="applications-grid" style="margin-top: 2rem;">
-          <article class="application reveal"><h3 data-en="Guards" data-es="Guards">Guards</h3><p data-en="Sharpen first-step recognition, tighter read-and-react rhythm, and cleaner response into space, counters, and pull-up timing." data-es="Afina el reconocimiento del primer paso, un ritmo más preciso de leer y reaccionar, y una respuesta más limpia hacia el espacio, counters y timing de pull-up.">Sharpen first-step recognition, tighter read-and-react rhythm, and cleaner response into space, counters, and pull-up timing.</p></article>
-          <article class="application reveal"><h3 data-en="Wings" data-es="Wings">Wings</h3><p data-en="Improve response quality in transition, closeouts, angle changes, finishes, and recovery movement across multiple actions." data-es="Mejora la calidad de respuesta en transición, closeouts, cambios de ángulo, definiciones y movimiento de recuperación a través de múltiples acciones.">Improve response quality in transition, closeouts, angle changes, finishes, and recovery movement across multiple actions.</p></article>
-          <article class="application reveal"><h3 data-en="Bigs" data-es="Bigs">Bigs</h3><p data-en="Support recognition around contact, rebounding reads, second-effort reactions, and short-space response near the rim." data-es="Apoya el reconocimiento alrededor del contacto, lecturas de rebote, reacciones de segundo esfuerzo y respuesta en espacios cortos cerca del aro.">Support recognition around contact, rebounding reads, second-effort reactions, and short-space response near the rim.</p></article>
-          <article class="application reveal"><h3 data-en="Youth Development" data-es="Desarrollo Juvenil">Youth Development</h3><p data-en="Teach athletes to connect vision, awareness, and body control before poor reaction habits become their default speed." data-es="Enseña a los atletas a conectar visión, conciencia y control corporal antes de que los malos hábitos de reacción se conviertan en su velocidad por defecto.">Teach athletes to connect vision, awareness, and body control before poor reaction habits become their default speed.</p></article>
-          <article class="application reveal"><h3 data-en="Defensive Movement" data-es="Movimiento Defensivo">Defensive Movement</h3><p data-en="Train how quickly the athlete reads the trigger, commits the feet, adjusts the body, and stays available for the next action." data-es="Entrena cuán rápido el atleta lee el estímulo, compromete los pies, ajusta el cuerpo y se mantiene disponible para la próxima acción.">Train how quickly the athlete reads the trigger, commits the feet, adjusts the body, and stays available for the next action.</p></article>
-          <article class="application reveal"><h3 data-en="Closeouts and Recovery" data-es="Closeouts y Recuperación">Closeouts and Recovery</h3><p data-en="Improve the transition from visual recognition into controlled response so effort becomes cleaner and more useful." data-es="Mejora la transición del reconocimiento visual hacia una respuesta controlada para que el esfuerzo sea más limpio y más útil.">Improve the transition from visual recognition into controlled response so effort becomes cleaner and more useful.</p></article>
-          <article class="application reveal"><h3 data-en="First-Step Reactions" data-es="Reacciones del Primer Paso">First-Step Reactions</h3><p data-en="Develop faster commitment after the cue so the athlete attacks with less hesitation and better movement intent." data-es="Desarrolla un compromiso más rápido después del estímulo para que el atleta ataque con menos duda y mejor intención de movimiento.">Develop faster commitment after the cue so the athlete attacks with less hesitation and better movement intent.</p></article>
-          <article class="application reveal"><h3 data-en="Recovery and Re-Engagement" data-es="Recuperación y Reenganche">Recovery and Re-Engagement</h3><p data-en="Train the body to respond again after the first action instead of mentally and physically pausing after effort." data-es="Entrena al cuerpo para volver a responder después de la primera acción en vez de pausar mental y físicamente después del esfuerzo.">Train the body to respond again after the first action instead of mentally and physically pausing after effort.</p></article>
-          <article class="application reveal"><h3 data-en="Multi-Directional Play" data-es="Juego Multidireccional">Multi-Directional Play</h3><p data-en="Respect basketball’s real demands: angles, interruptions, adjustments, reorientation, and movement under uncertainty." data-es="Respeta las exigencias reales del baloncesto: ángulos, interrupciones, ajustes, reorientación y movimiento bajo incertidumbre.">Respect basketball’s real demands: angles, interruptions, adjustments, reorientation, and movement under uncertainty.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <hr class="section-divider" />
-
-    <section class="section" id="decision">
-      <div class="container split">
-        <div class="reveal">
-          <span class="eyebrow" data-en="Decision speed" data-es="Velocidad de decisión">Decision speed</span>
-          <h2 class="section-title" data-en="The game moves fast. The best players process faster." data-es="El juego se mueve rápido. Los mejores jugadores procesan más rápido.">The game moves fast. The best players process faster.</h2>
-          <p class="section-lead" data-en="Decision speed is not panic. It is not rushing. It is the quality of seeing the cue, recognizing the demand, selecting the response, and moving with conviction. Great reaction work helps train that invisible layer between perception and action that separates ordinary speed from useful basketball speed." data-es="La velocidad de decisión no es pánico. No es apresurarse. Es la calidad de ver el estímulo, reconocer la exigencia, seleccionar la respuesta y moverse con convicción. Un gran trabajo de reacción ayuda a entrenar esa capa invisible entre percepción y acción que separa la velocidad ordinaria de la velocidad útil para el baloncesto.">Decision speed is not panic. It is not rushing. It is the quality of seeing the cue, recognizing the demand, selecting the response, and moving with conviction. Great reaction work helps train that invisible layer between perception and action that separates ordinary speed from useful basketball speed.</p>
-        </div>
-
-        <div class="decision-grid reveal">
-          <article class="value-band"><span class="index">A</span><h3 data-en="Recognition Speed" data-es="Velocidad de Reconocimiento">Recognition Speed</h3><p data-en="Train the athlete to identify what matters faster so the mind reaches the right action sooner." data-es="Entrena al atleta para identificar más rápido lo que importa y que la mente llegue antes a la acción correcta.">Train the athlete to identify what matters faster so the mind reaches the right action sooner.</p></article>
-          <article class="value-band"><span class="index">B</span><h3 data-en="Movement Initiation" data-es="Inicio del Movimiento">Movement Initiation</h3><p data-en="Shorten the delay between seeing and committing so the body starts with more purpose and less waste." data-es="Acorta el retraso entre ver y comprometerse para que el cuerpo inicie con más propósito y menos desperdicio.">Shorten the delay between seeing and committing so the body starts with more purpose and less waste.</p></article>
-          <article class="value-band"><span class="index">C</span><h3 data-en="Read-and-React Rhythm" data-es="Ritmo de Leer y Reaccionar">Read-and-React Rhythm</h3><p data-en="Improve how the athlete stays connected to the next cue instead of moving with blind speed." data-es="Mejora cómo el atleta se mantiene conectado al próximo estímulo en vez de moverse con velocidad ciega.">Improve how the athlete stays connected to the next cue instead of moving with blind speed.</p></article>
-          <article class="value-band"><span class="index">D</span><h3 data-en="Response Under Uncertainty" data-es="Respuesta Bajo Incertidumbre">Response Under Uncertainty</h3><p data-en="Train cleaner decision-making when the next demand is not fully predictable, which is exactly how the game feels." data-es="Entrena una toma de decisiones más limpia cuando la próxima exigencia no es totalmente predecible, que es exactamente como se siente el juego.">Train cleaner decision-making when the next demand is not fully predictable, which is exactly how the game feels.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <hr class="section-divider" />
-
-    <section class="section" id="movement">
-      <div class="container">
-        <div class="reveal">
-          <span class="eyebrow" data-en="Movement response" data-es="Respuesta del movimiento">Movement response</span>
-          <h2 class="section-title" data-en="The visual cue is only the beginning. The body still has to answer correctly." data-es="El estímulo visual es solo el principio. El cuerpo todavía tiene que responder correctamente.">The visual cue is only the beginning. The body still has to answer correctly.</h2>
-          <p class="section-lead" data-en="Reaction training becomes meaningful when the body can organize that visual information into footwork timing, angle commitment, posture, stopping, changing direction, and re-accelerating with balance. The real value is not the cue itself. The real value is the movement response that follows." data-es="El entrenamiento de reacción se vuelve significativo cuando el cuerpo puede organizar esa información visual en timing de pies, compromiso con el ángulo, postura, frenado, cambio de dirección y reaceleración con balance. El valor real no es el estímulo en sí. El valor real es la respuesta de movimiento que le sigue.">Reaction training becomes meaningful when the body can organize that visual information into footwork timing, angle commitment, posture, stopping, changing direction, and re-accelerating with balance. The real value is not the cue itself. The real value is the movement response that follows.</p>
-        </div>
-
-        <div class="insight-grid" style="margin-top: 2rem;">
-          <article class="insight reveal"><h3 data-en="Footwork Timing" data-es="Timing de Pies">Footwork Timing</h3><p data-en="Better visual response helps the feet commit with better rhythm instead of reacting late and correcting under pressure." data-es="Una mejor respuesta visual ayuda a que los pies se comprometan con mejor ritmo en vez de reaccionar tarde y corregir bajo presión.">Better visual response helps the feet commit with better rhythm instead of reacting late and correcting under pressure.</p></article>
-          <article class="insight reveal"><h3 data-en="Body Control" data-es="Control Corporal">Body Control</h3><p data-en="Fast reaction is only valuable when the body can stay organized while responding to the cue." data-es="La reacción rápida solo tiene valor cuando el cuerpo puede mantenerse organizado mientras responde al estímulo.">Fast reaction is only valuable when the body can stay organized while responding to the cue.</p></article>
-          <article class="insight reveal"><h3 data-en="Change of Direction" data-es="Cambio de Dirección">Change of Direction</h3><p data-en="The cleaner the recognition, the cleaner the directional commitment and the faster the next move becomes useful." data-es="Mientras más limpio el reconocimiento, más limpio el compromiso direccional y más rápido la próxima acción se vuelve útil.">The cleaner the recognition, the cleaner the directional commitment and the faster the next move becomes useful.</p></article>
-          <article class="insight reveal"><h3 data-en="Stopping and Re-Accelerating" data-es="Frenar y Reacelerar">Stopping and Re-Accelerating</h3><p data-en="Response quality helps the athlete absorb the moment, reorganize, and move again without losing the next decision." data-es="La calidad de respuesta ayuda al atleta a absorber el momento, reorganizarse y volver a moverse sin perder la próxima decisión.">Response quality helps the athlete absorb the moment, reorganize, and move again without losing the next decision.</p></article>
-          <article class="insight reveal"><h3 data-en="Balance During Reaction" data-es="Balance Durante la Reacción">Balance During Reaction</h3><p data-en="The best response is not frantic. It is balanced, intentional, and available for what comes next." data-es="La mejor respuesta no es frenética. Es balanceada, intencional y disponible para lo que viene después.">The best response is not frantic. It is balanced, intentional, and available for what comes next.</p></article>
-          <article class="insight reveal"><h3 data-en="Coordination Under Pressure" data-es="Coordinación Bajo Presión">Coordination Under Pressure</h3><p data-en="When cues arrive quickly, the athlete still needs clean coordination to turn the read into real basketball action." data-es="Cuando los estímulos llegan rápido, el atleta todavía necesita una coordinación limpia para convertir la lectura en acción real de baloncesto.">When cues arrive quickly, the athlete still needs clean coordination to turn the read into real basketball action.</p></article>
-        </div>
-
-        <div class="manifesto reveal" style="margin-top: 2rem;">
-          <blockquote data-en="Basketball is not only about how fast you move. It is about how fast you recognize what the game is asking from you." data-es="El baloncesto no se trata solo de cuán rápido te mueves. Se trata de cuán rápido reconoces lo que el juego te está pidiendo.">Basketball is not only about how fast you move. It is about how fast you recognize what the game is asking from you.</blockquote>
-          <p data-en="That is the deeper value of reaction training. It sharpens the bridge between what the athlete sees and how the athlete answers. In basketball, that bridge can change the quality of the possession before the possession ever fully reveals itself." data-es="Ese es el valor más profundo del entrenamiento de reacción. Afina el puente entre lo que el atleta ve y cómo el atleta responde. En baloncesto, ese puente puede cambiar la calidad de la posesión antes de que la posesión se revele por completo.">That is the deeper value of reaction training. It sharpens the bridge between what the athlete sees and how the athlete answers. In basketball, that bridge can change the quality of the possession before the possession ever fully reveals itself.</p>
-          <div class="marquee">
-            <span class="pill" data-en="Recognition" data-es="Reconocimiento">Recognition</span>
-            <span class="pill" data-en="Response timing" data-es="Timing de respuesta">Response timing</span>
-            <span class="pill" data-en="Visual control" data-es="Control visual">Visual control</span>
-            <span class="pill" data-en="Decision rhythm" data-es="Ritmo de decisión">Decision rhythm</span>
-            <span class="pill" data-en="Movement quality" data-es="Calidad de movimiento">Movement quality</span>
-            <span class="pill" data-en="Game speed" data-es="Velocidad de juego">Game speed</span>
-          </div>
+          <article class="application reveal"><h3 data-en="Guards" data-es="Guards">Guards</h3><p data-en="The system sharpens recognition in ball-screen reads, selection between pull-up and counter, and initiation quality on the first step after the cue is identified." data-es="El sistema afina el reconocimiento en lecturas de ball-screen, la selección entre pull-up y counter, y la calidad de iniciación en el primer paso después de identificar el estímulo.">The system sharpens recognition in ball-screen reads, selection between pull-up and counter, and initiation quality on the first step after the cue is identified.</p></article>
+          <article class="application reveal"><h3 data-en="Wings" data-es="Wings">Wings</h3><p data-en="The system targets closeout discipline, transition decision-making, and response quality across multi-action sequences where the cue changes mid-movement." data-es="El sistema apunta a la disciplina de closeout, la toma de decisiones en transición y la calidad de respuesta en secuencias de múltiples acciones donde el estímulo cambia a mitad del movimiento.">The system targets closeout discipline, transition decision-making, and response quality across multi-action sequences where the cue changes mid-movement.</p></article>
+          <article class="application reveal"><h3 data-en="Bigs" data-es="Bigs">Bigs</h3><p data-en="The system trains short-space recognition around contact, second-effort response after the first action, and the selection speed between rebound, outlet, and reposition." data-es="El sistema entrena el reconocimiento en espacios cortos alrededor del contacto, la respuesta de segundo esfuerzo después de la primera acción, y la velocidad de selección entre rebote, pase de salida y reposicionamiento.">The system trains short-space recognition around contact, second-effort response after the first action, and the selection speed between rebound, outlet, and reposition.</p></article>
+          <article class="application reveal"><h3 data-en="Defensive Movement" data-es="Movimiento Defensivo">Defensive Movement</h3><p data-en="This is where inhibition earns its place. The system trains the athlete to hold the stance, read the cue, and commit the feet only when the decision is right — not when the hips sell a fake." data-es="Aquí es donde la inhibición se gana su lugar. El sistema entrena al atleta a sostener la postura, leer el estímulo y comprometer los pies solo cuando la decisión es correcta — no cuando las caderas venden un amague.">This is where inhibition earns its place. The system trains the athlete to hold the stance, read the cue, and commit the feet only when the decision is right — not when the hips sell a fake.</p></article>
+          <article class="application reveal"><h3 data-en="First-Step Attack" data-es="Ataque del Primer Paso">First-Step Attack</h3><p data-en="The system attacks the gap between cue and commitment. Less hesitation. Cleaner initiation. The first step becomes a decision expressed at full intent, not a guess." data-es="El sistema ataca la distancia entre el estímulo y el compromiso. Menos duda. Iniciación más limpia. El primer paso se convierte en una decisión expresada con intención completa, no en una suposición.">The system attacks the gap between cue and commitment. Less hesitation. Cleaner initiation. The first step becomes a decision expressed at full intent, not a guess.</p></article>
+          <article class="application reveal"><h3 data-en="Youth Development" data-es="Desarrollo Juvenil">Youth Development</h3><p data-en="The system installs recognition and inhibition before bad cognitive habits harden. It builds the architecture before bad default speeds become the athlete's identity." data-es="El sistema instala el reconocimiento y la inhibición antes de que los malos hábitos cognitivos se endurezcan. Construye la arquitectura antes de que las velocidades por defecto mal formadas se conviertan en la identidad del atleta.">The system installs recognition and inhibition before bad cognitive habits harden. It builds the architecture before bad default speeds become the athlete's identity.</p></article>
+          <article class="application reveal"><h3 data-en="In-Season Support" data-es="Apoyo en Temporada">In-Season Support</h3><p data-en="The online layer is built for this. Short, high-quality cognitive reps athletes can run anywhere keep the system active across a long season without stacking physical load." data-es="La capa online está construida para esto. Repeticiones cognitivas cortas y de alta calidad que los atletas pueden ejecutar en cualquier lugar mantienen el sistema activo a lo largo de una temporada larga sin acumular carga física.">The online layer is built for this. Short, high-quality cognitive reps athletes can run anywhere keep the system active across a long season without stacking physical load.</p></article>
+          <article class="application reveal"><h3 data-en="Programs & Academies" data-es="Programas y Academias">Programs & Academies</h3><p data-en="The system installs the same cognitive model across every athlete in the program — a shared architecture that coaches can reference, coach from, and measure against." data-es="El sistema instala el mismo modelo cognitivo en cada atleta del programa — una arquitectura compartida que los coaches pueden referenciar, desde la cual coachear y contra la cual medir.">The system installs the same cognitive model across every athlete in the program — a shared architecture that coaches can reference, coach from, and measure against.</p></article>
+          <article class="application reveal"><h3 data-en="Trainers & Coaches" data-es="Trainers y Coaches">Trainers & Coaches</h3><p data-en="The system gives the trainer a model to teach from — a structured vocabulary for the invisible layer of the game that players feel but coaches rarely name clearly." data-es="El sistema le da al trainer un modelo desde el cual enseñar — un vocabulario estructurado para la capa invisible del juego que los jugadores sienten pero que los coaches rara vez nombran con claridad.">The system gives the trainer a model to teach from — a structured vocabulary for the invisible layer of the game that players feel but coaches rarely name clearly.</p></article>
         </div>
       </div>
     </section>
@@ -918,9 +999,9 @@
       <div class="container">
         <div class="cta-band reveal">
           <div>
-            <span class="eyebrow" data-en="Basketball intelligence" data-es="Inteligencia de baloncesto">Basketball intelligence</span>
-            <h2 data-en="Train the response before the move." data-es="Entrena la respuesta antes del movimiento.">Train the response before the move.</h2>
-            <p data-en="This is not about random flashes or empty speed. It is about preparing the athlete to see faster, process cleaner, and move with more purpose when the game demands a response." data-es="Esto no se trata de destellos al azar ni de velocidad vacía. Se trata de preparar al atleta para ver más rápido, procesar más limpio y moverse con más propósito cuando el juego exige una respuesta.">This is not about random flashes or empty speed. It is about preparing the athlete to see faster, process cleaner, and move with more purpose when the game demands a response.</p>
+            <span class="eyebrow" data-en="Why this matters" data-es="Por qué esto importa">Why this matters</span>
+            <h2 data-en="Speed is not the edge. The decision is." data-es="La velocidad no es la ventaja. La decisión sí.">Speed is not the edge. The decision is.</h2>
+            <p data-en="The basketball market sells faster feet. The game rewards faster decisions. Our system is built for the game, not the market." data-es="El mercado del baloncesto vende pies más rápidos. El juego recompensa decisiones más rápidas. Nuestro sistema está construido para el juego, no para el mercado.">The basketball market sells faster feet. The game rewards faster decisions. Our system is built for the game, not the market.</p>
           </div>
           <div style="display:flex; gap:1rem; flex-wrap:wrap;">
             <a href="#contact" class="btn" data-en="Start the Conversation" data-es="Comienza la Conversación">Start the Conversation</a>
@@ -936,18 +1017,18 @@
       <div class="container">
         <div class="reveal">
           <span class="eyebrow" data-en="FAQ" data-es="Preguntas Frecuentes">FAQ</span>
-          <h2 class="section-title" data-en="Sharp answers for serious basketball performance questions." data-es="Respuestas claras para preguntas serias sobre rendimiento en baloncesto.">Sharp answers for serious basketball performance questions.</h2>
+          <h2 class="section-title" data-en="Sharp answers, from the people who built the system." data-es="Respuestas claras, de las personas que construyeron el sistema.">Sharp answers, from the people who built the system.</h2>
         </div>
 
         <div class="faq-grid" style="margin-top: 2rem;">
-          <article class="faq-item reveal"><h3 data-en="What is reaction training for basketball?" data-es="¿Qué es el entrenamiento de reacción para baloncesto?">What is reaction training for basketball?</h3><p data-en="It is a way to train how the athlete sees, processes, decides, and moves after a visual cue instead of treating speed as a purely physical quality." data-es="Es una forma de entrenar cómo el atleta ve, procesa, decide y se mueve después de un estímulo visual en vez de tratar la velocidad como una cualidad puramente física.">It is a way to train how the athlete sees, processes, decides, and moves after a visual cue instead of treating speed as a purely physical quality.</p></article>
-          <article class="faq-item reveal"><h3 data-en="Why does visual response matter in basketball?" data-es="¿Por qué importa la respuesta visual en el baloncesto?">Why does visual response matter in basketball?</h3><p data-en="Because the game constantly asks players to react to information: defenders, space, cuts, passes, closeouts, rebounds, and recovery moments." data-es="Porque el juego constantemente le pide a los jugadores reaccionar a la información: defensores, espacio, cortes, pases, closeouts, rebotes y momentos de recuperación.">Because the game constantly asks players to react to information: defenders, space, cuts, passes, closeouts, rebounds, and recovery moments.</p></article>
-          <article class="faq-item reveal"><h3 data-en="Does this help game speed?" data-es="¿Esto ayuda a la velocidad de juego?">Does this help game speed?</h3><p data-en="Yes. It can help the athlete play faster mentally and respond sooner without confusing speed with panic." data-es="Sí. Puede ayudar al atleta a jugar más rápido mentalmente y responder antes sin confundir velocidad con pánico.">Yes. It can help the athlete play faster mentally and respond sooner without confusing speed with panic.</p></article>
-          <article class="faq-item reveal"><h3 data-en="Can this improve decision-making?" data-es="¿Puede mejorar la toma de decisiones?">Can this improve decision-making?</h3><p data-en="It can support faster recognition and cleaner response patterns, which helps decision speed become more useful inside real play." data-es="Puede apoyar un reconocimiento más rápido y patrones de respuesta más limpios, lo cual ayuda a que la velocidad de decisión sea más útil dentro del juego real.">It can support faster recognition and cleaner response patterns, which helps decision speed become more useful inside real play.</p></article>
-          <article class="faq-item reveal"><h3 data-en="Is this useful for youth players?" data-es="¿Esto es útil para jugadores jóvenes?">Is this useful for youth players?</h3><p data-en="Yes. It can help teach visual awareness, timing, and cleaner movement response early in development." data-es="Sí. Puede ayudar a enseñar conciencia visual, timing y una respuesta de movimiento más limpia temprano en el desarrollo.">Yes. It can help teach visual awareness, timing, and cleaner movement response early in development.</p></article>
-          <article class="faq-item reveal"><h3 data-en="How does it help defensive movement?" data-es="¿Cómo ayuda al movimiento defensivo?">How does it help defensive movement?</h3><p data-en="It trains the athlete to read the trigger sooner and organize the feet and body faster under pressure." data-es="Entrena al atleta para leer el estímulo antes y organizar los pies y el cuerpo más rápido bajo presión.">It trains the athlete to read the trigger sooner and organize the feet and body faster under pressure.</p></article>
-          <article class="faq-item reveal"><h3 data-en="Can it support first-step response?" data-es="¿Puede apoyar la respuesta del primer paso?">Can it support first-step response?</h3><p data-en="Yes. It can sharpen how quickly the athlete commits after the cue instead of hesitating into the move." data-es="Sí. Puede afinar cuán rápido el atleta se compromete después del estímulo en vez de dudar antes del movimiento.">Yes. It can sharpen how quickly the athlete commits after the cue instead of hesitating into the move.</p></article>
-          <article class="faq-item reveal"><h3 data-en="Does it transfer to real basketball situations?" data-es="¿Se transfiere a situaciones reales de baloncesto?">Does it transfer to real basketball situations?</h3><p data-en="It has value when the training is connected to visual recognition, response quality, movement control, and real basketball demands." data-es="Tiene valor cuando el entrenamiento está conectado al reconocimiento visual, la calidad de respuesta, el control del movimiento y las exigencias reales del baloncesto.">It has value when the training is connected to visual recognition, response quality, movement control, and real basketball demands.</p></article>
+          <article class="faq-item reveal"><h3 data-en="Is this reaction training?" data-es="¿Esto es entrenamiento de reacción?">Is this reaction training?</h3><p data-en="No. Reaction training is a category in the market. This is a cognitive performance system built for basketball. Reaction is one input the system uses. It is not what the system is." data-es="No. El entrenamiento de reacción es una categoría del mercado. Esto es un sistema de rendimiento cognitivo construido para el baloncesto. La reacción es un insumo que el sistema usa. No es lo que el sistema es.">No. Reaction training is a category in the market. This is a cognitive performance system built for basketball. Reaction is one input the system uses. It is not what the system is.</p></article>
+          <article class="faq-item reveal"><h3 data-en="What does the system actually train?" data-es="¿Qué entrena realmente el sistema?">What does the system actually train?</h3><p data-en="Five cognitive pillars: recognition, selection, inhibition, initiation, and response quality. Every drill and every mode targets at least one of them on purpose." data-es="Cinco pilares cognitivos: reconocimiento, selección, inhibición, iniciación y calidad de respuesta. Cada ejercicio y cada modo apunta a al menos uno de ellos con intención.">Five cognitive pillars: recognition, selection, inhibition, initiation, and response quality. Every drill and every mode targets at least one of them on purpose.</p></article>
+          <article class="faq-item reveal"><h3 data-en="Why an on-court layer and an online layer?" data-es="¿Por qué una capa de cancha y una capa online?">Why an on-court layer and an online layer?</h3><p data-en="Cognitive skill decays without repetition. The court cannot cover every hour between sessions. The online layer keeps the same architecture active so the athlete returns to the court sharper, not reset." data-es="La destreza cognitiva se deteriora sin repetición. La cancha no puede cubrir cada hora entre sesiones. La capa online mantiene la misma arquitectura activa para que el atleta regrese a la cancha más afilado, no reiniciado.">Cognitive skill decays without repetition. The court cannot cover every hour between sessions. The online layer keeps the same architecture active so the athlete returns to the court sharper, not reset.</p></article>
+          <article class="faq-item reveal"><h3 data-en="Does the online layer replace the court?" data-es="¿La capa online reemplaza la cancha?">Does the online layer replace the court?</h3><p data-en="No. The court is where cognition meets live basketball movement. The online layer is reinforcement, not replacement. The two are designed to compound." data-es="No. La cancha es donde la cognición se encuentra con el movimiento real del baloncesto. La capa online es refuerzo, no reemplazo. Las dos están diseñadas para componerse.">No. The court is where cognition meets live basketball movement. The online layer is reinforcement, not replacement. The two are designed to compound.</p></article>
+          <article class="faq-item reveal"><h3 data-en="Is this useful for youth players?" data-es="¿Es útil para jugadores jóvenes?">Is this useful for youth players?</h3><p data-en="Especially for youth players. The system installs recognition and inhibition before bad cognitive defaults harden into identity. Easier to build the architecture than to rewire it later." data-es="Especialmente para jugadores jóvenes. El sistema instala el reconocimiento y la inhibición antes de que los valores cognitivos mal formados se endurezcan y se conviertan en identidad. Es más fácil construir la arquitectura que recablearla después.">Especially for youth players. The system installs recognition and inhibition before bad cognitive defaults harden into identity. Easier to build the architecture than to rewire it later.</p></article>
+          <article class="faq-item reveal"><h3 data-en="Can this run in-season?" data-es="¿Puede correr en temporada?">Can this run in-season?</h3><p data-en="The online layer is built for exactly that. Short, high-quality cognitive reps that keep the system active without stacking physical load during a long season." data-es="La capa online está construida precisamente para eso. Repeticiones cognitivas cortas y de alta calidad que mantienen el sistema activo sin acumular carga física durante una temporada larga.">The online layer is built for exactly that. Short, high-quality cognitive reps that keep the system active without stacking physical load during a long season.</p></article>
+          <article class="faq-item reveal"><h3 data-en="How is this different from other reaction products?" data-es="¿En qué se diferencia esto de otros productos de reacción?">How is this different from other reaction products?</h3><p data-en="Most reaction products are games with sensors. This is a structured cognitive model with a defined architecture, designed specifically around the decision demands of basketball and delivered across two reinforcing layers." data-es="La mayoría de los productos de reacción son juegos con sensores. Esto es un modelo cognitivo estructurado con una arquitectura definida, diseñado específicamente alrededor de las exigencias de decisión del baloncesto y entregado a través de dos capas que se refuerzan.">Most reaction products are games with sensors. This is a structured cognitive model with a defined architecture, designed specifically around the decision demands of basketball and delivered across two reinforcing layers.</p></article>
+          <article class="faq-item reveal"><h3 data-en="Who is this for?" data-es="¿Para quién es esto?">Who is this for?</h3><p data-en="Athletes who want cognitive quality to match their physical tools. Coaches who want a shared model they can teach from. Programs that want the same architecture installed across every athlete." data-es="Atletas que quieren calidad cognitiva que iguale sus herramientas físicas. Coaches que quieren un modelo compartido desde el cual enseñar. Programas que quieren la misma arquitectura instalada en cada atleta.">Athletes who want cognitive quality to match their physical tools. Coaches who want a shared model they can teach from. Programs that want the same architecture installed across every athlete.</p></article>
         </div>
       </div>
     </section>
@@ -958,8 +1039,8 @@
       <div class="container split">
         <div class="reveal">
           <span class="eyebrow" data-en="Contact / CTA" data-es="Contacto / CTA">Contact / CTA</span>
-          <h2 class="section-title" data-en="For athletes, coaches, trainers, academies, and programs ready for a sharper edge." data-es="Para atletas, coaches, trainers, academias y programas listos para una ventaja más precisa.">For athletes, coaches, trainers, academies, and programs ready for a sharper edge.</h2>
-          <p class="section-lead" data-en="The conversation starts with one question: how much of basketball performance is really decided before the body ever fully moves?" data-es="La conversación comienza con una pregunta: ¿cuánto del rendimiento en baloncesto realmente se decide antes de que el cuerpo se mueva por completo?">The conversation starts with one question: how much of basketball performance is really decided before the body ever fully moves?</p>
+          <h2 class="section-title" data-en="For athletes, coaches, trainers, academies, and programs ready to install the architecture." data-es="Para atletas, coaches, trainers, academias y programas listos para instalar la arquitectura.">For athletes, coaches, trainers, academies, and programs ready to install the architecture.</h2>
+          <p class="section-lead" data-en="The conversation starts with one question: how much of your team's performance is decided before the body ever fully moves?" data-es="La conversación comienza con una pregunta: ¿cuánto del rendimiento de tu equipo se decide antes de que el cuerpo se mueva por completo?">The conversation starts with one question: how much of your team's performance is decided before the body ever fully moves?</p>
           <div class="marquee">
             <span class="pill" data-en="Athletes" data-es="Atletas">Athletes</span>
             <span class="pill" data-en="Coaches" data-es="Coaches">Coaches</span>
@@ -992,15 +1073,15 @@
               <div class="field">
                 <label for="focus" data-en="Primary interest" data-es="Interés principal">Primary interest</label>
                 <select id="focus" name="focus">
-                  <option data-en="Decision speed" data-es="Velocidad de decisión">Decision speed</option>
-                  <option data-en="Visual response" data-es="Respuesta visual">Visual response</option>
-                  <option data-en="Movement response" data-es="Respuesta del movimiento">Movement response</option>
-                  <option data-en="Full basketball model" data-es="Modelo completo de baloncesto">Full basketball model</option>
+                  <option data-en="The full system" data-es="El sistema completo">The full system</option>
+                  <option data-en="On-court layer" data-es="Capa de cancha">On-court layer</option>
+                  <option data-en="Online layer" data-es="Capa online">Online layer</option>
+                  <option data-en="Program install" data-es="Instalación de programa">Program install</option>
                 </select>
               </div>
               <div class="field full">
                 <label for="message" data-en="Message" data-es="Mensaje">Message</label>
-                <textarea id="message" name="message" placeholder="Tell us about your athletes, your program, or the basketball response qualities you want to sharpen." data-placeholder-en="Tell us about your athletes, your program, or the basketball response qualities you want to sharpen." data-placeholder-es="Cuéntanos sobre tus atletas, tu programa o las cualidades de respuesta en baloncesto que quieres afinar."></textarea>
+                <textarea id="message" name="message" placeholder="Tell us about your athletes, your program, and what you want the cognitive architecture to unlock." data-placeholder-en="Tell us about your athletes, your program, and what you want the cognitive architecture to unlock." data-placeholder-es="Cuéntanos sobre tus atletas, tu programa y qué quieres que la arquitectura cognitiva desbloquee."></textarea>
               </div>
               <div class="field full">
                 <button type="submit" class="btn" data-en="Request Information" data-es="Solicitar Información">Request Information</button>
@@ -1019,14 +1100,14 @@
           <span class="brand-mark" aria-hidden="true"></span>
           <span data-en="Reaction Basketball" data-es="Reaction Basketball">Reaction Basketball</span>
         </div>
-        <p style="max-width:62ch; margin:0; line-height:1.8;" data-en="A premium basketball performance experience centered on visual response, decision speed, movement timing, and reaction quality under pressure." data-es="Una experiencia premium de rendimiento en baloncesto centrada en respuesta visual, velocidad de decisión, timing de movimiento y calidad de reacción bajo presión.">A premium basketball performance experience centered on visual response, decision speed, movement timing, and reaction quality under pressure.</p>
+        <p style="max-width:62ch; margin:0; line-height:1.8;" data-en="A proprietary cognitive performance system for basketball. On-court and online, engineered to train the same architecture the game actually rewards." data-es="Un sistema propio de rendimiento cognitivo para el baloncesto. En cancha y online, diseñado para entrenar la misma arquitectura que el juego realmente recompensa.">A proprietary cognitive performance system for basketball. On-court and online, engineered to train the same architecture the game actually rewards.</p>
       </div>
       <div class="footer-links">
         <a href="#home" data-en="Home" data-es="Inicio">Home</a>
-        <a href="#why" data-en="Why It Matters" data-es="Por Qué Importa">Why It Matters</a>
+        <a href="#system" data-en="The System" data-es="El Sistema">The System</a>
+        <a href="#pillars" data-en="Pillars" data-es="Pilares">Pillars</a>
+        <a href="#layers" data-en="Layers" data-es="Capas">Layers</a>
         <a href="#applications" data-en="Applications" data-es="Aplicaciones">Applications</a>
-        <a href="#decision" data-en="Decision Speed" data-es="Velocidad de Decisión">Decision Speed</a>
-        <a href="#movement" data-en="Movement Response" data-es="Respuesta del Movimiento">Movement Response</a>
         <a href="#faq" data-en="FAQ" data-es="Preguntas">FAQ</a>
         <a href="#contact" data-en="Contact" data-es="Contacto">Contact</a>
       </div>
