@@ -1164,5 +1164,30 @@
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   </script>
+<!-- Chat Advisor -->
+  <button class="chat-fab" id="chatFab" type="button" aria-label="Open Reaction Advisor">🧠</button>
+
+  <aside class="chat-panel" id="chatPanel" aria-hidden="true">
+    <div class="chat-head">
+      <div class="chat-title-wrap">
+        <span class="chat-kicker" data-en="Cognitive System" data-es="Sistema Cognitivo">Cognitive System</span>
+        <span class="chat-title" data-en="Reaction Advisor" data-es="Reaction Advisor">Reaction Advisor</span>
+      </div>
+      <button class="chat-close" id="chatClose" type="button" aria-label="Close advisor">✕</button>
+    </div>
+    <div class="chat-body">
+      <div class="chat-messages" id="chatMessages" aria-live="polite"></div>
+      <div class="chat-input-wrap">
+        <div class="chat-input-row">
+          <input class="chat-input" id="chatInput" type="text" placeholder="Ask about the system…" />
+          <button class="chat-send" id="chatSend" type="button" aria-label="Send message">➜</button>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="chat-overlay" id="chatOverlay"></div>
+
+  <script src="/chat.js" defer></script>
 </body>
 </html>
