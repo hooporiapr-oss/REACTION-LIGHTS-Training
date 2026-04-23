@@ -1322,6 +1322,9 @@
     }
     if (chatClose) chatClose.addEventListener('click', closeChat);
     if (chatOverlay) chatOverlay.addEventListener('click', closeChat);
+    // Hero "Start the Conversation" button → open chat
+    const heroChatBtn = document.getElementById('heroChatBtn');
+    if (heroChatBtn) heroChatBtn.addEventListener('click', openChat);
   </script>
 
   <script src="/chat.js" defer></script>
