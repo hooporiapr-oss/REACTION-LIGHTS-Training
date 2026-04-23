@@ -166,7 +166,8 @@ body.playing{overflow:hidden;position:fixed;width:100%;height:100%}
 
 .play-screen .stop-btn{
   flex-shrink:0;
-  margin-top:10px;
+  margin-top:16px;
+  width:min(100%, 560px);
 }
 
 /* Size the board to fit the visible overlay, not the full document */
@@ -395,7 +396,7 @@ var playbookSequence=[],playbookUserIndex=0,playbookShowing=false;
 function flashSeqStep(i){if(!isPlaying)return;if(i>=playbookSequence.length){playbookShowing=false;clearLights();showFeedback(currentLang==='es'?'¡TU TURNO!':'YOUR TURN!','perfect');playbookUserIndex=0;return}playbookShowing=true;var idx=playbookSequence[i];lightBall(idx,idx%6);setTimeout(function(){clearLights();setTimeout(function(){flashSeqStep(i+1)},180)},Math.max(260,beatMs*.52))}
 function newPlaybookRound(){playbookSequence.push(randomInt(6));flashSeqStep(0)}
 function startPlaybook(){playbookSequence=[];newPlaybookRound()}
-function startGame(){stopGame();streak=0;updateStats();document.getElementById('challengeComplete').classList.remove('show');document.getElementById('setupScreen').classList.add('hidden');document.getElementById('playScreen').classList.remove('hidden');document.body.classList.add('playing');updateModeUI();countdown(function(){isPlaying=true;if(currentMode==='shootaround')startShootaround();else if(currentMode==='crunchtime')startCrunchTime();else startPlaybook()})}
+function startGame(){stopGame();streak=0;updateStats();document.getElementById('challengeComplete').classList.remove('show');document.getElementById('setupScreen').classList.add('hidden');document.getElementById('playScreen').classList.remove('hidden');document.body.classList.add('playing');updateModeUI();var fb=document.getElementById('feedback');fb.textContent='';fb.className='feedback-text';countdown(function(){isPlaying=true;if(currentMode==='shootaround')startShootaround();else if(currentMode==='crunchtime')startCrunchTime();else startPlaybook()})}
 document.getElementById('startBtn').onclick=startGame;
 document.getElementById('playBackBtn').onclick=function(){stopGame();document.getElementById('playScreen').classList.add('hidden');document.getElementById('setupScreen').classList.remove('hidden');document.getElementById('challengeComplete').classList.remove('show');document.body.classList.remove('playing')};
 document.getElementById('stopBtn').onclick=document.getElementById('playBackBtn').onclick;
