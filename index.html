@@ -1046,19 +1046,84 @@
           </div>
         </div>
 
-        <div class="visual-card reveal" aria-label="Dynamic basketball cognitive system visual">
+        <div class="visual-card reveal" aria-label="Reaction Basketball cognitive system visual">
           <div class="visual-grid"></div>
+          <div class="visual-scan"></div>
+
+          <!-- Cognitive HUD -->
+          <div class="visual-hud">
+            <div class="hud-dot"></div>
+            <span class="hud-label" data-en="System: LIVE" data-es="Sistema: EN VIVO">System: LIVE</span>
+          </div>
+
+          <!-- Pillar readout -->
+          <div class="visual-pillars">
+            <span class="pillar-chip active" data-pillar="1" data-en="RECOGNITION" data-es="RECONOCIMIENTO">RECOGNITION</span>
+            <span class="pillar-chip" data-pillar="2" data-en="SELECTION" data-es="SELECCIÓN">SELECTION</span>
+            <span class="pillar-chip" data-pillar="3" data-en="INHIBITION" data-es="INHIBICIÓN">INHIBITION</span>
+            <span class="pillar-chip" data-pillar="4" data-en="INITIATION" data-es="INICIACIÓN">INITIATION</span>
+            <span class="pillar-chip" data-pillar="5" data-en="RESPONSE" data-es="RESPUESTA">RESPONSE</span>
+          </div>
+
+          <!-- Neural connection lines (SVG) -->
+          <svg class="visual-neural" viewBox="0 0 400 600" preserveAspectRatio="none" aria-hidden="true">
+            <defs>
+              <linearGradient id="neuralGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#7fe2ff" stop-opacity="0.6"/>
+                <stop offset="100%" stop-color="#b8f516" stop-opacity="0.2"/>
+              </linearGradient>
+            </defs>
+            <g class="neural-lines" stroke="url(#neuralGrad)" stroke-width="1" fill="none">
+              <line x1="200" y1="150" x2="60" y2="90"/>
+              <line x1="200" y1="150" x2="340" y2="120"/>
+              <line x1="200" y1="150" x2="35" y2="260"/>
+              <line x1="200" y1="150" x2="360" y2="280"/>
+              <line x1="200" y1="150" x2="80" y2="470"/>
+              <line x1="200" y1="150" x2="320" y2="500"/>
+            </g>
+          </svg>
+
+          <!-- Player silhouette -->
           <div class="player-silhouette"></div>
-          <div class="react-light one"></div>
-          <div class="react-light two"></div>
-          <div class="react-light three"></div>
-          <div class="react-light four"></div>
-          <div class="react-light five"></div>
-          <div class="react-light six"></div>
+          <div class="player-core"></div>
+
+          <!-- Reaction light pods -->
+          <div class="pod pod-1" data-color="cyan">
+            <div class="pod-ring"></div>
+            <div class="pod-core"></div>
+            <div class="pod-flash"></div>
+          </div>
+          <div class="pod pod-2" data-color="lime">
+            <div class="pod-ring"></div>
+            <div class="pod-core"></div>
+            <div class="pod-flash"></div>
+          </div>
+          <div class="pod pod-3" data-color="magenta">
+            <div class="pod-ring"></div>
+            <div class="pod-core"></div>
+            <div class="pod-flash"></div>
+          </div>
+          <div class="pod pod-4" data-color="amber">
+            <div class="pod-ring"></div>
+            <div class="pod-core"></div>
+            <div class="pod-flash"></div>
+          </div>
+          <div class="pod pod-5" data-color="violet">
+            <div class="pod-ring"></div>
+            <div class="pod-core"></div>
+            <div class="pod-flash"></div>
+          </div>
+          <div class="pod pod-6" data-color="white">
+            <div class="pod-ring"></div>
+            <div class="pod-core"></div>
+            <div class="pod-flash"></div>
+          </div>
+
           <div class="visual-copy">
             <strong data-en="The possession is decided before the body fully commits." data-es="La posesión se decide antes de que el cuerpo se comprometa por completo.">The possession is decided before the body fully commits.</strong>
             <span data-en="Our system trains the invisible layer between perception and action — the one that separates ordinary speed from useful basketball speed." data-es="Nuestro sistema entrena la capa invisible entre percepción y acción — la que separa la velocidad ordinaria de la velocidad útil en el baloncesto.">Our system trains the invisible layer between perception and action — the one that separates ordinary speed from useful basketball speed.</span>
           </div>
+        </div>
         </div>
       </div>
     </section>
